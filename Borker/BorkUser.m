@@ -23,6 +23,7 @@ static NSString * const appRootPath = @"https://borker.herokuapp.com";
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[appRootPath stringByAppendingPathComponent:@"users.json"]]];
     __autoreleasing NSError* error = nil;
     self.users = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
 }
 
 @end

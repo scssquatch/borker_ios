@@ -10,16 +10,18 @@
 #import "BorkCell.h"
 
 static NSString * const appRootPath = @"https://borker.herokuapp.com";
+static NSString * const cellIdentifier = @"BorkCell";
 
 @interface BorkViewController ()
 @end
 
 @implementation BorkViewController
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.borks = [[NSArray alloc] init];
+    UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     [self getBorks];
 }
 
@@ -43,14 +45,8 @@ static NSString * const appRootPath = @"https://borker.herokuapp.com";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"BorkCell";
-    BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BorkCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
+    BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *tempDictionary = [self.borks objectAtIndex:[indexPath row]];
-    [cell.content sizeToFit];
     cell.content.text = [tempDictionary objectForKey:@"content"];
     cell.username.text = [NSString stringWithFormat:@"%@", [tempDictionary objectForKey:@"user_id"]];
     return cell;

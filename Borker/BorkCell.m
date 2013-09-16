@@ -14,7 +14,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        self.content.numberOfLines = 0;
+        [self.content sizeToFit];
     }
     return self;
 }

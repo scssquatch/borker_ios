@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B572B85417E77CDF00AF9DC0 /* BorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B572B85317E77CDF00AF9DC0 /* BorkCell.xib */; };
+		B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */; };
 		B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85617E788BB00AF9DC0 /* BorkUser.m */; };
 		B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85917E78B7A00AF9DC0 /* BorkCell.m */; };
 		B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB217E75C6D00B1B24C /* UIKit.framework */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B572B85317E77CDF00AF9DC0 /* BorkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkCell.xib; sourceTree = "<group>"; };
+		B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkCellView.xib; sourceTree = "<group>"; };
 		B572B85517E788BB00AF9DC0 /* BorkUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUser.h; sourceTree = "<group>"; };
 		B572B85617E788BB00AF9DC0 /* BorkUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUser.m; sourceTree = "<group>"; };
 		B572B85817E78B7A00AF9DC0 /* BorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkCell.h; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				B5910ACA17E75C6D00B1B24C /* MainStoryboard.storyboard */,
-				B572B85317E77CDF00AF9DC0 /* BorkCell.xib */,
+				B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */,
 				B572B85817E78B7A00AF9DC0 /* BorkCell.h */,
 				B572B85917E78B7A00AF9DC0 /* BorkCell.m */,
 				B5910ACD17E75C6D00B1B24C /* BorkViewController.h */,
@@ -250,7 +250,7 @@
 				B5910AC717E75C6D00B1B24C /* Default@2x.png in Resources */,
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
-				B572B85417E77CDF00AF9DC0 /* BorkCell.xib in Resources */,
+				B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
