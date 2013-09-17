@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface BorkUser : NSObject
-@property (strong, nonatomic) NSArray *users;
++ (BorkUser *)findByID:(NSString *)id;
+@property (strong, nonatomic) NSString *id;
+@property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) UIImage *avatar;
+@property (strong, nonatomic) NSArray *userIDs;
 @end

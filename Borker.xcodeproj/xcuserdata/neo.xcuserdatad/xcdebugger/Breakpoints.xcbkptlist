@@ -7,13 +7,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Borker/BorkUser.m"
-         timestampString = "401055096.485343"
+         filePath = "Borker/BorkViewController.m"
+         timestampString = "401137104.041881"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
-         landmarkName = "-getUsers"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "-populateUsers"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -8,28 +8,41 @@
 
 #import "BorkViewController.h"
 #import "BorkCell.h"
+#import "BorkUser.h"
+#import "BorkerAPILayer.h"
 
-static NSString * const appRootPath = @"https://borker.herokuapp.com";
 static NSString * const cellIdentifier = @"BorkCell";
 
 @interface BorkViewController ()
+@property (strong, nonatomic) BorkUser *borkUser;
+@property (strong, nonatomic) NSMutableArray *users;
+@property (strong, nonatomic) BorkerAPILayer *borkerRequests;
 @end
 
 @implementation BorkViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.borkerRequests = [[BorkerAPILayer alloc] init];
+    self.borkUser = [[BorkUser alloc] init];
+    self.users = [[NSMutableArray alloc] init];
     self.borks = [[NSArray alloc] init];
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    [self getBorks];
+    [self populateUsers];
+    [self populateBorks];
 }
 
-- (void)getBorks
+- (void)populateUsers
 {
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[appRootPath stringByAppendingPathComponent:@"borks_for_app.json"]]];
-    __autoreleasing NSError* error = nil;
-    self.borks = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    for (NSString *userID in self.borkUser.userIDs) {
+        [self.users addObject:[BorkUser findByID:userID]];
+    }
+}
+
+- (void)populateBorks
+{
+    self.borks = [self.borkerRequests fetchBorks];
     [self.tableView reloadData];
 }
 
@@ -46,9 +59,12 @@ static NSString * const cellIdentifier = @"BorkCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    NSDictionary *tempDictionary = [self.borks objectAtIndex:[indexPath row]];
-    cell.content.text = [tempDictionary objectForKey:@"content"];
-    cell.username.text = [NSString stringWithFormat:@"%@", [tempDictionary objectForKey:@"user_id"]];
+    NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
+    NSString *user_id = [NSString stringWithFormat:@"%@", [borkDictionary objectForKey:@"user_id"]];
+    BorkUser *user = [BorkUser findByID:user_id];
+    cell.content.text = [borkDictionary objectForKey:@"content"];
+    cell.username.text = user.username;
+    cell.avatar.image = user.avatar;
     return cell;
 }
 
