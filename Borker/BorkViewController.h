@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BorkViewController : UITableViewController
+@interface BorkViewController : UIViewController
+<UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSArray *borks;
 @end

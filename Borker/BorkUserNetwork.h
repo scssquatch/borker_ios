@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BorkerAPILayer : NSObject
-- (NSArray *)fetchBorks;
+@interface BorkUserNetwork : NSObject
 - (NSArray *)fetchUsers;
 @end

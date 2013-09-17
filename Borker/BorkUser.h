@@ -12,6 +12,6 @@
 + (BorkUser *)findByID:(NSString *)id;
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) UIImage *avatar;
+@property (strong, nonatomic) NSURL *avatarURL;
 @property (strong, nonatomic) NSArray *userIDs;
 @end

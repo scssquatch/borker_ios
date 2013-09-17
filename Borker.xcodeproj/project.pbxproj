@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B546D06D17E8EA7F0005477D /* BorkNetwork.m */; };
 		B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */; };
 		B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85617E788BB00AF9DC0 /* BorkUser.m */; };
 		B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85917E78B7A00AF9DC0 /* BorkCell.m */; };
-		B572B85D17E89BB100AF9DC0 /* BorkerAPILayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85C17E89BB100AF9DC0 /* BorkerAPILayer.m */; };
+		B572B85D17E89BB100AF9DC0 /* BorkUserNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85C17E89BB100AF9DC0 /* BorkUserNetwork.m */; };
 		B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB217E75C6D00B1B24C /* UIKit.framework */; };
 		B5910AB517E75C6D00B1B24C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB417E75C6D00B1B24C /* Foundation.framework */; };
 		B5910AB717E75C6D00B1B24C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB617E75C6D00B1B24C /* CoreGraphics.framework */; };
@@ -27,6 +28,7 @@
 		B5910AD917E75C6D00B1B24C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB417E75C6D00B1B24C /* Foundation.framework */; };
 		B5910AE117E75C6D00B1B24C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5910ADF17E75C6D00B1B24C /* InfoPlist.strings */; };
 		B5910AE417E75C6D00B1B24C /* BorkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5910AE317E75C6D00B1B24C /* BorkerTests.m */; };
+		B5913D2A17E8FE7F001D2668 /* SensibleTableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5913D2917E8FE7F001D2668 /* SensibleTableView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,13 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B546D06C17E8EA7F0005477D /* BorkNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNetwork.h; sourceTree = "<group>"; };
+		B546D06D17E8EA7F0005477D /* BorkNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkNetwork.m; sourceTree = "<group>"; };
 		B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkCellView.xib; sourceTree = "<group>"; };
 		B572B85517E788BB00AF9DC0 /* BorkUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUser.h; sourceTree = "<group>"; };
 		B572B85617E788BB00AF9DC0 /* BorkUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUser.m; sourceTree = "<group>"; };
 		B572B85817E78B7A00AF9DC0 /* BorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkCell.h; sourceTree = "<group>"; };
 		B572B85917E78B7A00AF9DC0 /* BorkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCell.m; sourceTree = "<group>"; };
-		B572B85B17E89BB100AF9DC0 /* BorkerAPILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkerAPILayer.h; sourceTree = "<group>"; };
-		B572B85C17E89BB100AF9DC0 /* BorkerAPILayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkerAPILayer.m; sourceTree = "<group>"; };
+		B572B85B17E89BB100AF9DC0 /* BorkUserNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUserNetwork.h; sourceTree = "<group>"; };
+		B572B85C17E89BB100AF9DC0 /* BorkUserNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUserNetwork.m; sourceTree = "<group>"; };
 		B5910AAF17E75C6D00B1B24C /* Borker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Borker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5910AB217E75C6D00B1B24C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5910AB417E75C6D00B1B24C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +73,7 @@
 		B5910AE017E75C6D00B1B24C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5910AE217E75C6D00B1B24C /* BorkerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorkerTests.h; sourceTree = "<group>"; };
 		B5910AE317E75C6D00B1B24C /* BorkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorkerTests.m; sourceTree = "<group>"; };
+		B5913D2917E8FE7F001D2668 /* SensibleTableView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SensibleTableView.framework; path = "../../Downloads/STV 3.1.4 Lite/Static Frameworks/SensibleTableView.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,7 @@
 				B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */,
 				B5910AB517E75C6D00B1B24C /* Foundation.framework in Frameworks */,
 				B5910AB717E75C6D00B1B24C /* CoreGraphics.framework in Frameworks */,
+				B5913D2A17E8FE7F001D2668 /* SensibleTableView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +101,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B546D06F17E8EA840005477D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B572B85B17E89BB100AF9DC0 /* BorkUserNetwork.h */,
+				B572B85C17E89BB100AF9DC0 /* BorkUserNetwork.m */,
+				B546D06C17E8EA7F0005477D /* BorkNetwork.h */,
+				B546D06D17E8EA7F0005477D /* BorkNetwork.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		B5910AA617E75C6D00B1B24C = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +134,7 @@
 		B5910AB117E75C6D00B1B24C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5913D2917E8FE7F001D2668 /* SensibleTableView.framework */,
 				B5910AB217E75C6D00B1B24C /* UIKit.framework */,
 				B5910AB417E75C6D00B1B24C /* Foundation.framework */,
 				B5910AB617E75C6D00B1B24C /* CoreGraphics.framework */,
@@ -128,12 +146,11 @@
 		B5910AB817E75C6D00B1B24C /* Borker */ = {
 			isa = PBXGroup;
 			children = (
+				B546D06F17E8EA840005477D /* Network */,
 				B5910ACA17E75C6D00B1B24C /* MainStoryboard.storyboard */,
 				B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */,
 				B572B85817E78B7A00AF9DC0 /* BorkCell.h */,
 				B572B85917E78B7A00AF9DC0 /* BorkCell.m */,
-				B572B85B17E89BB100AF9DC0 /* BorkerAPILayer.h */,
-				B572B85C17E89BB100AF9DC0 /* BorkerAPILayer.m */,
 				B5910ACD17E75C6D00B1B24C /* BorkViewController.h */,
 				B5910ACE17E75C6D00B1B24C /* BorkViewController.m */,
 				B5910AB917E75C6D00B1B24C /* Supporting Files */,
@@ -295,7 +312,8 @@
 				B5910ACF17E75C6D00B1B24C /* BorkViewController.m in Sources */,
 				B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */,
 				B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */,
-				B572B85D17E89BB100AF9DC0 /* BorkerAPILayer.m in Sources */,
+				B572B85D17E89BB100AF9DC0 /* BorkUserNetwork.m in Sources */,
+				B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +422,10 @@
 		B5910AE817E75C6D00B1B24C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/STV 3.1.4 Lite/Static Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
 				INFOPLIST_FILE = "Borker/Borker-Info.plist";
@@ -415,6 +437,10 @@
 		B5910AE917E75C6D00B1B24C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/STV 3.1.4 Lite/Static Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
 				INFOPLIST_FILE = "Borker/Borker-Info.plist";
