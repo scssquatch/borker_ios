@@ -37,11 +37,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"login"]) {
+
+}
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:@"login"]) {
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
-        BOOL *is = [self.borkUserRequests authenticateUser:username withPassword:password];
-        [segue destinationViewController];
+        if ([self.borkUserRequests authenticateUser:username withPassword:password]) {
+            return YES;
+        }
     }
+    return NO;
 }
 @end

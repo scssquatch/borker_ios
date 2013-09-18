@@ -9,7 +9,7 @@
 #import "BorkUserNetwork.h"
 
 static NSString * const appRootPath = @"https://borker.herokuapp.com";
-
+static NSString * const authToken = @"wVdLktWLHkZZOxE4aEaPig";
 @implementation BorkUserNetwork
 - (NSArray *)fetchUsers
 {
@@ -21,27 +21,30 @@ static NSString * const appRootPath = @"https://borker.herokuapp.com";
 }
 - (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password
 {
-    NSURL *url = [NSURL URLWithString:[appRootPath stringByAppendingPathComponent:@"authenticate.json"]];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"authenticate?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"username=%@", username]];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&password=%@", password]];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&api_key=%@", authToken]];
+    NSURL *url = [NSURL URLWithString:postString];
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
     __autoreleasing NSError *error = nil;
-    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:
-                            username, @"username",
-                            password, @"password",
-                            nil];
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:kNilOptions error:&error];
-    [request setHTTPBody:postData];
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *retVal = [[NSString alloc] init];
     if (error)
     {
-        
+        return false;
     }else{
-        NSString *retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", retVal);
+        retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
-    return true;
+    
+    if ([retVal isEqualToString:@"true"]) {
+        return true;
+    }
+    return false;
 }
 @end
