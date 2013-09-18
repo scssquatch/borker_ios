@@ -1,4 +1,4 @@
-//
+    //
 //  BorkCell.m
 //  Borker
 //
@@ -14,8 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.content.numberOfLines = 0;
-        [self.content sizeToFit];
     }
     return self;
 }
@@ -26,5 +24,4 @@
 
     // Configure the view for the selected state
 }
-
 @end

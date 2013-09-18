@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FWg-xk-Sh7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="S55-6F-pI5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Bork View Controller-->
+        <!--Bork View Controller - Borker-->
         <scene sceneID="jsi-AO-xtM">
             <objects>
                 <viewController id="FWg-xk-Sh7" customClass="BorkViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="366-1S-C6W">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aG6-K8-NsB">
@@ -22,45 +22,164 @@
                                     <outlet property="delegate" destination="FWg-xk-Sh7" id="kvQ-Cr-WEq"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="HoE-lm-xU1">
-                                <items>
-                                    <navigationItem title="Borker" id="5A8-1G-V3Y"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.88627457618713379" green="0.88627457618713379" blue="0.88627457618713379" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="HoE-lm-xU1" firstAttribute="trailing" secondItem="366-1S-C6W" secondAttribute="trailing" type="default" id="81p-CM-Jwf"/>
-                            <constraint firstItem="HoE-lm-xU1" firstAttribute="leading" secondItem="366-1S-C6W" secondAttribute="leading" type="default" id="Eh6-di-Leb"/>
-                            <constraint firstItem="aG6-K8-NsB" firstAttribute="top" secondItem="HoE-lm-xU1" secondAttribute="bottom" type="default" id="JK6-jS-05Z"/>
-                            <constraint firstItem="HoE-lm-xU1" firstAttribute="top" secondItem="366-1S-C6W" secondAttribute="top" type="default" id="JO6-em-lpJ"/>
-                            <constraint firstItem="aG6-K8-NsB" firstAttribute="centerX" secondItem="HoE-lm-xU1" secondAttribute="centerX" type="default" id="MSw-PN-V3f"/>
+                            <constraint firstItem="aG6-K8-NsB" firstAttribute="top" secondItem="366-1S-C6W" secondAttribute="top" type="default" id="7pf-dT-JOJ"/>
                             <constraint firstItem="aG6-K8-NsB" firstAttribute="bottom" secondItem="366-1S-C6W" secondAttribute="bottom" type="default" id="OWd-ux-pkT"/>
+                            <constraint firstItem="aG6-K8-NsB" firstAttribute="centerX" secondItem="366-1S-C6W" secondAttribute="centerX" type="default" id="q3j-52-chJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Borker" id="slr-1L-WdG">
+                        <barButtonItem key="rightBarButtonItem" title="Bork" id="G9D-fr-21N">
+                            <connections>
+                                <segue destination="jtJ-TM-vvz" kind="push" id="Zbo-5b-7Iy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="navigationBar" destination="HoE-lm-xU1" id="qb8-fR-DUG"/>
                         <outlet property="tableView" destination="aG6-K8-NsB" id="Gbf-GE-m2H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9N-na-WRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Gug-Zg-4K0"/>
             </objects>
-            <point key="canvasLocation" x="-71" y="1"/>
+            <point key="canvasLocation" x="591" y="281"/>
+        </scene>
+        <!--New Bork View Controller-->
+        <scene sceneID="7Id-6Y-Oag">
+            <objects>
+                <viewController id="jtJ-TM-vvz" customClass="NewBorkViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KgT-Vj-HkD">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hv-cq-09l">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="168" id="8Rv-D5-sNI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4hv-cq-09l" firstAttribute="top" secondItem="KgT-Vj-HkD" secondAttribute="top" type="default" id="DkN-fD-pYy"/>
+                            <constraint firstItem="4hv-cq-09l" firstAttribute="leading" secondItem="KgT-Vj-HkD" secondAttribute="leading" type="default" id="Hgg-Os-4CN"/>
+                            <constraint firstItem="4hv-cq-09l" firstAttribute="trailing" secondItem="KgT-Vj-HkD" secondAttribute="trailing" type="default" id="NPc-hg-iVY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lkz-W3-gzh">
+                        <barButtonItem key="rightBarButtonItem" title="Bork It" id="Mw8-lt-nFt">
+                            <connections>
+                                <action selector="createNewBork:" destination="jtJ-TM-vvz" id="QWv-al-uaM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="borkContentField" destination="4hv-cq-09l" id="5mX-j9-iNe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZPJ-9b-ZAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="972" y="281"/>
+        </scene>
+        <!--Login View Controller - Borker-->
+        <scene sceneID="deK-i0-DJa">
+            <objects>
+                <viewController id="pgs-yT-5df" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8sv-Ge-aLO">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-fs-UUh">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="179" id="WCy-vY-BY0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6vo-JA-qUE">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94N-qY-wmi">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="wPh-Lp-hqs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FWg-xk-Sh7" kind="push" identifier="login" id="3g3-bf-7x9"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="borker.png" translatesAutoresizingMaskIntoConstraints="NO" id="LjT-Gp-Esm">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="Flq-00-q0j"/>
+                                    <constraint firstAttribute="width" constant="52" id="eTF-eJ-7Vf"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Welcome to Borker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzo-yD-hWT">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="xmj-6m-FXb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.22995064584090674" green="0.23902428668478259" blue="0.22434217058551187" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6vo-JA-qUE" firstAttribute="trailing" secondItem="yxc-fs-UUh" secondAttribute="trailing" type="default" id="29S-Lp-qrO"/>
+                            <constraint firstItem="Mzo-yD-hWT" firstAttribute="top" secondItem="8sv-Ge-aLO" secondAttribute="top" constant="55" id="8p6-FM-cSj"/>
+                            <constraint firstItem="94N-qY-wmi" firstAttribute="leading" secondItem="6vo-JA-qUE" secondAttribute="leading" type="default" id="GG6-pu-UrK"/>
+                            <constraint firstItem="6vo-JA-qUE" firstAttribute="top" secondItem="8sv-Ge-aLO" secondAttribute="top" constant="124" id="Lwi-It-ZNt"/>
+                            <constraint firstItem="Mzo-yD-hWT" firstAttribute="leading" secondItem="8sv-Ge-aLO" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PyY-u7-Kop"/>
+                            <constraint firstItem="Mzo-yD-hWT" firstAttribute="centerX" secondItem="yxc-fs-UUh" secondAttribute="centerX" type="default" id="U3d-sT-qsE"/>
+                            <constraint firstItem="6vo-JA-qUE" firstAttribute="leading" secondItem="yxc-fs-UUh" secondAttribute="leading" type="default" id="Z6x-Vv-Eec"/>
+                            <constraint firstItem="LjT-Gp-Esm" firstAttribute="top" secondItem="8sv-Ge-aLO" secondAttribute="top" constant="5" id="ZSA-ov-Bg2"/>
+                            <constraint firstItem="94N-qY-wmi" firstAttribute="trailing" secondItem="6vo-JA-qUE" secondAttribute="trailing" type="default" id="cFI-y2-65T"/>
+                            <constraint firstAttribute="trailing" secondItem="Mzo-yD-hWT" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="fBE-er-8M3"/>
+                            <constraint firstItem="LjT-Gp-Esm" firstAttribute="centerX" secondItem="Mzo-yD-hWT" secondAttribute="centerX" type="default" id="sDk-YN-Blg"/>
+                            <constraint firstItem="94N-qY-wmi" firstAttribute="top" secondItem="8sv-Ge-aLO" secondAttribute="top" constant="156" id="vBD-fH-Az0"/>
+                            <constraint firstItem="yxc-fs-UUh" firstAttribute="top" secondItem="8sv-Ge-aLO" secondAttribute="top" constant="96" id="vRQ-Uo-Hw0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Borker" id="iJM-X2-sjc"/>
+                    <connections>
+                        <outlet property="passwordField" destination="6vo-JA-qUE" id="4fL-EM-ELW"/>
+                        <outlet property="usernameField" destination="yxc-fs-UUh" id="rgO-lp-4us"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cCW-zd-GMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="214" y="281"/>
+        </scene>
+        <!--Bork Navigation View Controller-->
+        <scene sceneID="KpS-7C-uDE">
+            <objects>
+                <navigationController id="S55-6F-pI5" customClass="BorkNavigationViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zDv-sg-SOd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pgs-yT-5df" kind="relationship" relationship="rootViewController" id="voB-xz-bH3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHK-s4-BBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174" y="281"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="BorkViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BorkViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
+    <resources>
+        <image name="borker.png" width="114" height="162"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

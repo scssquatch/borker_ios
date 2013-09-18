@@ -10,4 +10,5 @@
 
 @interface BorkUserNetwork : NSObject
 - (NSArray *)fetchUsers;
+- (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password;
 @end

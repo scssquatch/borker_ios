@@ -34,9 +34,11 @@ static NSString * const cellIdentifier = @"BorkCell";
     self.avatars = [[NSMutableDictionary alloc] init];
     self.users = [[NSMutableDictionary alloc] init];
     self.borks = [[NSArray alloc] init];
+    self.navigationItem.hidesBackButton = YES;
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     [self.tableView.layer setBorderWidth:1.0];
+    [self.tableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self populateUsers];
     [self populateBorks];
 }
@@ -67,17 +69,54 @@ static NSString * const cellIdentifier = @"BorkCell";
 {
     return [self.borks count];
 }
+#define FONT_SIZE 14.0f
+#define LABEL_CONTENT_WIDTH 195.0f
+#define CELL_CONTENT_WIDTH 320.0f
+#define CELL_CONTENT_HEIGHT_TOP_MARGIN 27.0f
+#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 10.0f
+#define CELL_CONTENT_WIDTH_RIGHT_MARGIN 47.0f
+#define CELL_CONTENT_WIDTH_LEFT_MARGIN 78.0f
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
+    NSString *text = [borkDictionary objectForKey:@"content"];
     NSString *user_id = [NSString stringWithFormat:@"%@", [borkDictionary objectForKey:@"user_id"]];
     BorkUser *user = [self.users objectForKey:user_id];
-    cell.content.text = [borkDictionary objectForKey:@"content"];
+    CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    NSArray *words = [text componentsSeparatedByString:@" "];
+    if ([self longestWord:words] > 23) {
+        [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
+    } else {
+        [cell.content setLineBreakMode:NSLineBreakByWordWrapping];
+    }
+    cell.content.text = text;
+    [cell.content setFrame:CGRectMake(CELL_CONTENT_WIDTH_LEFT_MARGIN, CELL_CONTENT_HEIGHT_TOP_MARGIN, LABEL_CONTENT_WIDTH, MAX(size.height, 38.0f))];
     cell.username.text = user.username;
     cell.avatar.image = [self.avatars objectForKey:user_id];
     return cell;
 }
 
+- (CGFloat) tableView: (UITableView *) tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
+{
+    NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
+    NSString *text = [borkDictionary objectForKey:@"content"];
+    CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    CGFloat height = MAX(size.height, 38.0f);
+    return height + (CELL_CONTENT_HEIGHT_TOP_MARGIN + CELL_CONTENT_HEIGHT_BOTTOM_MARGIN);
+}
+
+- (NSInteger)longestWord:(NSArray *)wordArray
+{
+    int max = 0;
+    for (NSString *word in wordArray) {
+        if (word.length > max) {
+            max = word.length;
+        }
+    }
+    return max;
+}
 @end

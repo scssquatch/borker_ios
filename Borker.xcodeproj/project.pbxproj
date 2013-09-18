@@ -28,7 +28,10 @@
 		B5910AD917E75C6D00B1B24C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB417E75C6D00B1B24C /* Foundation.framework */; };
 		B5910AE117E75C6D00B1B24C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5910ADF17E75C6D00B1B24C /* InfoPlist.strings */; };
 		B5910AE417E75C6D00B1B24C /* BorkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5910AE317E75C6D00B1B24C /* BorkerTests.m */; };
-		B5913D2A17E8FE7F001D2668 /* SensibleTableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5913D2917E8FE7F001D2668 /* SensibleTableView.framework */; };
+		B5F418B017EA1A41001D71B7 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F418AF17EA1A41001D71B7 /* borker.png */; };
+		B5F418B317EA1B12001D71B7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B217EA1B12001D71B7 /* LoginViewController.m */; };
+		B5F418B617EA2536001D71B7 /* NewBorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B517EA2536001D71B7 /* NewBorkViewController.m */; };
+		B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +76,13 @@
 		B5910AE017E75C6D00B1B24C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5910AE217E75C6D00B1B24C /* BorkerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorkerTests.h; sourceTree = "<group>"; };
 		B5910AE317E75C6D00B1B24C /* BorkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorkerTests.m; sourceTree = "<group>"; };
-		B5913D2917E8FE7F001D2668 /* SensibleTableView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SensibleTableView.framework; path = "../../Downloads/STV 3.1.4 Lite/Static Frameworks/SensibleTableView.framework"; sourceTree = "<group>"; };
+		B5F418AF17EA1A41001D71B7 /* borker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = borker.png; path = ../../../Downloads/borker.png; sourceTree = "<group>"; };
+		B5F418B117EA1B12001D71B7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B5F418B217EA1B12001D71B7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B5F418B417EA2536001D71B7 /* NewBorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBorkViewController.h; sourceTree = "<group>"; };
+		B5F418B517EA2536001D71B7 /* NewBorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBorkViewController.m; sourceTree = "<group>"; };
+		B5F418B817EA26CA001D71B7 /* BorkNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNavigationViewController.h; sourceTree = "<group>"; };
+		B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkNavigationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +93,6 @@
 				B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */,
 				B5910AB517E75C6D00B1B24C /* Foundation.framework in Frameworks */,
 				B5910AB717E75C6D00B1B24C /* CoreGraphics.framework in Frameworks */,
-				B5913D2A17E8FE7F001D2668 /* SensibleTableView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +142,6 @@
 		B5910AB117E75C6D00B1B24C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B5913D2917E8FE7F001D2668 /* SensibleTableView.framework */,
 				B5910AB217E75C6D00B1B24C /* UIKit.framework */,
 				B5910AB417E75C6D00B1B24C /* Foundation.framework */,
 				B5910AB617E75C6D00B1B24C /* CoreGraphics.framework */,
@@ -146,13 +153,12 @@
 		B5910AB817E75C6D00B1B24C /* Borker */ = {
 			isa = PBXGroup;
 			children = (
+				B5F418B717EA253B001D71B7 /* View Controllers */,
 				B546D06F17E8EA840005477D /* Network */,
 				B5910ACA17E75C6D00B1B24C /* MainStoryboard.storyboard */,
 				B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */,
 				B572B85817E78B7A00AF9DC0 /* BorkCell.h */,
 				B572B85917E78B7A00AF9DC0 /* BorkCell.m */,
-				B5910ACD17E75C6D00B1B24C /* BorkViewController.h */,
-				B5910ACE17E75C6D00B1B24C /* BorkViewController.m */,
 				B5910AB917E75C6D00B1B24C /* Supporting Files */,
 				B572B85517E788BB00AF9DC0 /* BorkUser.h */,
 				B572B85617E788BB00AF9DC0 /* BorkUser.m */,
@@ -163,6 +169,7 @@
 		B5910AB917E75C6D00B1B24C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5F418AF17EA1A41001D71B7 /* borker.png */,
 				B5910AC117E75C6D00B1B24C /* BorkAppDelegate.h */,
 				B5910AC217E75C6D00B1B24C /* BorkAppDelegate.m */,
 				B5910ABA17E75C6D00B1B24C /* Borker-Info.plist */,
@@ -193,6 +200,21 @@
 				B5910ADF17E75C6D00B1B24C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5F418B717EA253B001D71B7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B5F418B817EA26CA001D71B7 /* BorkNavigationViewController.h */,
+				B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */,
+				B5F418B417EA2536001D71B7 /* NewBorkViewController.h */,
+				B5F418B517EA2536001D71B7 /* NewBorkViewController.m */,
+				B5F418B117EA1B12001D71B7 /* LoginViewController.h */,
+				B5F418B217EA1B12001D71B7 /* LoginViewController.m */,
+				B5910ACD17E75C6D00B1B24C /* BorkViewController.h */,
+				B5910ACE17E75C6D00B1B24C /* BorkViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +295,7 @@
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
 				B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */,
+				B5F418B017EA1A41001D71B7 /* borker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +337,9 @@
 				B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */,
 				B572B85D17E89BB100AF9DC0 /* BorkUserNetwork.m in Sources */,
 				B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */,
+				B5F418B317EA1B12001D71B7 /* LoginViewController.m in Sources */,
+				B5F418B617EA2536001D71B7 /* NewBorkViewController.m in Sources */,
+				B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
