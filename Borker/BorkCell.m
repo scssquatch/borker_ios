@@ -20,7 +20,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    [self layoutSubviews];
     // Configure the view for the selected state
 }
 #define FONT_SIZE 14.0f

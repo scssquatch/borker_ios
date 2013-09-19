@@ -8,12 +8,23 @@
 
 #import "LoginViewController.h"
 #import "BorkUserNetwork.h"
+#import "KeychainItemWrapper.h"
+
 @interface LoginViewController ()
 @property (strong, nonatomic) BorkUserNetwork *borkUserRequests;
+@property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
 @end
 
 @implementation LoginViewController
 
+
+- (KeychainItemWrapper *)keychainWrapper
+{
+    if (!_keychainWrapper) {
+        _keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
+    }
+    return _keychainWrapper;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -22,11 +33,18 @@
     }
     return self;
 }
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.borkUserRequests = [[BorkUserNetwork alloc] init];
+    if ([self.keychainWrapper objectForKey:(__bridge id)kSecAttrCreator]) {
+        [self performSegueWithIdentifier:@"login" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +59,7 @@
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
         if ([self.borkUserRequests authenticateUser:username withPassword:password]) {
+            [self.keychainWrapper setObject:username forKey:(__bridge id)(kSecAttrCreator)];
             return YES;
         }
     }

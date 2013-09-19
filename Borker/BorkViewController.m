@@ -34,6 +34,10 @@ static NSString * const cellIdentifier = @"BorkCell";
     self.avatars = [[NSMutableDictionary alloc] init];
     self.users = [[NSMutableDictionary alloc] init];
     self.borks = [[NSArray alloc] init];
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refresh];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
     self.navigationItem.hidesBackButton = YES;
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
@@ -107,9 +111,20 @@ static NSString * const cellIdentifier = @"BorkCell";
     return height + (CELL_CONTENT_HEIGHT_TOP_MARGIN + CELL_CONTENT_HEIGHT_BOTTOM_MARGIN);
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)refreshView:(UIRefreshControl *)refresh
 {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    // FETCH NEW BORKS HERE. newer than sef.borks.firstobject's
+    // created at date
+    self.borks = [self.borkRequests fetchBorks];
+    [self.tableView reloadData];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    [refresh endRefreshing];
 }
+
 - (NSInteger)longestWord:(NSArray *)wordArray
 {
     int max = 0;

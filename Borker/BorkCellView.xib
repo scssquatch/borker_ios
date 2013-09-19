@@ -90,7 +90,7 @@
 							<object class="IBUILabel" id="344621816">
 								<reference key="NSNextResponder" ref="544449730"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{78, 27}, {195, 38}}</string>
+								<string key="NSFrame">{{78, 27}, {195, 18}}</string>
 								<reference key="NSSuperview" ref="544449730"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -467,10 +467,10 @@
 								<object class="IBLayoutConstant" key="constant">
 									<double key="value">38</double>
 								</object>
-								<float key="priority">1000</float>
+								<float key="priority">1</float>
 								<reference key="containingView" ref="344621816"/>
-								<int key="scoringType">3</int>
-								<float key="scoringTypeFloat">9</float>
+								<int key="scoringType">9</int>
+								<float key="scoringTypeFloat">40</float>
 								<int key="contentType">1</int>
 							</object>
 							<object class="IBNSLayoutConstraint" id="777561437">
@@ -647,7 +647,7 @@
 				</object>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<array class="NSMutableArray" key="27.IBViewMetadataConstraints">
+				<array key="27.IBViewMetadataConstraints">
 					<reference ref="777561437"/>
 					<reference ref="143755450"/>
 				</array>
@@ -674,7 +674,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">157</int>
+			<int key="maxID">159</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

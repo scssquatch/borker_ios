@@ -8,8 +8,6 @@
 
 #import "BorkUserNetwork.h"
 
-static NSString * const appRootPath = @"https://borker.herokuapp.com";
-static NSString * const authToken = @"wVdLktWLHkZZOxE4aEaPig";
 @implementation BorkUserNetwork
 - (NSArray *)fetchUsers
 {
@@ -35,15 +33,12 @@ static NSString * const authToken = @"wVdLktWLHkZZOxE4aEaPig";
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *retVal = [[NSString alloc] init];
-    if (error)
+    if (!error)
     {
-        return false;
-    }else{
         retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    }
-    
-    if ([retVal isEqualToString:@"true"]) {
-        return true;
+        if ([retVal isEqualToString:@"true"]) {
+            return true;
+        }
     }
     return false;
 }

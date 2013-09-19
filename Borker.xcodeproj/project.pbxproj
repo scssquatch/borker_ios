@@ -12,6 +12,7 @@
 		B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85617E788BB00AF9DC0 /* BorkUser.m */; };
 		B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85917E78B7A00AF9DC0 /* BorkCell.m */; };
 		B572B85D17E89BB100AF9DC0 /* BorkUserNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85C17E89BB100AF9DC0 /* BorkUserNetwork.m */; };
+		B58BAA8217EB781D00494E69 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B58BAA8117EB781D00494E69 /* Security.framework */; };
 		B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB217E75C6D00B1B24C /* UIKit.framework */; };
 		B5910AB517E75C6D00B1B24C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB417E75C6D00B1B24C /* Foundation.framework */; };
 		B5910AB717E75C6D00B1B24C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB617E75C6D00B1B24C /* CoreGraphics.framework */; };
@@ -28,7 +29,13 @@
 		B5910AD917E75C6D00B1B24C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5910AB417E75C6D00B1B24C /* Foundation.framework */; };
 		B5910AE117E75C6D00B1B24C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5910ADF17E75C6D00B1B24C /* InfoPlist.strings */; };
 		B5910AE417E75C6D00B1B24C /* BorkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5910AE317E75C6D00B1B24C /* BorkerTests.m */; };
-		B5F418B017EA1A41001D71B7 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F418AF17EA1A41001D71B7 /* borker.png */; };
+		B5A430C017EB745C00186956 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430BF17EB745C00186956 /* Constants.m */; };
+		B5A430C317EB76E800186956 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430C117EB76E800186956 /* KeychainItemWrapper.m */; };
+		B5A430C417EB76E800186956 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430C117EB76E800186956 /* KeychainItemWrapper.m */; };
+		B5A430C717EB776E00186956 /* gradient-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C517EB776E00186956 /* gradient-background.png */; };
+		B5A430C817EB776E00186956 /* gradient-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C517EB776E00186956 /* gradient-background.png */; };
+		B5A430C917EB776E00186956 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C617EB776E00186956 /* borker.png */; };
+		B5A430CA17EB776E00186956 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C617EB776E00186956 /* borker.png */; };
 		B5F418B317EA1B12001D71B7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B217EA1B12001D71B7 /* LoginViewController.m */; };
 		B5F418B617EA2536001D71B7 /* NewBorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B517EA2536001D71B7 /* NewBorkViewController.m */; };
 		B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */; };
@@ -54,6 +61,7 @@
 		B572B85917E78B7A00AF9DC0 /* BorkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCell.m; sourceTree = "<group>"; };
 		B572B85B17E89BB100AF9DC0 /* BorkUserNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUserNetwork.h; sourceTree = "<group>"; };
 		B572B85C17E89BB100AF9DC0 /* BorkUserNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUserNetwork.m; sourceTree = "<group>"; };
+		B58BAA8117EB781D00494E69 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5910AAF17E75C6D00B1B24C /* Borker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Borker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5910AB217E75C6D00B1B24C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B5910AB417E75C6D00B1B24C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,7 +84,12 @@
 		B5910AE017E75C6D00B1B24C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5910AE217E75C6D00B1B24C /* BorkerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorkerTests.h; sourceTree = "<group>"; };
 		B5910AE317E75C6D00B1B24C /* BorkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorkerTests.m; sourceTree = "<group>"; };
-		B5F418AF17EA1A41001D71B7 /* borker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = borker.png; path = ../../../Downloads/borker.png; sourceTree = "<group>"; };
+		B5A430BE17EB745C00186956 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		B5A430BF17EB745C00186956 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		B5A430C117EB76E800186956 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		B5A430C217EB76E800186956 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		B5A430C517EB776E00186956 /* gradient-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-background.png"; sourceTree = "<group>"; };
+		B5A430C617EB776E00186956 /* borker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borker.png; sourceTree = "<group>"; };
 		B5F418B117EA1B12001D71B7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5F418B217EA1B12001D71B7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5F418B417EA2536001D71B7 /* NewBorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBorkViewController.h; sourceTree = "<group>"; };
@@ -90,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B58BAA8217EB781D00494E69 /* Security.framework in Frameworks */,
 				B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */,
 				B5910AB517E75C6D00B1B24C /* Foundation.framework in Frameworks */,
 				B5910AB717E75C6D00B1B24C /* CoreGraphics.framework in Frameworks */,
@@ -124,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B5910AB817E75C6D00B1B24C /* Borker */,
+				B5A430BD17EB71A000186956 /* Vendor */,
 				B5910ADC17E75C6D00B1B24C /* BorkerTests */,
 				B5910AB117E75C6D00B1B24C /* Frameworks */,
 				B5910AB017E75C6D00B1B24C /* Products */,
@@ -142,6 +157,7 @@
 		B5910AB117E75C6D00B1B24C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B58BAA8117EB781D00494E69 /* Security.framework */,
 				B5910AB217E75C6D00B1B24C /* UIKit.framework */,
 				B5910AB417E75C6D00B1B24C /* Foundation.framework */,
 				B5910AB617E75C6D00B1B24C /* CoreGraphics.framework */,
@@ -169,7 +185,8 @@
 		B5910AB917E75C6D00B1B24C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B5F418AF17EA1A41001D71B7 /* borker.png */,
+				B5A430C517EB776E00186956 /* gradient-background.png */,
+				B5A430C617EB776E00186956 /* borker.png */,
 				B5910AC117E75C6D00B1B24C /* BorkAppDelegate.h */,
 				B5910AC217E75C6D00B1B24C /* BorkAppDelegate.m */,
 				B5910ABA17E75C6D00B1B24C /* Borker-Info.plist */,
@@ -179,6 +196,8 @@
 				B5910AC417E75C6D00B1B24C /* Default.png */,
 				B5910AC617E75C6D00B1B24C /* Default@2x.png */,
 				B5910AC817E75C6D00B1B24C /* Default-568h@2x.png */,
+				B5A430BE17EB745C00186956 /* Constants.h */,
+				B5A430BF17EB745C00186956 /* Constants.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -200,6 +219,16 @@
 				B5910ADF17E75C6D00B1B24C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5A430BD17EB71A000186956 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				B5A430C117EB76E800186956 /* KeychainItemWrapper.m */,
+				B5A430C217EB76E800186956 /* KeychainItemWrapper.h */,
+			);
+			name = Vendor;
+			path = Borker;
 			sourceTree = "<group>";
 		};
 		B5F418B717EA253B001D71B7 /* View Controllers */ = {
@@ -265,6 +294,11 @@
 				CLASSPREFIX = Bork;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Borker Innovation";
+				TargetAttributes = {
+					B5910AAE17E75C6D00B1B24C = {
+						DevelopmentTeam = E4NRY92235;
+					};
+				};
 			};
 			buildConfigurationList = B5910AAA17E75C6D00B1B24C /* Build configuration list for PBXProject "Borker" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -295,7 +329,8 @@
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
 				B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */,
-				B5F418B017EA1A41001D71B7 /* borker.png in Resources */,
+				B5A430C717EB776E00186956 /* gradient-background.png in Resources */,
+				B5A430C917EB776E00186956 /* borker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5910AE117E75C6D00B1B24C /* InfoPlist.strings in Resources */,
+				B5A430C817EB776E00186956 /* gradient-background.png in Resources */,
+				B5A430CA17EB776E00186956 /* borker.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +377,8 @@
 				B5F418B317EA1B12001D71B7 /* LoginViewController.m in Sources */,
 				B5F418B617EA2536001D71B7 /* NewBorkViewController.m in Sources */,
 				B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */,
+				B5A430C017EB745C00186956 /* Constants.m in Sources */,
+				B5A430C317EB76E800186956 /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5910AE417E75C6D00B1B24C /* BorkerTests.m in Sources */,
+				B5A430C417EB76E800186956 /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +441,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -416,6 +457,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -432,7 +474,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -440,6 +483,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -448,14 +492,18 @@
 		B5910AE817E75C6D00B1B24C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Downloads/STV 3.1.4 Lite/Static Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
 				INFOPLIST_FILE = "Borker/Borker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -463,14 +511,18 @@
 		B5910AE917E75C6D00B1B24C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Downloads/STV 3.1.4 Lite/Static Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
 				INFOPLIST_FILE = "Borker/Borker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -482,6 +534,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
@@ -499,6 +552,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";

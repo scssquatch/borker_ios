@@ -15,9 +15,14 @@
 @end
 
 @implementation NewBorkViewController
-
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+}
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationItem.title = @"Cancel";
     [self.borkContentField becomeFirstResponder];
     [super viewWillAppear:animated];
 }

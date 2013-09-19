@@ -9,8 +9,6 @@
 #import "BorkUser.h"
 #import "BorkUserNetwork.h"
 
-static NSString * const appRootPath = @"https://borker.herokuapp.com";
-
 @interface BorkUser ()
 @property (strong, nonatomic) BorkUserNetwork *borkerRequests;
 @end
