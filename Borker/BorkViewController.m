@@ -84,8 +84,6 @@ static NSString * const cellIdentifier = @"BorkCell";
     NSString *text = [borkDictionary objectForKey:@"content"];
     NSString *user_id = [NSString stringWithFormat:@"%@", [borkDictionary objectForKey:@"user_id"]];
     BorkUser *user = [self.users objectForKey:user_id];
-    CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
     NSArray *words = [text componentsSeparatedByString:@" "];
     if ([self longestWord:words] > 23) {
         [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
@@ -93,7 +91,7 @@ static NSString * const cellIdentifier = @"BorkCell";
         [cell.content setLineBreakMode:NSLineBreakByWordWrapping];
     }
     cell.content.text = text;
-    [cell.content setFrame:CGRectMake(CELL_CONTENT_WIDTH_LEFT_MARGIN, CELL_CONTENT_HEIGHT_TOP_MARGIN, LABEL_CONTENT_WIDTH, MAX(size.height, 38.0f))];
+    
     cell.username.text = user.username;
     cell.avatar.image = [self.avatars objectForKey:user_id];
     return cell;
@@ -109,6 +107,9 @@ static NSString * const cellIdentifier = @"BorkCell";
     return height + (CELL_CONTENT_HEIGHT_TOP_MARGIN + CELL_CONTENT_HEIGHT_BOTTOM_MARGIN);
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
 - (NSInteger)longestWord:(NSArray *)wordArray
 {
     int max = 0;

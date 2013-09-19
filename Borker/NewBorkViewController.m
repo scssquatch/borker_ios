@@ -7,31 +7,19 @@
 //
 
 #import "NewBorkViewController.h"
+#import "BorkNetwork.h"
 
 @interface NewBorkViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *borkContentField;
-
+@property (strong, nonatomic) BorkNetwork *borkAPI;
 @end
 
 @implementation NewBorkViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.borkContentField becomeFirstResponder];
     [super viewWillAppear:animated];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +28,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)createNewBork:(UIBarButtonItem *)sender {
-    
+    NSString *bork = self.borkContentField.text;
+    [self.borkAPI createBork:bork];
 }
 
 @end

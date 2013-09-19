@@ -10,4 +10,5 @@
 
 @interface BorkNetwork : NSObject
 - (NSArray *)fetchBorks;
+- (BOOL)createBork:(NSString *)bork;
 @end

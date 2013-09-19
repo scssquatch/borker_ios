@@ -18,4 +18,9 @@ static NSString * const appRootPath = @"https://borker.herokuapp.com";
     __autoreleasing NSError* error = nil;
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
+
+- (BOOL)createBork:(NSString *)bork
+{
+    
+}
 @end
