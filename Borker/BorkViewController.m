@@ -87,11 +87,12 @@ static NSString * const cellIdentifier = @"BorkCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if ([indexPath row] == self.borks.count) {
+    if (indexPath.row == self.borks.count - 1) {
         NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.borks];
         NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
         [oldArray addObjectsFromArray:[self.borkRequests fetchOlderBorks:50 before:createdAt]];
         self.borks = [[NSOrderedSet orderedSetWithArray:oldArray] array];
+        [self.tableView reloadData];
     }
     NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
     NSString *text = [borkDictionary objectForKey:@"content"];
