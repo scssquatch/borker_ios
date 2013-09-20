@@ -8,10 +8,12 @@
 
 #import "NewBorkViewController.h"
 #import "BorkNetwork.h"
+#import "KeychainItemWrapper.h"
 
 @interface NewBorkViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *borkContentField;
 @property (strong, nonatomic) BorkNetwork *borkAPI;
+@property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
 @end
 
 @implementation NewBorkViewController

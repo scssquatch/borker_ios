@@ -7,20 +7,47 @@
 //
 
 #import "BorkNetwork.h"
+#import "KeychainItemWrapper.h"
+
+@interface BorkNetwork ()
+@property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
+@end
+
 @implementation BorkNetwork
-- (NSArray *)fetchBorks
+- (id)init
 {
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[appRootPath stringByAppendingPathComponent:@"borks_for_app.json"]]];
+    self = [super init];
+    if (self) {
+        self.keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
+    }
+    return self;
+}
+- (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&since=%@", time]];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&limit=%i", limit]];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
+    __autoreleasing NSError* error = nil;
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+}
+
+- (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i", authToken, time, limit]];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
     __autoreleasing NSError* error = nil;
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
 - (BOOL)createBork:(NSString *)bork
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"authenticate?"];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@", bork]];
+    NSString *username = [self.keychainWrapper objectForKey:(__bridge id)kSecAttrCreator];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@", bork, username]];
     NSURL *url = [NSURL URLWithString:postString];
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];

@@ -11,7 +11,9 @@
 @implementation BorkUserNetwork
 - (NSArray *)fetchUsers
 {
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[appRootPath stringByAppendingPathComponent:@"users.json"]]];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/users?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
     __autoreleasing NSError* error = nil;
     NSMutableArray *users = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
@@ -19,7 +21,7 @@
 }
 - (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"authenticate?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/authenticate?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"username=%@", username]];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&password=%@", password]];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&api_key=%@", authToken]];

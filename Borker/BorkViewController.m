@@ -15,7 +15,6 @@
 static NSString * const cellIdentifier = @"BorkCell";
 
 @interface BorkViewController ()
-@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSMutableDictionary *users;
@@ -60,7 +59,10 @@ static NSString * const cellIdentifier = @"BorkCell";
 
 - (void)populateBorks
 {
-    self.borks = [self.borkRequests fetchBorks];
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
+    NSString *date = [DateFormatter stringFromDate:[NSDate date]];
+    self.borks = [self.borkRequests fetchOlderBorks:50 before:date];
     [self.tableView reloadData];
 }
 
@@ -73,6 +75,7 @@ static NSString * const cellIdentifier = @"BorkCell";
 {
     return [self.borks count];
 }
+
 #define FONT_SIZE 14.0f
 #define LABEL_CONTENT_WIDTH 195.0f
 #define CELL_CONTENT_WIDTH 320.0f
@@ -84,6 +87,12 @@ static NSString * const cellIdentifier = @"BorkCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    if ([indexPath row] == self.borks.count) {
+        NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.borks];
+        NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
+        [oldArray addObjectsFromArray:[self.borkRequests fetchOlderBorks:50 before:createdAt]];
+        self.borks = [[NSOrderedSet orderedSetWithArray:oldArray] array];
+    }
     NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
     NSString *text = [borkDictionary objectForKey:@"content"];
     NSString *user_id = [NSString stringWithFormat:@"%@", [borkDictionary objectForKey:@"user_id"]];
@@ -116,7 +125,10 @@ static NSString * const cellIdentifier = @"BorkCell";
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
     // FETCH NEW BORKS HERE. newer than sef.borks.firstobject's
     // created at date
-    self.borks = [self.borkRequests fetchBorks];
+    NSString *createdAt = [self.borks.firstObject objectForKey:@"created_at"];
+    NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.borks];
+    [oldArray addObjectsFromArray:[self.borkRequests fetchBorks:50 since:createdAt]];
+    self.borks = [[NSOrderedSet orderedSetWithArray:oldArray] array];
     [self.tableView reloadData];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
