@@ -8,19 +8,19 @@
 
 #import "BorkUser.h"
 #import "BorkUserNetwork.h"
+#import "KeychainItemWrapper.h"
 
 @interface BorkUser ()
 @property (strong, nonatomic) BorkUserNetwork *borkerRequests;
 @end
 
 @implementation BorkUser
-
 - (id)init
 {
     self = [super init];
     if (self) {
         self.borkerRequests = [[BorkUserNetwork alloc] init];
-        [self requestUsers];
+                [self requestUsers];
     }
     return self;
 }
@@ -57,5 +57,11 @@
     user.id = [borkUser objectForKey:@"id"];
     user.avatarURL = [NSURL URLWithString:[borkUser objectForKey:@"avatar"]];
     return user;
+}
+
++ (void)logoutCurrentUser
+{
+    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
+    [keychainWrapper setObject:@"" forKey:(__bridge id)kSecAttrAccount];
 }
 @end

@@ -20,23 +20,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.borkAPI = [[BorkNetwork alloc] init];
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.navigationItem.title = @"Cancel";
     [self.borkContentField becomeFirstResponder];
     [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (IBAction)createNewBork:(UIBarButtonItem *)sender {
     NSString *bork = self.borkContentField.text;
-    [self.borkAPI createBork:bork];
+    if ([self.borkAPI createBork:bork]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        
+    }
 }
 
 @end

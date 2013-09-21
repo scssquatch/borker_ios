@@ -13,6 +13,7 @@
 @interface LoginViewController ()
 @property (strong, nonatomic) BorkUserNetwork *borkUserRequests;
 @property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
+@property (weak, nonatomic) IBOutlet UILabel *errorMessageField;
 @end
 
 @implementation LoginViewController
@@ -25,32 +26,15 @@
     }
     return _keychainWrapper;
 }
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
     self.borkUserRequests = [[BorkUserNetwork alloc] init];
-    if ([self.keychainWrapper objectForKey:(__bridge id)kSecAttrCreator]) {
+    if (![[self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount] isEqualToString:@""]) {
         [self performSegueWithIdentifier:@"login" sender:self];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -59,8 +43,10 @@
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
         if ([self.borkUserRequests authenticateUser:username withPassword:password]) {
-            [self.keychainWrapper setObject:username forKey:(__bridge id)(kSecAttrCreator)];
+            [self.keychainWrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
             return YES;
+        } else {
+            self.errorMessageField.text = @"Invalid Username or Password";
         }
     }
     return NO;

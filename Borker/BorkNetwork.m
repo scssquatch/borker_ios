@@ -44,9 +44,10 @@
 
 - (BOOL)createBork:(NSString *)bork
 {
-    NSString *username = [self.keychainWrapper objectForKey:(__bridge id)kSecAttrCreator];
+    NSString *username = [self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@", bork, username]];
+    NSString *strippedBork = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)bork, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8));
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@&api_key=%@", strippedBork, username, authToken]];
     NSURL *url = [NSURL URLWithString:postString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];

@@ -62,7 +62,7 @@ static NSString * const cellIdentifier = @"BorkCell";
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
     NSString *date = [DateFormatter stringFromDate:[NSDate date]];
-    self.borks = [self.borkRequests fetchOlderBorks:50 before:date];
+    self.borks = [self.borkRequests fetchOlderBorks:20 before:date];
     [self.tableView reloadData];
 }
 
@@ -88,11 +88,14 @@ static NSString * const cellIdentifier = @"BorkCell";
 {
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (indexPath.row == self.borks.count - 1) {
-        NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.borks];
         NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
-        [oldArray addObjectsFromArray:[self.borkRequests fetchOlderBorks:50 before:createdAt]];
-        self.borks = [[NSOrderedSet orderedSetWithArray:oldArray] array];
-        [self.tableView reloadData];
+        NSMutableArray *oldArray = [self.borks mutableCopy];
+        NSArray *olderBorks =[self.borkRequests fetchOlderBorks:20 before:createdAt];
+        if (olderBorks.count > 0) {
+            [oldArray addObjectsFromArray:olderBorks];
+            self.borks = oldArray;
+            [self.tableView reloadData];
+        }
     }
     NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
     NSString *text = [borkDictionary objectForKey:@"content"];
@@ -127,15 +130,34 @@ static NSString * const cellIdentifier = @"BorkCell";
     // FETCH NEW BORKS HERE. newer than sef.borks.firstobject's
     // created at date
     NSString *createdAt = [self.borks.firstObject objectForKey:@"created_at"];
-    NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.borks];
-    [oldArray addObjectsFromArray:[self.borkRequests fetchBorks:50 since:createdAt]];
-    self.borks = [[NSOrderedSet orderedSetWithArray:oldArray] array];
+    NSMutableArray *newBorks = [[self.borkRequests fetchBorks:25 since:createdAt] mutableCopy];
+    [newBorks addObjectsFromArray:self.borks];
+    self.borks = [[NSOrderedSet orderedSetWithArray:newBorks] array];
     [self.tableView reloadData];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
     [refresh endRefreshing];
+}
+
+- (IBAction)logoutUser:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"Leaving Confirmation"
+                          message:@"Are you sure you want to log out?"
+                          delegate:self
+                          cancelButtonTitle:@"No"
+                          otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // when leaving this application to safari, we will prompt the user, this function handle the response
+    if (buttonIndex == 1) {
+        [BorkUser logoutCurrentUser];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (NSInteger)longestWord:(NSArray *)wordArray
