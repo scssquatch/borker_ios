@@ -68,30 +68,34 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hv-cq-09l">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="158"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="158" id="JHi-v9-oDa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-Pu-NCR">
-                                <rect key="frame" x="258" y="173" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/160" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-Pu-NCR">
+                                <rect key="frame" x="232" y="7" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="u4l-ew-z4c"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="What's on your mind?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qiG-y8-Bzc">
+                                <rect key="frame" x="20" y="26" width="280" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDidUpdate:" destination="jtJ-TM-vvz" eventType="editingChanged" id="POp-rt-whh"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kCt-Pu-NCR" firstAttribute="top" secondItem="4hv-cq-09l" secondAttribute="bottom" constant="15" id="3tF-cn-8Jc"/>
-                            <constraint firstAttribute="trailing" secondItem="kCt-Pu-NCR" secondAttribute="trailing" constant="20" symbolic="YES" id="eOU-29-2mz"/>
-                            <constraint firstItem="4hv-cq-09l" firstAttribute="leading" secondItem="KgT-Vj-HkD" secondAttribute="leading" id="oQP-LY-CPL"/>
-                            <constraint firstItem="4hv-cq-09l" firstAttribute="top" secondItem="KgT-Vj-HkD" secondAttribute="top" id="qlu-Hs-Nca"/>
-                            <constraint firstAttribute="trailing" secondItem="4hv-cq-09l" secondAttribute="trailing" id="sBa-pw-bcv"/>
+                            <constraint firstItem="kCt-Pu-NCR" firstAttribute="top" secondItem="35U-vx-e4v" secondAttribute="bottom" constant="7" id="3O4-ua-W2a"/>
+                            <constraint firstAttribute="trailing" secondItem="kCt-Pu-NCR" secondAttribute="trailing" constant="8" id="Hfj-5a-T71"/>
+                            <constraint firstItem="qiG-y8-Bzc" firstAttribute="top" secondItem="35U-vx-e4v" secondAttribute="bottom" constant="26" id="XPD-3H-ApM"/>
+                            <constraint firstItem="MUW-OH-chb" firstAttribute="top" secondItem="qiG-y8-Bzc" secondAttribute="bottom" constant="310" id="d6x-2t-8kn"/>
+                            <constraint firstAttribute="trailing" secondItem="qiG-y8-Bzc" secondAttribute="trailing" constant="20" symbolic="YES" id="gBw-tt-cIC"/>
+                            <constraint firstItem="qiG-y8-Bzc" firstAttribute="leading" secondItem="KgT-Vj-HkD" secondAttribute="leading" constant="20" symbolic="YES" id="gi5-Zl-uaF"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -104,7 +108,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="borkContentField" destination="4hv-cq-09l" id="Zvo-9p-3lR"/>
+                        <outlet property="borkContentField" destination="qiG-y8-Bzc" id="Leg-x0-nBW"/>
+                        <outlet property="characterCountLabel" destination="kCt-Pu-NCR" id="3ix-Au-A2T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPJ-9b-ZAs" userLabel="First Responder" sceneMemberID="firstResponder"/>

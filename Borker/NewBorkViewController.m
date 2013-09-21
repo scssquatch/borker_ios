@@ -11,7 +11,7 @@
 #import "KeychainItemWrapper.h"
 
 @interface NewBorkViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *borkContentField;
+@property (weak, nonatomic) IBOutlet UITextField *borkContentField;
 @property (strong, nonatomic) BorkNetwork *borkAPI;
 @property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
 @end
@@ -36,6 +36,10 @@
     } else {
         
     }
+}
+- (IBAction)textFieldDidUpdate:(id)sender
+{
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", self.borkContentField.text.length];
 }
 
 @end

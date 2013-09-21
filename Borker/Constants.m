@@ -8,4 +8,4 @@
 
 #import "Constants.h"
 NSString *authToken = @"wVdLktWLHkZZOxE4aEaPig";
-NSString *appRootPath = @"http://localhost:3000";
+NSString *appRootPath = @"https://borker.herokuapp.com";

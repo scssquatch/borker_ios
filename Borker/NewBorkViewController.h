@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NewBorkViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
 @end

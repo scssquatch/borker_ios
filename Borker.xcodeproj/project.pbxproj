@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C204F1117EE0429006AB37C /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C204F0B17EE0429006AB37C /* libTestFlight.a */; };
+		0C204F1217EE0429006AB37C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C204F0C17EE0429006AB37C /* README.md */; };
+		0C204F1317EE0429006AB37C /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C204F0D17EE0429006AB37C /* release_notes.md */; };
+		0C204F1517EE054C006AB37C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C204F1417EE054C006AB37C /* libz.dylib */; };
 		0CA46F1D17ED7204001E4E50 /* borker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA46F1C17ED7204001E4E50 /* borker@2x.png */; };
 		0CA46F1F17ED7219001E4E50 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA46F1E17ED7219001E4E50 /* borker.png */; };
 		B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B546D06D17E8EA7F0005477D /* BorkNetwork.m */; };
@@ -52,6 +56,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C204F0B17EE0429006AB37C /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		0C204F0C17EE0429006AB37C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0C204F0D17EE0429006AB37C /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		0C204F0E17EE0429006AB37C /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		0C204F0F17EE0429006AB37C /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		0C204F1017EE0429006AB37C /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		0C204F1417EE054C006AB37C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0CA46F1C17ED7204001E4E50 /* borker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "borker@2x.png"; sourceTree = "<group>"; };
 		0CA46F1E17ED7219001E4E50 /* borker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borker.png; sourceTree = "<group>"; };
 		B546D06C17E8EA7F0005477D /* BorkNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNetwork.h; sourceTree = "<group>"; };
@@ -104,6 +115,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C204F1517EE054C006AB37C /* libz.dylib in Frameworks */,
+				0C204F1117EE0429006AB37C /* libTestFlight.a in Frameworks */,
 				B58BAA8217EB781D00494E69 /* Security.framework in Frameworks */,
 				B5910AB317E75C6D00B1B24C /* UIKit.framework in Frameworks */,
 				B5910AB517E75C6D00B1B24C /* Foundation.framework in Frameworks */,
@@ -124,6 +137,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C204F0A17EE0429006AB37C /* TestFlightSDK2.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				0C204F0B17EE0429006AB37C /* libTestFlight.a */,
+				0C204F0C17EE0429006AB37C /* README.md */,
+				0C204F0D17EE0429006AB37C /* release_notes.md */,
+				0C204F0E17EE0429006AB37C /* TestFlight+AsyncLogging.h */,
+				0C204F0F17EE0429006AB37C /* TestFlight+ManualSessions.h */,
+				0C204F1017EE0429006AB37C /* TestFlight.h */,
+			);
+			path = TestFlightSDK2.0.0;
+			sourceTree = "<group>";
+		};
 		B546D06F17E8EA840005477D /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +184,7 @@
 		B5910AB117E75C6D00B1B24C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C204F1417EE054C006AB37C /* libz.dylib */,
 				B58BAA8117EB781D00494E69 /* Security.framework */,
 				B5910AB217E75C6D00B1B24C /* UIKit.framework */,
 				B5910AB417E75C6D00B1B24C /* Foundation.framework */,
@@ -170,6 +197,7 @@
 		B5910AB817E75C6D00B1B24C /* Borker */ = {
 			isa = PBXGroup;
 			children = (
+				0C204F0A17EE0429006AB37C /* TestFlightSDK2.0.0 */,
 				B5F418B717EA253B001D71B7 /* View Controllers */,
 				B546D06F17E8EA840005477D /* Network */,
 				B5910ACA17E75C6D00B1B24C /* MainStoryboard.storyboard */,
@@ -327,7 +355,9 @@
 			files = (
 				B5910ABD17E75C6D00B1B24C /* InfoPlist.strings in Resources */,
 				0CA46F1D17ED7204001E4E50 /* borker@2x.png in Resources */,
+				0C204F1217EE0429006AB37C /* README.md in Resources */,
 				B5910AC517E75C6D00B1B24C /* Default.png in Resources */,
+				0C204F1317EE0429006AB37C /* release_notes.md in Resources */,
 				B5910AC717E75C6D00B1B24C /* Default@2x.png in Resources */,
 				0CA46F1F17ED7219001E4E50 /* borker.png in Resources */,
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
@@ -506,6 +536,10 @@
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
 				INFOPLIST_FILE = "Borker/Borker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -528,6 +562,10 @@
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
 				INFOPLIST_FILE = "Borker/Borker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
