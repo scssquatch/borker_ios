@@ -7,12 +7,13 @@
 //
 
 #import "BorkAppDelegate.h"
-
+#import "TestFlight.h"
 @implementation BorkAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [TestFlight takeOff:@"ccf33502-07b1-4f3a-a76d-01553dafc474"];
     return YES;
 }
 							
@@ -42,5 +43,4 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 @end

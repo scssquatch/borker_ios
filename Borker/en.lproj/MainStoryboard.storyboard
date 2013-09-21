@@ -78,7 +78,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="What's on your mind?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qiG-y8-Bzc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Whatcha gonna bork, bitch?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qiG-y8-Bzc">
                                 <rect key="frame" x="20" y="26" width="280" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

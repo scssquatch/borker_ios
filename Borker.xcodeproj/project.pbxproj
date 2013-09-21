@@ -147,7 +147,8 @@
 				0C204F0F17EE0429006AB37C /* TestFlight+ManualSessions.h */,
 				0C204F1017EE0429006AB37C /* TestFlight.h */,
 			);
-			path = TestFlightSDK2.0.0;
+			name = TestFlightSDK2.0.0;
+			path = Borker/TestFlightSDK2.0.0;
 			sourceTree = "<group>";
 		};
 		B546D06F17E8EA840005477D /* Network */ = {
@@ -165,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				B5910AB817E75C6D00B1B24C /* Borker */,
+				0C204F0A17EE0429006AB37C /* TestFlightSDK2.0.0 */,
 				B5A430BD17EB71A000186956 /* Vendor */,
 				B5910ADC17E75C6D00B1B24C /* BorkerTests */,
 				B5910AB117E75C6D00B1B24C /* Frameworks */,
@@ -197,7 +199,6 @@
 		B5910AB817E75C6D00B1B24C /* Borker */ = {
 			isa = PBXGroup;
 			children = (
-				0C204F0A17EE0429006AB37C /* TestFlightSDK2.0.0 */,
 				B5F418B717EA253B001D71B7 /* View Controllers */,
 				B546D06F17E8EA840005477D /* Network */,
 				B5910ACA17E75C6D00B1B24C /* MainStoryboard.storyboard */,
@@ -541,7 +542,7 @@
 					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1684F3A2-AF97-44AE-AB6C-8574E0614673";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -567,7 +568,7 @@
 					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1684F3A2-AF97-44AE-AB6C-8574E0614673";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
