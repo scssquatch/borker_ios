@@ -178,7 +178,6 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // when leaving this application to safari, we will prompt the user, this function handle the response
     if (buttonIndex == 1) {
         [BorkUser logoutCurrentUser];
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -186,22 +185,22 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
 }
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    CGPoint p = [gestureRecognizer locationInView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-    
-    if (indexPath != nil) {
-        self.actionPath = indexPath;
-        [self.tableView dequeueReusableCellWithIdentifier:actionCellIdentifier forIndexPath:indexPath];
-    }
+//    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+//    
+//    if (indexPath != nil) {
+//        self.actionPath = indexPath;
+//        [self.tableView dequeueReusableCellWithIdentifier:actionCellIdentifier forIndexPath:indexPath];
+//    }
 }
 
 - (void)dismissActionCell:(UITapGestureRecognizer *)tapRecognizer
 {
-    CGPoint p = [tapRecognizer locationInView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-    if (![indexPath isEqual:self.actionPath]) {
-        //reset cell at self.actionPath to normal cell contents
-    }
+//    CGPoint p = [tapRecognizer locationInView:self.tableView];
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+//    if (![indexPath isEqual:self.actionPath]) {
+//        //reset cell at self.actionPath to normal cell contents
+//    }
 }
 - (NSInteger)longestWord:(NSArray *)wordArray
 {
