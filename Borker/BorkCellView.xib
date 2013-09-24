@@ -57,6 +57,7 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="5" id="3A0-em-veq"/>
                 <constraint firstItem="27" firstAttribute="leading" secondItem="3" secondAttribute="trailing" constant="8" symbolic="YES" id="59t-37-IsK"/>

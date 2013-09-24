@@ -36,7 +36,13 @@
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", textView.text.length+1];
+    if (![text isEqualToString:@""]) {
+        self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", textView.text.length+1];
+    } else if (textView.text.length == 0) {
+        self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", textView.text.length];
+    } else {
+        self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", textView.text.length-1];
+    }
     return YES;
 }
 @end

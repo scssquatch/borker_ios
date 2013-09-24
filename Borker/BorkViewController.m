@@ -8,17 +8,20 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BorkViewController.h"
 #import "BorkCell.h"
+#import "BorkActionCell.h"
 #import "BorkUser.h"
 #import "BorkUserNetwork.h"
 #import "BorkNetwork.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
+static NSString * const actionCellIdentifier = @"BorkActionCell";
 
 @interface BorkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSMutableDictionary *users;
 @property (strong, nonatomic) NSMutableDictionary *avatars;
+@property (strong, nonatomic) NSIndexPath *actionPath;
 @end
 
 @implementation BorkViewController
@@ -29,15 +32,38 @@ static NSString * const cellIdentifier = @"BorkCell";
     self.avatars = [[NSMutableDictionary alloc] init];
     self.users = [[NSMutableDictionary alloc] init];
     self.borks = [[NSArray alloc] init];
+    
+    //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
-    self.navigationItem.hidesBackButton = YES;
+    
+    
+    //register nibs for identifiers
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    UINib *actionNib = [UINib nibWithNibName:@"BorkActionCellView" bundle:nil];
+    [self.tableView registerNib:actionNib forCellReuseIdentifier:actionCellIdentifier];
+    
+    //set table display properties
     [self.tableView.layer setBorderWidth:1.0];
     [self.tableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
+    self.navigationItem.hidesBackButton = YES;
+    
+    //add long press for favorite/delete
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(handleLongPress:)];
+    lpgr.minimumPressDuration = 2.0; //seconds
+    [self.tableView addGestureRecognizer:lpgr];
+    
+    //short press for dismissing favorite/delete
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(dismissActionCell:)];
+    
+    [self.tableView addGestureRecognizer:tap];
+    
+    //ask user for ability to send push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     [self populateUsers];
@@ -59,7 +85,7 @@ static NSString * const cellIdentifier = @"BorkCell";
 - (void)populateBorks
 {
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ssa"];
     NSString *date = [DateFormatter stringFromDate:[NSDate date]];
     self.borks = [BorkNetwork fetchOlderBorks:20 before:date];
     [self.tableView reloadData];
@@ -158,7 +184,25 @@ static NSString * const cellIdentifier = @"BorkCell";
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
+- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    
+    if (indexPath != nil) {
+        self.actionPath = indexPath;
+        [self.tableView dequeueReusableCellWithIdentifier:actionCellIdentifier forIndexPath:indexPath];
+    }
+}
 
+- (void)dismissActionCell:(UITapGestureRecognizer *)tapRecognizer
+{
+    CGPoint p = [tapRecognizer locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (![indexPath isEqual:self.actionPath]) {
+        //reset cell at self.actionPath to normal cell contents
+    }
+}
 - (NSInteger)longestWord:(NSArray *)wordArray
 {
     int max = 0;
