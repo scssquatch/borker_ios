@@ -11,7 +11,6 @@
 #import "KeychainItemWrapper.h"
 
 @interface NewBorkViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *borkContentField;
 @property (weak, nonatomic) IBOutlet UITextView *borkContentView;
 @property (strong, nonatomic) BorkNetwork *borkAPI;
 @property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
@@ -30,15 +29,14 @@
 }
 
 - (IBAction)createNewBork:(UIBarButtonItem *)sender {
-    NSString *bork = self.borkContentField.text;
+    NSString *bork = self.borkContentView.text;
     if ([BorkNetwork createBork:bork]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
-- (IBAction)textFieldDidUpdate:(id)sender
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", self.borkContentField.text.length];
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", textView.text.length+1];
+    return YES;
 }
-
 @end
