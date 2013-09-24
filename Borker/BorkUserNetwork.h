@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BorkUserNetwork : NSObject
-- (NSArray *)fetchUsers;
-- (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password;
++ (NSArray *)fetchUsers;
++ (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password;
++ (void)addToken:(NSString *)token withUsername:(NSString *)username;
 @end

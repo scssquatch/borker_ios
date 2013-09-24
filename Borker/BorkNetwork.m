@@ -14,15 +14,7 @@
 @end
 
 @implementation BorkNetwork
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
-    }
-    return self;
-}
-- (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time
++ (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
@@ -33,7 +25,7 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
-- (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time
++ (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i", authToken, time, limit]];
@@ -42,9 +34,10 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
-- (BOOL)createBork:(NSString *)bork
++ (BOOL)createBork:(NSString *)bork
 {
-    NSString *username = [self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
+    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
+    NSString *username = [keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
     NSString *strippedBork = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)bork, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8));
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@&api_key=%@", strippedBork, username, authToken]];

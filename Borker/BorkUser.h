@@ -11,6 +11,7 @@
 @interface BorkUser : NSObject
 + (BorkUser *)findByID:(NSString *)id;
 + (void)logoutCurrentUser;
+- (void)requestUsers;
 @property (strong, nonatomic) NSString *id;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSURL *avatarURL;

@@ -19,16 +19,12 @@ static NSString * const cellIdentifier = @"BorkCell";
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSMutableDictionary *users;
 @property (strong, nonatomic) NSMutableDictionary *avatars;
-@property (strong, nonatomic) BorkUserNetwork *borkUserRequests;
-@property (strong, nonatomic) BorkNetwork *borkRequests;
 @end
 
 @implementation BorkViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.borkUserRequests = [[BorkUserNetwork alloc] init];
-    self.borkRequests = [[BorkNetwork alloc] init];
     self.borkUser = [[BorkUser alloc] init];
     self.avatars = [[NSMutableDictionary alloc] init];
     self.users = [[NSMutableDictionary alloc] init];
@@ -42,12 +38,15 @@ static NSString * const cellIdentifier = @"BorkCell";
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     [self.tableView.layer setBorderWidth:1.0];
     [self.tableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     [self populateUsers];
     [self populateBorks];
 }
 
 - (void)populateUsers
 {
+    [self.borkUser requestUsers];
     for (NSString *userID in self.borkUser.userIDs) {
         NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
         BorkUser *tempUser = [BorkUser findByID:userStringID];
@@ -62,7 +61,7 @@ static NSString * const cellIdentifier = @"BorkCell";
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ss"];
     NSString *date = [DateFormatter stringFromDate:[NSDate date]];
-    self.borks = [self.borkRequests fetchOlderBorks:20 before:date];
+    self.borks = [BorkNetwork fetchOlderBorks:20 before:date];
     [self.tableView reloadData];
 }
 
@@ -90,7 +89,7 @@ static NSString * const cellIdentifier = @"BorkCell";
     if (indexPath.row == self.borks.count - 1) {
         NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
         NSMutableArray *oldArray = [self.borks mutableCopy];
-        NSArray *olderBorks =[self.borkRequests fetchOlderBorks:20 before:createdAt];
+        NSArray *olderBorks =[BorkNetwork fetchOlderBorks:20 before:createdAt];
         if (olderBorks.count > 0) {
             [oldArray addObjectsFromArray:olderBorks];
             self.borks = oldArray;
@@ -130,7 +129,7 @@ static NSString * const cellIdentifier = @"BorkCell";
     // FETCH NEW BORKS HERE. newer than sef.borks.firstobject's
     // created at date
     NSString *createdAt = [self.borks.firstObject objectForKey:@"created_at"];
-    NSMutableArray *newBorks = [[self.borkRequests fetchBorks:25 since:createdAt] mutableCopy];
+    NSMutableArray *newBorks = [[BorkNetwork fetchBorks:25 since:createdAt] mutableCopy];
     [newBorks addObjectsFromArray:self.borks];
     self.borks = [[NSOrderedSet orderedSetWithArray:newBorks] array];
     [self.tableView reloadData];

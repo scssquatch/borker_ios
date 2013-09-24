@@ -15,19 +15,9 @@
 @end
 
 @implementation BorkUser
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        self.borkerRequests = [[BorkUserNetwork alloc] init];
-                [self requestUsers];
-    }
-    return self;
-}
-
 - (void)requestUsers
 {
-    NSArray *users = [self.borkerRequests fetchUsers];
+    NSArray *users = [BorkUserNetwork fetchUsers];
     NSMutableArray *userIDs = [[NSMutableArray alloc] init];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *usersDictionary = [[NSMutableDictionary alloc] init];

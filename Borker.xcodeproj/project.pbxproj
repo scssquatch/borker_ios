@@ -215,11 +215,11 @@
 		B5910AB917E75C6D00B1B24C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5910AC117E75C6D00B1B24C /* BorkAppDelegate.h */,
+				B5910AC217E75C6D00B1B24C /* BorkAppDelegate.m */,
 				0CA46F1E17ED7219001E4E50 /* borker.png */,
 				0CA46F1C17ED7204001E4E50 /* borker@2x.png */,
 				B5A430C517EB776E00186956 /* gradient-background.png */,
-				B5910AC117E75C6D00B1B24C /* BorkAppDelegate.h */,
-				B5910AC217E75C6D00B1B24C /* BorkAppDelegate.m */,
 				B5910ABA17E75C6D00B1B24C /* Borker-Info.plist */,
 				B5910ABB17E75C6D00B1B24C /* InfoPlist.strings */,
 				B5910ABE17E75C6D00B1B24C /* main.m */,
@@ -525,8 +525,8 @@
 		B5910AE817E75C6D00B1B24C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../../Downloads/STV\\ 3.1.4\\ Lite/Static\\ Frameworks\\\"",
@@ -542,7 +542,7 @@
 					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1684F3A2-AF97-44AE-AB6C-8574E0614673";
+				PROVISIONING_PROFILE = "2363057B-69E7-47BB-B88B-46B35F2313A0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -551,8 +551,8 @@
 		B5910AE917E75C6D00B1B24C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../../Downloads/STV\\ 3.1.4\\ Lite/Static\\ Frameworks\\\"",
@@ -568,7 +568,7 @@
 					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1684F3A2-AF97-44AE-AB6C-8574E0614673";
+				PROVISIONING_PROFILE = "2363057B-69E7-47BB-B88B-46B35F2313A0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

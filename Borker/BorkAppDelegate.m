@@ -8,15 +8,47 @@
 
 #import "BorkAppDelegate.h"
 #import "TestFlight.h"
+#import "KeychainItemWrapper.h"
+#import "BorkUserNetwork.h"
 @implementation BorkAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [TestFlight takeOff:@"ccf33502-07b1-4f3a-a76d-01553dafc474"];
+
     return YES;
 }
-							
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
+    NSString *deviceTokenAsString = stringFromDeviceTokenData(deviceToken);
+    NSString *username = [keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
+    [BorkUserNetwork addToken:deviceTokenAsString withUsername:username];
+    NSLog(@"deviceToken: %@", deviceTokenAsString);
+    
+}
+
+NSString* stringFromDeviceTokenData(NSData *deviceToken)
+{
+    const char *data = [deviceToken bytes];
+    NSMutableString* token = [NSMutableString string];
+    for (int i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhX", data[i]];
+    }
+    
+    return [token copy];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    for (id key in userInfo) {
+        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+    }
+    
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

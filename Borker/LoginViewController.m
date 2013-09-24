@@ -31,7 +31,6 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
-    self.borkUserRequests = [[BorkUserNetwork alloc] init];
     if (![[self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount] isEqualToString:@""]) {
         [self performSegueWithIdentifier:@"login" sender:self];
     }
@@ -42,7 +41,7 @@
     if ([identifier isEqualToString:@"login"]) {
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
-        if ([self.borkUserRequests authenticateUser:username withPassword:password]) {
+        if ([BorkUserNetwork authenticateUser:username withPassword:password]) {
             [self.keychainWrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
             return YES;
         } else {

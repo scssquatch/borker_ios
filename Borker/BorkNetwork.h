@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BorkNetwork : NSObject
-- (BOOL)createBork:(NSString *)bork;
-- (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time;
-- (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time;
++ (BOOL)createBork:(NSString *)bork;
++ (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time;
++ (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time;
 @end

@@ -9,7 +9,7 @@
 #import "BorkUserNetwork.h"
 
 @implementation BorkUserNetwork
-- (NSArray *)fetchUsers
++ (NSArray *)fetchUsers
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/users?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
@@ -19,12 +19,10 @@
     
     return users;
 }
-- (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password
++ (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/authenticate?"];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"username=%@", username]];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&password=%@", password]];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&api_key=%@", authToken]];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"username=%@&password=%@&api_key=%@", username, password, authToken]];
     NSURL *url = [NSURL URLWithString:postString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -43,5 +41,19 @@
         }
     }
     return false;
+}
+
++ (void)addToken:(NSString *)token withUsername:(NSString *)username
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/add_token?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@&token=%@", authToken, username, token]];
+    NSURL *url = [NSURL URLWithString:postString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    __autoreleasing NSError *error = nil;
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 }
 @end

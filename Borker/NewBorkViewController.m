@@ -12,6 +12,7 @@
 
 @interface NewBorkViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *borkContentField;
+@property (weak, nonatomic) IBOutlet UITextView *borkContentView;
 @property (strong, nonatomic) BorkNetwork *borkAPI;
 @property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
 @end
@@ -20,23 +21,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.borkAPI = [[BorkNetwork alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.borkContentField becomeFirstResponder];
+    [self.borkContentView becomeFirstResponder];
     [super viewWillAppear:animated];
 }
 
 - (IBAction)createNewBork:(UIBarButtonItem *)sender {
     NSString *bork = self.borkContentField.text;
-    if ([self.borkAPI createBork:bork]) {
+    if ([BorkNetwork createBork:bork]) {
         [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        
     }
 }
+
 - (IBAction)textFieldDidUpdate:(id)sender
 {
     self.characterCountLabel.text = [NSString stringWithFormat:@"%i/160", self.borkContentField.text.length];
