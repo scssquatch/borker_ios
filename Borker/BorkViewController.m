@@ -85,7 +85,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
 - (void)populateBorks
 {
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
-    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ssa"];
+    [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ssaZZZ"];
     NSString *date = [DateFormatter stringFromDate:[NSDate date]];
     self.borks = [BorkNetwork fetchOlderBorks:20 before:date];
     [self.tableView reloadData];
