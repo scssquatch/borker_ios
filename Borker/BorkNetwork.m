@@ -16,7 +16,7 @@
 @implementation BorkNetwork
 + (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&since=%@", time]];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&limit=%i", limit]];
@@ -27,7 +27,7 @@
 
 + (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i", authToken, time, limit]];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
     __autoreleasing NSError* error = nil;
@@ -38,7 +38,7 @@
 {
     KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
     NSString *username = [keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/nottweets?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
     NSString *strippedBork = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)bork, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8));
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@&api_key=%@", strippedBork, username, authToken]];
     NSURL *url = [NSURL URLWithString:postString];

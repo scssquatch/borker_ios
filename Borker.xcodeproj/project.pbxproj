@@ -547,7 +547,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../../Downloads/STV\\ 3.1.4\\ Lite/Static\\ Frameworks\\\"",
 					"$(SRCROOT)",
 					/Users/bakis/Projects/borker_ios,
 				);
@@ -573,7 +572,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../../Downloads/STV\\ 3.1.4\\ Lite/Static\\ Frameworks\\\"",
 					"$(SRCROOT)",
 					/Users/bakis/Projects/borker_ios,
 				);
