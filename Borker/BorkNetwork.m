@@ -7,37 +7,32 @@
 //
 
 #import "BorkNetwork.h"
-#import "KeychainItemWrapper.h"
-
-@interface BorkNetwork ()
-@property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
-@end
 
 @implementation BorkNetwork
 + (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&since=%@", time]];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"&limit=%i", limit]];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&since=%@&limit=%i", authToken, time, limit]];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
-    __autoreleasing NSError* error = nil;
+    NSError* error = nil;
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
-+ (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time
++ (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *parsedJSON))callback
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i", authToken, time, limit]];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
-    __autoreleasing NSError* error = nil;
-    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError* error = nil;
+        callback([NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]);
+    }];
+    
 }
 
-+ (BOOL)createBork:(NSString *)bork
++ (BOOL)createBork:(NSString *)bork user:(NSString *)username
 {
-    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
-    NSString *username = [keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
     NSString *strippedBork = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)bork, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8));
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@&api_key=%@", strippedBork, username, authToken]];
@@ -46,7 +41,7 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    __autoreleasing NSError *error = nil;
+    NSError *error = nil;
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *retVal = [[NSString alloc] init];
@@ -58,5 +53,23 @@
         }
     }
     return false;
+}
+
++ (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/favorites?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&bork_id=%@&username=%@", authToken, bork_id, username]];
+    NSURL *url = [NSURL URLWithString:postString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    if (favorited) {
+        [request setHTTPMethod:@"DELETE"];
+    } else {
+        [request setHTTPMethod:@"POST"];
+    }
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    NSError *error = nil;
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 }
 @end

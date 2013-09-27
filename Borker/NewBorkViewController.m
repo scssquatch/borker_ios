@@ -8,18 +8,19 @@
 
 #import "NewBorkViewController.h"
 #import "BorkNetwork.h"
-#import "KeychainItemWrapper.h"
+#import "BorkCredentials.h"
 
 @interface NewBorkViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *borkContentView;
 @property (strong, nonatomic) BorkNetwork *borkAPI;
-@property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
+@property (strong, nonatomic) BorkCredentials *credentials;
 @end
 
 @implementation NewBorkViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.credentials = [[BorkCredentials alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -30,7 +31,7 @@
 
 - (IBAction)createNewBork:(UIBarButtonItem *)sender {
     NSString *bork = self.borkContentView.text;
-    if ([BorkNetwork createBork:bork]) {
+    if ([BorkNetwork createBork:bork user:[self.credentials username]]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

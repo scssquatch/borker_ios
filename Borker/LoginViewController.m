@@ -8,30 +8,22 @@
 
 #import "LoginViewController.h"
 #import "BorkUserNetwork.h"
-#import "KeychainItemWrapper.h"
+#import "BorkCredentials.h"
 
 @interface LoginViewController ()
 @property (strong, nonatomic) BorkUserNetwork *borkUserRequests;
-@property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessageField;
+@property (strong, nonatomic) BorkCredentials *credentials;
 @end
 
 @implementation LoginViewController
-
-
-- (KeychainItemWrapper *)keychainWrapper
-{
-    if (!_keychainWrapper) {
-        _keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
-    }
-    return _keychainWrapper;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
-    if (![[self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount] isEqualToString:@""]) {
+    self.credentials = [[BorkCredentials alloc] init];
+    if (![[self.credentials username] isEqualToString:@""]) {
         [self performSegueWithIdentifier:@"login" sender:self];
     }
 }
@@ -42,7 +34,7 @@
         NSString *username = self.usernameField.text;
         NSString *password = self.passwordField.text;
         if ([BorkUserNetwork authenticateUser:username withPassword:password]) {
-            [self.keychainWrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+            [self.credentials setUsername:username];
             return YES;
         } else {
             self.errorMessageField.text = @"Invalid Username or Password";

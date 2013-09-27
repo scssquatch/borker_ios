@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BorkCell : UITableViewCell
+#import "MCSwipeTableViewCell.h"
+@interface BorkCell : MCSwipeTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *content;
-@property (weak, nonatomic) IBOutlet UILabel *timeStamp;
+@property (weak, nonatomic) IBOutlet UILabel *timestamp;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
-
 @end

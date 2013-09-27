@@ -12,4 +12,5 @@
 + (NSArray *)fetchUsers;
 + (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password;
 + (void)addToken:(NSString *)token withUsername:(NSString *)username;
++ (NSArray *)getFavorites:(NSString *)username;
 @end

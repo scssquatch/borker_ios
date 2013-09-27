@@ -10,11 +10,16 @@
 
 @implementation BorkActionCell
 
-- (IBAction)deleteBork:(id)sender {
-    
+- (IBAction)deleteBork:(id)sender
+{
 }
-- (IBAction)favoriteBork:(id)sender {
-    
+
+- (IBAction)favoriteBork:(id)sender
+{
+}
+
+- (IBAction)unfavoriteBork:(id)sender
+{
 }
 
 @end

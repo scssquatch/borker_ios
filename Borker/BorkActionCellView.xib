@@ -36,10 +36,10 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="dPK-Zh-baQ" firstAttribute="leading" secondItem="G4h-Hj-LwT" secondAttribute="leading" constant="72" id="1wK-DS-Zco"/>
-                    <constraint firstItem="Wdo-8V-rso" firstAttribute="baseline" secondItem="dPK-Zh-baQ" secondAttribute="baseline" id="e7Y-OR-m2g"/>
-                    <constraint firstItem="Wdo-8V-rso" firstAttribute="leading" secondItem="dPK-Zh-baQ" secondAttribute="trailing" constant="77" id="fTl-Iq-0RC"/>
-                    <constraint firstItem="dPK-Zh-baQ" firstAttribute="top" secondItem="G4h-Hj-LwT" secondAttribute="top" constant="25" id="ft7-fa-Bb6"/>
+                    <constraint firstItem="Wdo-8V-rso" firstAttribute="leading" secondItem="dPK-Zh-baQ" secondAttribute="trailing" constant="77" id="NrO-Vp-QCC"/>
+                    <constraint firstAttribute="centerY" secondItem="dPK-Zh-baQ" secondAttribute="centerY" id="eGr-WQ-D7r"/>
+                    <constraint firstAttribute="centerY" secondItem="Wdo-8V-rso" secondAttribute="centerY" id="wAQ-zR-DQl"/>
+                    <constraint firstItem="dPK-Zh-baQ" firstAttribute="leading" secondItem="G4h-Hj-LwT" secondAttribute="leading" constant="72" id="wOB-Ri-QGG"/>
                 </constraints>
             </tableViewCellContentView>
         </tableViewCell>

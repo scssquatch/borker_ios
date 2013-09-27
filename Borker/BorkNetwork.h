@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface BorkNetwork : NSObject
-+ (BOOL)createBork:(NSString *)bork;
++ (BOOL)createBork:(NSString *)bork user:(NSString *)username;
++ (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited;
 + (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time;
-+ (NSArray *)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time;
++ (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *parsedJSON))callback;
 @end

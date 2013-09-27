@@ -12,16 +12,20 @@
 #import "BorkUser.h"
 #import "BorkUserNetwork.h"
 #import "BorkNetwork.h"
+#import "MCSwipeTableViewCell.h"
+#import "BorkCredentials.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
 static NSString * const actionCellIdentifier = @"BorkActionCell";
 
-@interface BorkViewController ()
+@interface BorkViewController () <MCSwipeTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSMutableDictionary *users;
 @property (strong, nonatomic) NSMutableDictionary *avatars;
 @property (strong, nonatomic) NSIndexPath *actionPath;
+@property (strong, nonatomic) NSArray *favorites;
+@property (strong, nonatomic) BorkCredentials *credentials;
 @end
 
 @implementation BorkViewController
@@ -32,12 +36,14 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     self.avatars = [[NSMutableDictionary alloc] init];
     self.users = [[NSMutableDictionary alloc] init];
     self.borks = [[NSArray alloc] init];
+    self.credentials = [[BorkCredentials alloc] init];
     
     //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
     
+    self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
     
     //register nibs for identifiers
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
@@ -50,18 +56,6 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     [self.tableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
     self.navigationItem.hidesBackButton = YES;
-    
-    //add long press for favorite/delete
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-                                          initWithTarget:self action:@selector(handleLongPress:)];
-    lpgr.minimumPressDuration = 2.0; //seconds
-    [self.tableView addGestureRecognizer:lpgr];
-    
-    //short press for dismissing favorite/delete
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self action:@selector(dismissActionCell:)];
-    
-    [self.tableView addGestureRecognizer:tap];
     
     //ask user for ability to send push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
@@ -87,8 +81,10 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ssaZZZ"];
     NSString *date = [DateFormatter stringFromDate:[NSDate date]];
-    self.borks = [BorkNetwork fetchOlderBorks:20 before:date];
-    [self.tableView reloadData];
+    [BorkNetwork fetchOlderBorks:20 before:date withCallback:^(NSArray *parsedJSON) {
+        self.borks = parsedJSON;
+        [self.tableView reloadData];
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -111,22 +107,46 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (indexPath.row == self.borks.count - 1) {
-        NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
-        NSMutableArray *oldArray = [self.borks mutableCopy];
-        NSArray *olderBorks =[BorkNetwork fetchOlderBorks:20 before:createdAt];
-        if (olderBorks.count > 0) {
-            [oldArray addObjectsFromArray:olderBorks];
-            self.borks = oldArray;
-            [self.tableView reloadData];
-        }
+    if (indexPath.row == self.borks.count - 5) {
+        [self loadMoreBorks];
     }
+    BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
     NSString *text = [borkDictionary objectForKey:@"content"];
     NSString *user_id = [NSString stringWithFormat:@"%@", [borkDictionary objectForKey:@"user_id"]];
     BorkUser *user = [self.users objectForKey:user_id];
     NSArray *words = [text componentsSeparatedByString:@" "];
+    NSString *username = [self.credentials username];
+    //FAVORITES
+    NSString *secondIconName = nil;
+    UIColor *secondColor = nil;
+    NSString *fourthIconName = @"star.png";
+    UIColor *fourthColor = nil;
+    if ([username isEqualToString:user.username]) {
+        secondIconName = @"cross.png";
+        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
+    }
+    if ([self.favorites containsObject:(NSString *)[borkDictionary objectForKey:@"id"]]) {
+        fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
+    } else {
+        fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
+    }
+    [cell setDelegate:self];
+    [cell setFirstStateIconName:nil
+                     firstColor:nil
+            secondStateIconName:secondIconName
+                    secondColor:secondColor
+                  thirdIconName:nil
+                     thirdColor:nil
+                 fourthIconName:fourthIconName
+                    fourthColor:fourthColor];
+    [cell.contentView setBackgroundColor:[UIColor whiteColor]];
+    [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
+    if ([username isEqualToString:user.username]) {
+        [cell setModeForState2:MCSwipeTableViewCellModeExit];
+    }
+    [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
+
     if ([self longestWord:words] > 23) {
         [cell.content setLineBreakMode:NSLineBreakByCharWrapping];
     } else {
@@ -183,25 +203,6 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
-- (void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-{
-//    CGPoint p = [gestureRecognizer locationInView:self.tableView];
-//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-//    
-//    if (indexPath != nil) {
-//        self.actionPath = indexPath;
-//        [self.tableView dequeueReusableCellWithIdentifier:actionCellIdentifier forIndexPath:indexPath];
-//    }
-}
-
-- (void)dismissActionCell:(UITapGestureRecognizer *)tapRecognizer
-{
-//    CGPoint p = [tapRecognizer locationInView:self.tableView];
-//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
-//    if (![indexPath isEqual:self.actionPath]) {
-//        //reset cell at self.actionPath to normal cell contents
-//    }
-}
 - (NSInteger)longestWord:(NSArray *)wordArray
 {
     int max = 0;
@@ -211,5 +212,37 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         }
     }
     return max;
+}
+- (void)loadMoreBorks
+{
+    NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
+    NSMutableArray *oldArray = [self.borks mutableCopy];
+    [BorkNetwork fetchOlderBorks:20 before:createdAt withCallback:^(NSArray *olderBorks) {
+        if (olderBorks.count > 0) {
+            [oldArray addObjectsFromArray:olderBorks];
+            self.borks = oldArray;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (void)swipeTableViewCell:(MCSwipeTableViewCell *)cell didEndSwipingSwipingWithState:(MCSwipeTableViewCellState)state mode:(MCSwipeTableViewCellMode)mode
+{
+    NSDictionary *bork = [self.borks objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
+    if (mode == MCSwipeTableViewCellModeExit)
+    {
+        // Remove the item in your data array and then remove it with the following method
+        NSMutableArray *mutableBorks = [NSMutableArray arrayWithArray:self.borks];
+        [mutableBorks removeObject:bork];
+        self.borks = [NSArray arrayWithArray:mutableBorks];
+        [self.tableView deleteRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+        NSString *bork_id = [bork objectForKey:@"id"];
+        BOOL favorited = [self.favorites containsObject:(NSString *)bork_id];
+        [BorkNetwork toggleBorkFavorite:[bork objectForKey:@"id"] user:[self.credentials username] favorited:favorited];
+        self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
+        [self.tableView reloadData];
+    }
 }
 @end

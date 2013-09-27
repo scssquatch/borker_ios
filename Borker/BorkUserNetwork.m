@@ -13,8 +13,9 @@
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/users?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
-    __autoreleasing NSError* error = nil;
+    NSURL *url = [NSURL URLWithString:postString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSError* error = nil;
     NSMutableArray *users = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     
     return users;
@@ -29,7 +30,7 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    __autoreleasing NSError *error = nil;
+    NSError *error = nil;
     NSURLResponse *response = [[NSURLResponse alloc] init];
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSString *retVal = [[NSString alloc] init];
@@ -52,8 +53,18 @@
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    __autoreleasing NSError *error = nil;
+    NSError *error = nil;
     NSURLResponse *response = [[NSURLResponse alloc] init];
     [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+}
+
++ (NSArray *)getFavorites:(NSString *)username
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/favorites?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@", authToken, username]];
+    NSURL *url = [NSURL URLWithString:postString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSError* error = nil;
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 @end

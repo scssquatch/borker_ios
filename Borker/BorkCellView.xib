@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -7,50 +7,34 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="80" id="2" customClass="BorkCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="BorkCell" rowHeight="80" id="2" customClass="BorkCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2" id="ceV-pF-RgK">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="5" y="5" width="65" height="65"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="65" id="82"/>
-                            <constraint firstAttribute="width" constant="65" id="83"/>
-                        </constraints>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="21">
                         <rect key="frame" x="78" y="5" width="103" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="103" id="26"/>
-                            <constraint firstAttribute="height" constant="21" id="98"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="195" translatesAutoresizingMaskIntoConstraints="NO" id="27">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="27">
                         <rect key="frame" x="78" y="27" width="195" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="195" id="115"/>
-                            <constraint firstAttribute="height" priority="1" constant="38" id="146"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="40">
                         <rect key="frame" x="258" y="0.0" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="42" id="58"/>
-                            <constraint firstAttribute="height" constant="21" id="155"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,21 +42,11 @@
                 </subviews>
             </tableViewCellContentView>
             <gestureRecognizers/>
-            <constraints>
-                <constraint firstItem="3" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="5" id="3A0-em-veq"/>
-                <constraint firstItem="27" firstAttribute="leading" secondItem="3" secondAttribute="trailing" constant="8" symbolic="YES" id="59t-37-IsK"/>
-                <constraint firstAttribute="trailing" secondItem="40" secondAttribute="trailing" constant="20" id="GGf-Tj-xod"/>
-                <constraint firstItem="21" firstAttribute="leading" secondItem="3" secondAttribute="trailing" constant="8" symbolic="YES" id="M9g-Pz-TN8"/>
-                <constraint firstItem="3" firstAttribute="top" secondItem="2" secondAttribute="top" constant="5" id="cZH-qm-nsm"/>
-                <constraint firstItem="40" firstAttribute="top" secondItem="2" secondAttribute="top" id="kVy-AN-2Hw"/>
-                <constraint firstItem="27" firstAttribute="top" secondItem="2" secondAttribute="top" constant="27" id="rSG-te-ags"/>
-                <constraint firstItem="21" firstAttribute="top" secondItem="3" secondAttribute="top" id="z89-Jm-1IM"/>
-            </constraints>
             <connections>
-                <outlet property="avatar" destination="3" id="66"/>
-                <outlet property="content" destination="27" id="67"/>
-                <outlet property="timeStamp" destination="40" id="65"/>
-                <outlet property="username" destination="21" id="63"/>
+                <outlet property="avatar" destination="3" id="FTf-tE-LQl"/>
+                <outlet property="content" destination="27" id="o2T-xc-kqP"/>
+                <outlet property="timestamp" destination="40" id="QMB-vu-C2U"/>
+                <outlet property="username" destination="21" id="UyJ-NP-D8E"/>
             </connections>
         </tableViewCell>
     </objects>
