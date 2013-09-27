@@ -122,10 +122,10 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     UIColor *secondColor = nil;
     NSString *fourthIconName = @"star.png";
     UIColor *fourthColor = nil;
-    if ([username isEqualToString:user.username]) {
-        secondIconName = @"cross.png";
-        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
-    }
+//    if ([username isEqualToString:user.username]) {
+//        secondIconName = @"cross.png";
+//        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
+//    }
     if ([self.favorites containsObject:(NSString *)[borkDictionary objectForKey:@"id"]]) {
         fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
     } else {
