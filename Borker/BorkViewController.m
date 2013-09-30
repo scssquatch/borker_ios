@@ -8,17 +8,15 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BorkViewController.h"
 #import "BorkCell.h"
-#import "BorkActionCell.h"
 #import "BorkUser.h"
 #import "BorkUserNetwork.h"
 #import "BorkNetwork.h"
-#import "MCSwipeTableViewCell.h"
 #import "BorkCredentials.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
 static NSString * const actionCellIdentifier = @"BorkActionCell";
 
-@interface BorkViewController () <MCSwipeTableViewCellDelegate>
+@interface BorkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSMutableDictionary *users;
@@ -26,6 +24,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
 @property (strong, nonatomic) NSIndexPath *actionPath;
 @property (strong, nonatomic) NSArray *favorites;
 @property (strong, nonatomic) BorkCredentials *credentials;
+@property (strong, nonatomic) NSTimer *deleteTimer;
 @end
 
 @implementation BorkViewController
@@ -60,6 +59,9 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     //ask user for ability to send push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    //clear notifications
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [self populateUsers];
     [self populateBorks];
 }
@@ -122,14 +124,15 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     UIColor *secondColor = nil;
     NSString *fourthIconName = @"star.png";
     UIColor *fourthColor = nil;
-//    if ([username isEqualToString:user.username]) {
-//        secondIconName = @"cross.png";
-//        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
-//    }
-    if ([self.favorites containsObject:(NSString *)[borkDictionary objectForKey:@"id"]]) {
-        fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
+    if ([username isEqualToString:user.username]) {
+        secondIconName = @"cross.png";
+        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
     } else {
-        fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
+        if ([self.favorites containsObject:(NSString *)[borkDictionary objectForKey:@"id"]]) {
+            fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
+        } else {
+            fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
+        }
     }
     [cell setDelegate:self];
     [cell setFirstStateIconName:nil
@@ -231,12 +234,14 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     NSDictionary *bork = [self.borks objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
     if (mode == MCSwipeTableViewCellModeExit)
     {
-        // Remove the item in your data array and then remove it with the following method
         NSMutableArray *mutableBorks = [NSMutableArray arrayWithArray:self.borks];
         [mutableBorks removeObject:bork];
         self.borks = [NSArray arrayWithArray:mutableBorks];
         [self.tableView deleteRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self addUndoOption:bork];
+        //change to 3 seconds
+        self.deleteTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(deleteBork:) userInfo:bork repeats:NO];
     } else {
         NSString *bork_id = [bork objectForKey:@"id"];
         BOOL favorited = [self.favorites containsObject:(NSString *)bork_id];
@@ -244,5 +249,36 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
         [self.tableView reloadData];
     }
+}
+
+- (void)addUndoOption:(NSDictionary *)bork
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    UndoView *undoView = [[UndoView alloc] initWithFrame:CGRectMake(screenWidth/2.0, screenHeight/2.0, 200, 40) withBork:bork];
+    undoView.delegate = self;
+    [undoView setCenter:CGPointMake(screenWidth/2, screenHeight-100.0)];
+    [self.view addSubview:undoView];
+    [self.view bringSubviewToFront:undoView];
+}
+
+- (void)deleteBork:(NSTimer *)timer
+{
+    NSDictionary *bork = timer.userInfo;
+    [BorkNetwork deleteBork:[bork objectForKey:@"id"] user:[self.credentials username]];
+    [self.view.subviews.lastObject removeFromSuperview];
+}
+
+- (void)undoView:(UndoView *)view;
+{
+    [self.deleteTimer invalidate];
+    [self.view.subviews.lastObject removeFromSuperview];
+    NSMutableArray *mutableBorks = [NSMutableArray arrayWithArray:self.borks];
+    [mutableBorks addObject:view.bork];
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:NO];
+    NSArray *descriptors = [NSArray arrayWithObject:descriptor];
+    self.borks = [mutableBorks sortedArrayUsingDescriptors:descriptors];
+    [self.tableView reloadData];
 }
 @end

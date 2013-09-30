@@ -55,6 +55,29 @@
     return false;
 }
 
++ (BOOL)deleteBork:(NSString *)bork_id user:(NSString *)username
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"bork_id=%@&username=%@&api_key=%@", bork_id, username, authToken]];
+    NSURL *url = [NSURL URLWithString:postString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"DELETE"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
+    NSError *error = nil;
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *retVal = [[NSString alloc] init];
+    if (!error)
+    {
+        retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if ([retVal isEqualToString:@"true"]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 + (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/favorites?"];

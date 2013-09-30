@@ -11,7 +11,6 @@
 		0C204F1217EE0429006AB37C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C204F0C17EE0429006AB37C /* README.md */; };
 		0C204F1317EE0429006AB37C /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C204F0D17EE0429006AB37C /* release_notes.md */; };
 		0C204F1517EE054C006AB37C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C204F1417EE054C006AB37C /* libz.dylib */; };
-		0C49E7EB17F471540030661B /* BorkActionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C49E7EA17F471540030661B /* BorkActionCell.m */; };
 		0C61DACF17F4ACD40066630B /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C61DACE17F4ACD40066630B /* MCSwipeTableViewCell.m */; };
 		0C61DAD817F4B4F20066630B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C61DAD017F4B4F20066630B /* check.png */; };
 		0C61DAD917F4B4F20066630B /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C61DAD117F4B4F20066630B /* check@2x.png */; };
@@ -28,7 +27,8 @@
 		0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C61DAEA17F609250066630B /* BorkCredentials.m */; };
 		0CA46F1D17ED7204001E4E50 /* borker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA46F1C17ED7204001E4E50 /* borker@2x.png */; };
 		0CA46F1F17ED7219001E4E50 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA46F1E17ED7219001E4E50 /* borker.png */; };
-		0CD2496517F1E2310091EAB4 /* BorkActionCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CD2496417F1E2310091EAB4 /* BorkActionCellView.xib */; };
+		0CEEDB8417F9D1AB00526494 /* UndoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CEEDB8317F9D1AB00526494 /* UndoView.xib */; };
+		0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEEDB8617F9D3F200526494 /* UndoView.m */; };
 		B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B546D06D17E8EA7F0005477D /* BorkNetwork.m */; };
 		B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */; };
 		B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B572B85617E788BB00AF9DC0 /* BorkUser.m */; };
@@ -79,8 +79,6 @@
 		0C204F0F17EE0429006AB37C /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		0C204F1017EE0429006AB37C /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		0C204F1417EE054C006AB37C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		0C49E7E917F471540030661B /* BorkActionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkActionCell.h; sourceTree = "<group>"; };
-		0C49E7EA17F471540030661B /* BorkActionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkActionCell.m; sourceTree = "<group>"; };
 		0C61DACD17F4ACD40066630B /* MCSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSwipeTableViewCell.h; sourceTree = "<group>"; };
 		0C61DACE17F4ACD40066630B /* MCSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSwipeTableViewCell.m; sourceTree = "<group>"; };
 		0C61DAD017F4B4F20066630B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -99,7 +97,9 @@
 		0C61DAEA17F609250066630B /* BorkCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCredentials.m; sourceTree = "<group>"; };
 		0CA46F1C17ED7204001E4E50 /* borker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "borker@2x.png"; sourceTree = "<group>"; };
 		0CA46F1E17ED7219001E4E50 /* borker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borker.png; sourceTree = "<group>"; };
-		0CD2496417F1E2310091EAB4 /* BorkActionCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkActionCellView.xib; sourceTree = "<group>"; };
+		0CEEDB8317F9D1AB00526494 /* UndoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UndoView.xib; sourceTree = "<group>"; };
+		0CEEDB8517F9D3F200526494 /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
+		0CEEDB8617F9D3F200526494 /* UndoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoView.m; sourceTree = "<group>"; };
 		B546D06C17E8EA7F0005477D /* BorkNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNetwork.h; sourceTree = "<group>"; };
 		B546D06D17E8EA7F0005477D /* BorkNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkNetwork.m; sourceTree = "<group>"; };
 		B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkCellView.xib; sourceTree = "<group>"; };
@@ -275,11 +275,11 @@
 				B546D06F17E8EA840005477D /* Network */,
 				B5910ACA17E75C6D00B1B24C /* MainStoryboard.storyboard */,
 				B572B85317E77CDF00AF9DC0 /* BorkCellView.xib */,
+				0CEEDB8317F9D1AB00526494 /* UndoView.xib */,
+				0CEEDB8517F9D3F200526494 /* UndoView.h */,
+				0CEEDB8617F9D3F200526494 /* UndoView.m */,
 				B572B85817E78B7A00AF9DC0 /* BorkCell.h */,
 				B572B85917E78B7A00AF9DC0 /* BorkCell.m */,
-				0CD2496417F1E2310091EAB4 /* BorkActionCellView.xib */,
-				0C49E7E917F471540030661B /* BorkActionCell.h */,
-				0C49E7EA17F471540030661B /* BorkActionCell.m */,
 				B5910AB917E75C6D00B1B24C /* Supporting Files */,
 			);
 			path = Borker;
@@ -424,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CEEDB8417F9D1AB00526494 /* UndoView.xib in Resources */,
 				0C61DAE417F4B83B0066630B /* star@2x.png in Resources */,
 				B5910ABD17E75C6D00B1B24C /* InfoPlist.strings in Resources */,
 				0C61DAD817F4B4F20066630B /* check.png in Resources */,
@@ -440,7 +441,6 @@
 				0C61DAE317F4B83B0066630B /* star.png in Resources */,
 				0CA46F1F17ED7219001E4E50 /* borker.png in Resources */,
 				0C61DADE17F4B4F20066630B /* list.png in Resources */,
-				0CD2496517F1E2310091EAB4 /* BorkActionCellView.xib in Resources */,
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
 				0C61DADF17F4B4F20066630B /* list@2x.png in Resources */,
@@ -484,11 +484,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5910ABF17E75C6D00B1B24C /* main.m in Sources */,
-				0C49E7EB17F471540030661B /* BorkActionCell.m in Sources */,
 				B5910AC317E75C6D00B1B24C /* BorkAppDelegate.m in Sources */,
 				B5910ACF17E75C6D00B1B24C /* BorkViewController.m in Sources */,
 				0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */,
 				B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */,
+				0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */,
 				B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */,
 				B572B85D17E89BB100AF9DC0 /* BorkUserNetwork.m in Sources */,
 				B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */,

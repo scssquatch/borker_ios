@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MCSwipeTableViewCell.h"
+#import "UndoView.h"
 
 @interface BorkViewController : UIViewController
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, MCSwipeTableViewCellDelegate, UndoViewDelegate>
 @property (strong, nonatomic) NSArray *borks;
 @end
