@@ -113,9 +113,9 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         [self loadMoreBorks];
     }
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
-    NSString *text = [borkDictionary objectForKey:@"content"];
-    NSString *user_id = [NSString stringWithFormat:@"%@", [borkDictionary objectForKey:@"user_id"]];
+    NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
+    NSString *text = [bork objectForKey:@"content"];
+    NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
     BorkUser *user = [self.users objectForKey:user_id];
     NSArray *words = [text componentsSeparatedByString:@" "];
     NSString *username = [self.credentials username];
@@ -128,7 +128,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         secondIconName = @"cross.png";
         secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
     } else {
-        if ([self.favorites containsObject:(NSString *)[borkDictionary objectForKey:@"id"]]) {
+        if ([self.favorites containsObject:(NSString *)[bork objectForKey:@"id"]]) {
             fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
         } else {
             fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
@@ -156,7 +156,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         [cell.content setLineBreakMode:NSLineBreakByWordWrapping];
     }
     cell.content.text = text;
-    
+    cell.timestamp.text = [self timeAgo:[bork objectForKey:@"created_at"]];
     cell.username.text = user.username;
     cell.avatar.image = [self.avatars objectForKey:user_id];
     return cell;
@@ -205,16 +205,6 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         [BorkUser logoutCurrentUser];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-}
-- (NSInteger)longestWord:(NSArray *)wordArray
-{
-    int max = 0;
-    for (NSString *word in wordArray) {
-        if (word.length > max) {
-            max = word.length;
-        }
-    }
-    return max;
 }
 - (void)loadMoreBorks
 {
@@ -280,5 +270,40 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     NSArray *descriptors = [NSArray arrayWithObject:descriptor];
     self.borks = [mutableBorks sortedArrayUsingDescriptors:descriptors];
     [self.tableView reloadData];
+}
+
+
+//HELPER METHODS
+- (NSInteger)longestWord:(NSArray *)wordArray
+{
+    int max = 0;
+    for (NSString *word in wordArray) {
+        if (word.length > max) {
+            max = word.length;
+        }
+    }
+    return max;
+}
+
+- (NSString *)timeAgo:(NSString *)time
+{
+    if ([time hasSuffix:@"Z"]) {
+        time = [[time substringToIndex:(time.length-5)] stringByAppendingString:@"-0000"];
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
+    NSDate *borkTime = [dateFormatter dateFromString:time];
+    NSDate *currentTime = [NSDate date];
+    double seconds = [currentTime timeIntervalSinceDate:borkTime];
+    [dateFormatter setDateFormat:@"MMM d"];
+    if (seconds < 60)
+        return @"Just Now";
+    else if (seconds < 3600)
+        return [NSString stringWithFormat:@"%im", (int)seconds/60];
+    else if (seconds < 86400)
+        return [NSString stringWithFormat:@"%ih", (int)seconds/3600];
+    else
+        return (NSString *)[dateFormatter stringFromDate:borkTime];
+    return @"";
 }
 @end
