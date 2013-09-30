@@ -55,6 +55,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     [self.tableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
     self.navigationItem.hidesBackButton = YES;
+    self.tableView.allowsSelection=NO;
     
     //ask user for ability to send push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
@@ -127,12 +128,12 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     if ([username isEqualToString:user.username]) {
         secondIconName = @"cross.png";
         secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
+    }
+    if ([self.favorites containsObject:(NSString *)[bork objectForKey:@"id"]]) {
+        fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
     } else {
-        if ([self.favorites containsObject:(NSString *)[bork objectForKey:@"id"]]) {
-            fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
-        } else {
-            fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
-        }
+        cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+        fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
     }
     [cell setDelegate:self];
     [cell setFirstStateIconName:nil
@@ -219,7 +220,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     }];
 }
 
-- (void)swipeTableViewCell:(MCSwipeTableViewCell *)cell didEndSwipingSwipingWithState:(MCSwipeTableViewCellState)state mode:(MCSwipeTableViewCellMode)mode
+- (void)swipeTableViewCell:(BorkCell *)cell didEndSwipingSwipingWithState:(MCSwipeTableViewCellState)state mode:(MCSwipeTableViewCellMode)mode
 {
     NSDictionary *bork = [self.borks objectAtIndex:[[self.tableView indexPathForCell:cell] row]];
     if (mode == MCSwipeTableViewCellModeExit)
@@ -235,9 +236,20 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     } else {
         NSString *bork_id = [bork objectForKey:@"id"];
         BOOL favorited = [self.favorites containsObject:(NSString *)bork_id];
-        [BorkNetwork toggleBorkFavorite:[bork objectForKey:@"id"] user:[self.credentials username] favorited:favorited];
-        self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
-        [self.tableView reloadData];
+        [BorkNetwork toggleBorkFavorite:[bork objectForKey:@"id"] user:[self.credentials username] favorited:favorited withCallback:^(NSArray *parsedJSON) {
+            self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
+            [self.tableView reloadData];
+        }];
+        if (favorited) {
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{ cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);}
+                             completion:^(BOOL finished){}];
+        } else {
+            cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                             animations:^{ cell.favoritedView.transform = CGAffineTransformIdentity;}
+                             completion:^(BOOL finished){}];
+        }
     }
 }
 
@@ -304,6 +316,5 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
         return [NSString stringWithFormat:@"%ih", (int)seconds/3600];
     else
         return (NSString *)[dateFormatter stringFromDate:borkTime];
-    return @"";
 }
 @end

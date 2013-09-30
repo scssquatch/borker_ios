@@ -33,21 +33,29 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="40">
-                        <rect key="frame" x="174" y="0.0" width="126" height="21"/>
+                        <rect key="frame" x="147" y="0.0" width="126" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-gray.png" id="A44-eo-yLh">
+                        <rect key="frame" x="281" y="30" width="22" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>
                 <outlet property="avatar" destination="3" id="FTf-tE-LQl"/>
                 <outlet property="content" destination="27" id="o2T-xc-kqP"/>
+                <outlet property="favoritedView" destination="A44-eo-yLh" id="VZR-WI-aRh"/>
                 <outlet property="timestamp" destination="40" id="QMB-vu-C2U"/>
                 <outlet property="username" destination="21" id="UyJ-NP-D8E"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="star-gray.png" width="22" height="20"/>
+    </resources>
 </document>

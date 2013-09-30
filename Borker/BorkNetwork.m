@@ -78,21 +78,21 @@
     return false;
 }
 
-+ (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited
++ (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited withCallback:(void (^)(NSArray *parsedJSON))callback
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/favorites?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&bork_id=%@&username=%@", authToken, bork_id, username]];
-    NSURL *url = [NSURL URLWithString:postString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
     if (favorited) {
         [request setHTTPMethod:@"DELETE"];
     } else {
         [request setHTTPMethod:@"POST"];
     }
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    NSError *error = nil;
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               NSError* error = nil;
+                               callback([NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]);
+                           }];
 }
 @end
