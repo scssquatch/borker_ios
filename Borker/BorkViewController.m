@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Borker Innovation. All rights reserved.
 //
 #import <QuartzCore/QuartzCore.h>
+
 #import "BorkViewController.h"
 #import "BorkCell.h"
 #import "BorkUser.h"
@@ -14,14 +15,12 @@
 #import "BorkCredentials.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
-static NSString * const actionCellIdentifier = @"BorkActionCell";
 
 @interface BorkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSMutableDictionary *users;
 @property (strong, nonatomic) NSMutableDictionary *avatars;
-@property (strong, nonatomic) NSIndexPath *actionPath;
 @property (strong, nonatomic) NSArray *favorites;
 @property (strong, nonatomic) BorkCredentials *credentials;
 @property (strong, nonatomic) NSTimer *deleteTimer;
@@ -47,13 +46,8 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     //register nibs for identifiers
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    UINib *actionNib = [UINib nibWithNibName:@"BorkActionCellView" bundle:nil];
-    [self.tableView registerNib:actionNib forCellReuseIdentifier:actionCellIdentifier];
     
     //set table display properties
-    [self.tableView.layer setBorderWidth:1.0];
-    [self.tableView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"gradient-background.png"]];
     self.navigationItem.hidesBackButton = YES;
     self.tableView.allowsSelection=NO;
     
@@ -123,27 +117,28 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     //FAVORITES
     NSString *secondIconName = nil;
     UIColor *secondColor = nil;
-    NSString *fourthIconName = @"star.png";
-    UIColor *fourthColor = nil;
+    NSString *leftIconName = @"star.png";
+    UIColor *leftColor = nil;
     if ([username isEqualToString:user.username]) {
         secondIconName = @"cross.png";
         secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
     }
     if ([self.favorites containsObject:(NSString *)[bork objectForKey:@"id"]]) {
-        fourthColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
+        cell.favoritedView.transform = CGAffineTransformIdentity;
+        leftColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
     } else {
         cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-        fourthColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
+        leftColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
     }
     [cell setDelegate:self];
     [cell setFirstStateIconName:nil
                      firstColor:nil
             secondStateIconName:secondIconName
                     secondColor:secondColor
-                  thirdIconName:nil
-                     thirdColor:nil
-                 fourthIconName:fourthIconName
-                    fourthColor:fourthColor];
+                  thirdIconName:leftIconName
+                     thirdColor:leftColor
+                 fourthIconName:leftIconName
+                    fourthColor:leftColor];
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     if ([username isEqualToString:user.username]) {
@@ -190,23 +185,6 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     [refresh endRefreshing];
 }
 
-- (IBAction)logoutUser:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"Leaving Confirmation"
-                          message:@"Are you sure you want to log out?"
-                          delegate:self
-                          cancelButtonTitle:@"No"
-                          otherButtonTitles:@"Yes", nil];
-    [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [BorkUser logoutCurrentUser];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
-}
 - (void)loadMoreBorks
 {
     NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
@@ -260,7 +238,7 @@ static NSString * const actionCellIdentifier = @"BorkActionCell";
     CGFloat screenHeight = screenRect.size.height;
     UndoView *undoView = [[UndoView alloc] initWithFrame:CGRectMake(screenWidth/2.0, screenHeight/2.0, 200, 40) withBork:bork];
     undoView.delegate = self;
-    [undoView setCenter:CGPointMake(screenWidth/2, screenHeight-100.0)];
+    [undoView setCenter:CGPointMake(screenWidth/2, screenHeight-150.0)];
     [self.view addSubview:undoView];
     [self.view bringSubviewToFront:undoView];
 }
