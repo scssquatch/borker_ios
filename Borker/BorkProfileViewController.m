@@ -1,47 +1,54 @@
 //
-//  BorkViewController.m
+//  BorkProfileViewController.m
 //  Borker
 //
-//  Created by Neo on 9/16/13.
+//  Created by Aaron Baker on 10/1/13.
 //  Copyright (c) 2013 Borker Innovation. All rights reserved.
 //
 #import <QuartzCore/QuartzCore.h>
 
-#import "BorkViewController.h"
-#import "BorkCell.h"
-#import "BorkUser.h"
-#import "BorkUserNetwork.h"
-#import "BorkNetwork.h"
+#import "BorkProfileViewController.h"
 #import "BorkCredentials.h"
+#import "BorkNetwork.h"
+#import "BorkUserNetwork.h"
+#import "BorkUser.h"
+#import "BorkCell.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
 
-@interface BorkViewController ()
+@interface BorkProfileViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *profileUsernameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) BorkUser *borkUser;
-@property (strong, nonatomic) NSMutableDictionary *users;
-@property (strong, nonatomic) NSMutableDictionary *avatars;
-@property (strong, nonatomic) NSArray *favorites;
 @property (strong, nonatomic) BorkCredentials *credentials;
+@property (strong, nonatomic) BorkUser *borkUser;
+@property (strong, nonatomic) NSArray *borks;
+@property (strong, nonatomic) UIImage *avatar;
 @property (strong, nonatomic) NSTimer *deleteTimer;
 @end
 
-@implementation BorkViewController
+@implementation BorkProfileViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.borkUser = [[BorkUser alloc] init];
-    self.avatars = [[NSMutableDictionary alloc] init];
-    self.users = [[NSMutableDictionary alloc] init];
-    self.borks = [[NSArray alloc] init];
     self.credentials = [[BorkCredentials alloc] init];
+    self.borks = [[NSArray alloc] init];
+    self.borkUser = [[BorkUser alloc] init];
+    [self.borkUser requestUsers];
+    NSString *userID = [BorkUserNetwork getUserIDWithUsername:[self.credentials username]];
+    NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
+    self.borkUser = [BorkUser findByID:(NSString *)userStringID];
+    
+    NSData *imageData = [NSData dataWithContentsOfURL:[self.borkUser avatarURL]];
+    self.avatar = [UIImage imageWithData:imageData];
+    self.profileImageView.image = self.avatar;
+    self.profileUsernameLabel.text = [self.borkUser username];
     
     //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
-    
-    self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
     
     //register nibs for identifiers
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
@@ -51,26 +58,7 @@ static NSString * const cellIdentifier = @"BorkCell";
     self.navigationItem.hidesBackButton = YES;
     self.tableView.allowsSelection=NO;
     
-    //ask user for ability to send push notifications
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
-    //clear notifications
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    [self populateUsers];
     [self populateBorks];
-}
-
-- (void)populateUsers
-{
-    [self.borkUser requestUsers];
-    for (NSString *userID in self.borkUser.userIDs) {
-        NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
-        BorkUser *tempUser = [BorkUser findByID:userStringID];
-        NSData *imageData = [NSData dataWithContentsOfURL:tempUser.avatarURL];
-        [self.avatars setObject:[UIImage imageWithData:imageData] forKey:userStringID];
-        [self.users setObject:tempUser forKey:userStringID];
-    }
 }
 
 - (void)populateBorks
@@ -78,12 +66,11 @@ static NSString * const cellIdentifier = @"BorkCell";
     NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
     [DateFormatter setDateFormat:@"yyyy-MM-dd-hh:mm:ssaZZZ"];
     NSString *date = [DateFormatter stringFromDate:[NSDate date]];
-    [BorkNetwork fetchOlderBorks:20 before:date withCallback:^(NSArray *parsedJSON) {
-        self.borks = parsedJSON;
+    [BorkUserNetwork fetchOlderUserBorks:25 before:date withUser:[self.credentials username] withCallback:^(NSArray *olderBorks) {
+        self.borks = olderBorks;
         [self.tableView reloadData];
     }];
 }
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -102,40 +89,24 @@ static NSString * const cellIdentifier = @"BorkCell";
     }
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
-    NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
-    BorkUser *user = [self.users objectForKey:user_id];
     //FAVORITES
-    NSString *secondIconName = nil;
-    UIColor *secondColor = nil;
-    NSString *leftIconName = @"star.png";
-    UIColor *leftColor = nil;
-    if ([[self.credentials username] isEqualToString:user.username]) {
-        secondIconName = @"cross.png";
-        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
-    }
-    if ([self.favorites containsObject:(NSString *)[bork objectForKey:@"id"]]) {
-        cell.favoritedView.transform = CGAffineTransformIdentity;
-        leftColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
-    } else {
-        cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-        leftColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
-    }
+    NSString *secondIconName = @"cross.png";
+    UIColor *secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
     [cell setDelegate:self];
     [cell setFirstStateIconName:nil
                      firstColor:nil
             secondStateIconName:secondIconName
                     secondColor:secondColor
-                  thirdIconName:leftIconName
-                     thirdColor:leftColor
-                 fourthIconName:leftIconName
-                    fourthColor:leftColor];
+                  thirdIconName:nil
+                     thirdColor:nil
+                 fourthIconName:nil
+                    fourthColor:nil];
+    
+    cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
     [cell.contentView setBackgroundColor:[UIColor whiteColor]];
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
-    if ([[self.credentials username] isEqualToString:user.username]) {
-        [cell setModeForState2:MCSwipeTableViewCellModeExit];
-    }
-    [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
-
+    [cell setModeForState2:MCSwipeTableViewCellModeExit];
+    
     NSString *text = [bork objectForKey:@"content"];
     NSArray *words = [text componentsSeparatedByString:@" "];
     if ([self longestWord:words] > 23) {
@@ -145,8 +116,8 @@ static NSString * const cellIdentifier = @"BorkCell";
     }
     cell.content.text = text;
     cell.timestamp.text = [self timeAgo:[bork objectForKey:@"created_at"]];
-    cell.username.text = user.username;
-    cell.avatar.image = [self.avatars objectForKey:user_id];
+    cell.username.text = self.borkUser.username;
+    cell.avatar.image = self.avatar;
     return cell;
 }
 
@@ -173,10 +144,12 @@ static NSString * const cellIdentifier = @"BorkCell";
     // FETCH NEW BORKS HERE. newer than sef.borks.firstobject's
     // created at date
     NSString *createdAt = [self.borks.firstObject objectForKey:@"created_at"];
-    NSMutableArray *newBorks = [[BorkNetwork fetchBorks:25 since:createdAt] mutableCopy];
-    [newBorks addObjectsFromArray:self.borks];
-    self.borks = [[NSOrderedSet orderedSetWithArray:newBorks] array];
-    [self.tableView reloadData];
+    [BorkUserNetwork fetchUserBorks:25 since:createdAt withUser:[self.credentials username] withCallback:^(NSArray *olderBorks) {
+        NSMutableArray *newBorks = [olderBorks mutableCopy];
+        [newBorks addObjectsFromArray:self.borks];
+        self.borks = [[NSOrderedSet orderedSetWithArray:newBorks] array];
+        [self.tableView reloadData];
+    }];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@", [formatter stringFromDate:[NSDate date]]];
@@ -188,10 +161,10 @@ static NSString * const cellIdentifier = @"BorkCell";
 {
     NSString *createdAt = [self.borks.lastObject objectForKey:@"created_at"];
     NSMutableArray *oldArray = [self.borks mutableCopy];
-    [BorkNetwork fetchOlderBorks:20 before:createdAt withCallback:^(NSArray *olderBorks) {
+    [BorkUserNetwork fetchOlderUserBorks:25 before:createdAt withUser:[self.credentials username] withCallback:^(NSArray *olderBorks) {
         if (olderBorks.count > 0) {
             [oldArray addObjectsFromArray:olderBorks];
-            self.borks = oldArray;
+            self.borks = [NSArray arrayWithArray:oldArray];
             [self.tableView reloadData];
         }
     }];
@@ -210,23 +183,6 @@ static NSString * const cellIdentifier = @"BorkCell";
         [self addUndoOption:bork];
         //change to 3 seconds
         self.deleteTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(deleteBork:) userInfo:bork repeats:NO];
-    } else {
-        NSString *bork_id = [bork objectForKey:@"id"];
-        BOOL favorited = [self.favorites containsObject:(NSString *)bork_id];
-        [BorkNetwork toggleBorkFavorite:[bork objectForKey:@"id"] user:[self.credentials username] favorited:favorited withCallback:^(NSArray *parsedJSON) {
-            self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
-            [self.tableView reloadData];
-        }];
-        if (favorited) {
-            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{ cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);}
-                             completion:^(BOOL finished){}];
-        } else {
-            cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-            [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
-                             animations:^{ cell.favoritedView.transform = CGAffineTransformIdentity;}
-                             completion:^(BOOL finished){}];
-        }
     }
 }
 

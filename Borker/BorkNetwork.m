@@ -18,7 +18,7 @@
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
 
-+ (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *parsedJSON))callback
++ (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *olderBorks))callback
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i", authToken, time, limit]];

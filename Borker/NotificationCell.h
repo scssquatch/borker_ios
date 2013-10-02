@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NotificationCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *content;
 @end

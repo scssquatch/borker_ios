@@ -93,35 +93,62 @@
         <!--Navigation Controller - Profile-->
         <scene sceneID="4UH-C2-pU8">
             <objects>
-                <navigationController definesPresentationContext="YES" id="cUD-Yq-nVG" sceneMemberID="viewController">
+                <navigationController id="cUD-Yq-nVG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="clock.png" id="qOC-Vk-0sf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KPn-ka-K06">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="bSm-Zb-Nte" kind="relationship" relationship="rootViewController" id="IvJ-Z2-bKH"/>
+                        <segue destination="ZNc-tQ-nW9" kind="relationship" relationship="rootViewController" id="Ozl-Mk-3oe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KA5-bn-3GB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="930" y="929"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="ykh-8B-54i">
+        <!--Bork Profile View Controller-->
+        <scene sceneID="Kxd-rN-dwB">
             <objects>
-                <viewController id="bSm-Zb-Nte" sceneMemberID="viewController">
+                <viewController id="ZNc-tQ-nW9" customClass="BorkProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TUv-bF-W6b"/>
-                        <viewControllerLayoutGuide type="bottom" id="UuL-gl-3lY"/>
+                        <viewControllerLayoutGuide type="top" id="5F8-iK-bCj"/>
+                        <viewControllerLayoutGuide type="bottom" id="j3z-ax-PbK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jd5-Pg-KP8">
+                    <view key="view" contentMode="scaleToFill" id="ZWG-Cu-1Nt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5Fc-0o-Xw5">
+                                <rect key="frame" x="0.0" y="206" width="320" height="313"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZNc-tQ-nW9" id="pEq-To-aiH"/>
+                                    <outlet property="delegate" destination="ZNc-tQ-nW9" id="Nm8-Mk-4kc"/>
+                                </connections>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nLu-pq-Mpu">
+                                <rect key="frame" x="110" y="72" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCA-iQ-Wmd">
+                                <rect key="frame" x="77" y="180" width="166" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="o9z-K3-1aR"/>
+                    <navigationItem key="navigationItem" id="7PG-w7-iMt"/>
+                    <connections>
+                        <outlet property="profileImageView" destination="nLu-pq-Mpu" id="xsj-Y9-ddQ"/>
+                        <outlet property="profileUsernameLabel" destination="iCA-iQ-Wmd" id="6u0-GU-6T7"/>
+                        <outlet property="tableView" destination="5Fc-0o-Xw5" id="kKt-hI-PkH"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="McF-qP-bZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-bg-Jmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1415" y="929"/>
         </scene>
@@ -143,15 +170,17 @@
         <!--Bork Notification View Controller-->
         <scene sceneID="OSx-WG-ZgP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zG1-kq-Ugt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="WDQ-ip-r1B" customClass="BorkNotificationViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mM3-kz-f4t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
-                    <navigationItem key="navigationItem" id="9XJ-JQ-SC5"/>
+                    <navigationItem key="navigationItem" id="9XJ-JQ-SC5">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="6Bs-jX-apu"/>
+                    </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zG1-kq-Ugt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1415" y="-411"/>
         </scene>

@@ -10,5 +10,5 @@
 
 @interface BorkNotificationNetwork : NSObject
 + (NSArray *)fetchNotifications:(NSString *)username withLimit:(NSUInteger)limit since:(NSString *)time;
-+ (NSArray *)fetchOlderNotifications:(NSString *)username withLimit:(NSUInteger)limit before:(NSString *)time;
++ (void)fetchOlderNotifications:(NSString *)username withLimit:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *olderNotifications))callback;
 @end

@@ -67,4 +67,40 @@
     NSError* error = nil;
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
+
+
++ (void)fetchUserBorks:(NSUInteger)limit since:(NSString *)time withUser:(NSString *)username withCallback:(void (^)(NSArray *olderBorks))callback
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/user_borks?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&since=%@&limit=%i&username=%@", authToken, time, limit, username]];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               NSError* error = nil;
+                               callback([NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]);
+                           }];
+}
+
++ (void)fetchOlderUserBorks:(NSUInteger)limit before:(NSString *)time withUser:(NSString *)username withCallback:(void (^)(NSArray *olderBorks))callback
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/user_borks?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i&username=%@", authToken, time, limit, username]];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               NSError* error = nil;
+                               callback([NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]);
+                           }];
+}
++ (NSString *)getUserIDWithUsername:(NSString *)username
+{
+    
+    NSString *getString = [appRootPath stringByAppendingPathComponent:@"api/user_id?"];
+    getString = [getString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@", authToken, username]];
+    NSURL *url = [NSURL URLWithString:getString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    NSError* error = nil;
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    return [response objectForKey:@"user_id"];
+}
 @end

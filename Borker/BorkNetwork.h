@@ -13,5 +13,5 @@
 + (BOOL)deleteBork:(NSString *)bork_id user:(NSString *)username;
 + (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited withCallback:(void (^)(NSArray *parsedJSON))callback;
 + (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time;
-+ (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *parsedJSON))callback;
++ (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *olderBorks))callback;
 @end

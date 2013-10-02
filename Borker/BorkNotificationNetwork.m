@@ -17,12 +17,15 @@
     NSError* error = nil;
     return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 }
-+ (NSArray *)fetchOlderNotifications:(NSString *)username withLimit:(NSUInteger)limit before:(NSString *)time;
++ (void)fetchOlderNotifications:(NSString *)username withLimit:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *olderNotifications))callback
 {
     NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/notifications?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@&limit=%i&older_than=%@", authToken, username, limit, time]];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
-    NSError* error = nil;
-    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSError* error = nil;
+        callback([NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]);
+                           }];
 }
 @end

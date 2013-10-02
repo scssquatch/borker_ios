@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface BorkUser : NSObject
-+ (BorkUser *)findByID:(NSString *)id;
++ (BorkUser *)findByID:(NSString *)userID;
 + (void)logoutCurrentUser;
 - (void)requestUsers;
 @property (strong, nonatomic) NSString *id;

@@ -9,9 +9,9 @@
 #import "BorkUser.h"
 #import "BorkUserNetwork.h"
 #import "KeychainItemWrapper.h"
+#import "BorkCredentials.h"
 
 @interface BorkUser ()
-@property (strong, nonatomic) BorkUserNetwork *borkerRequests;
 @end
 
 @implementation BorkUser
@@ -38,10 +38,10 @@
     self.userIDs = userIDs;
 }
 
-+ (BorkUser *)findByID:(NSString *)user_id
++ (BorkUser *)findByID:(NSString *)userID
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *borkUser = [[defaults dictionaryForKey:@"users"] objectForKey:user_id];
+    NSDictionary *borkUser = [[defaults dictionaryForKey:@"users"] objectForKey:userID];
     BorkUser *user = [[BorkUser alloc] init];
     user.username = [borkUser objectForKey:@"username"];
     user.id = [borkUser objectForKey:@"id"];
@@ -51,7 +51,7 @@
 
 + (void)logoutCurrentUser
 {
-    KeychainItemWrapper *keychainWrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"borkCredentials" accessGroup:nil];
-    [keychainWrapper setObject:@"" forKey:(__bridge id)kSecAttrAccount];
+    BorkCredentials *creds = [[BorkCredentials alloc] init];
+    [creds setUsername:@""];
 }
 @end
