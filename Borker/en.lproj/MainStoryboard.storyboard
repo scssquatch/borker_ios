@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="yJ2-B9-uYZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="yJ2-B9-uYZ">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -30,15 +30,87 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="slr-1L-WdG"/>
+                    <navigationItem key="navigationItem" id="slr-1L-WdG">
+                        <barButtonItem key="backBarButtonItem" title="Log Out" id="V9e-fW-dT8"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="aG6-K8-NsB" id="Gbf-GE-m2H"/>
+                        <segue destination="myT-2b-wN0" kind="modal" identifier="didClickBork" id="E2B-Rm-JWq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9N-na-WRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="269"/>
+            <point key="canvasLocation" x="1135" y="271"/>
+        </scene>
+        <!--Bork Detail View Controller-->
+        <scene sceneID="7po-Ke-Y7k">
+            <objects>
+                <viewController id="myT-2b-wN0" customClass="BorkDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0ZI-mT-FyW"/>
+                        <viewControllerLayoutGuide type="bottom" id="EIh-to-f2e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e3I-RI-o6a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7N0-mi-Nev">
+                                <rect key="frame" x="0.0" y="21" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Borker" id="E72-S8-J69">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="18s-xp-VRp">
+                                            <connections>
+                                                <action selector="didClickBack:" destination="myT-2b-wN0" id="zLs-DW-EZA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XRq-pc-hYl">
+                                <rect key="frame" x="0.0" y="65" width="320" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-6B-Rux">
+                                        <rect key="frame" x="5" y="5" width="55" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSZ-Ku-qeW">
+                                        <rect key="frame" x="68" y="5" width="148" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="Why-sJ-IIG">
+                                        <rect key="frame" x="68" y="34" width="232" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.88924507472826086" green="0.88924507472826086" blue="0.88924507472826086" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="j08-tU-wBI">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="HvG-bH-NVS"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="mff-Re-7Pm"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="borkAvatar" destination="FC1-6B-Rux" id="1rE-Yg-sSz"/>
+                        <outlet property="borkContent" destination="Why-sJ-IIG" id="rsX-W6-0ye"/>
+                        <outlet property="borkUsername" destination="jSZ-Ku-qeW" id="DLS-5D-r7X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xA-Sv-Lvk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1600" y="271"/>
         </scene>
         <!--New Bork View Controller - New Bork-->
         <scene sceneID="7Id-6Y-Oag">
@@ -88,13 +160,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPJ-9b-ZAs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="-411"/>
+            <point key="canvasLocation" x="124" y="-409"/>
         </scene>
         <!--Navigation Controller - Profile-->
         <scene sceneID="4UH-C2-pU8">
             <objects>
                 <navigationController id="cUD-Yq-nVG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="clock.png" id="qOC-Vk-0sf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile.png" id="qOC-Vk-0sf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KPn-ka-K06">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -104,7 +176,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KA5-bn-3GB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="929"/>
+            <point key="canvasLocation" x="650" y="931"/>
         </scene>
         <!--Bork Profile View Controller-->
         <scene sceneID="Kxd-rN-dwB">
@@ -141,7 +213,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7PG-w7-iMt"/>
+                    <navigationItem key="navigationItem" id="7PG-w7-iMt">
+                        <barButtonItem key="backBarButtonItem" title="Log Out" id="57r-mQ-DKt"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="profileImageView" destination="nLu-pq-Mpu" id="xsj-Y9-ddQ"/>
                         <outlet property="profileUsernameLabel" destination="iCA-iQ-Wmd" id="6u0-GU-6T7"/>
@@ -150,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgH-bg-Jmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="929"/>
+            <point key="canvasLocation" x="1135" y="931"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vF8-ns-qkG">
@@ -165,7 +239,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z0J-pr-ks8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-470" y="269"/>
+            <point key="canvasLocation" x="-750" y="271"/>
         </scene>
         <!--Bork Notification View Controller-->
         <scene sceneID="OSx-WG-ZgP">
@@ -177,18 +251,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
                     <navigationItem key="navigationItem" id="9XJ-JQ-SC5">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="6Bs-jX-apu"/>
+                        <barButtonItem key="backBarButtonItem" title="Log Out" id="6Bs-jX-apu"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zG1-kq-Ugt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1415" y="-411"/>
+            <point key="canvasLocation" x="1135" y="-409"/>
         </scene>
         <!--Navigation Controller - Borker-->
         <scene sceneID="xma-QH-BVd">
             <objects>
                 <navigationController title="Borker" definesPresentationContext="YES" id="hal-rb-YaE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Notifications" image="check.png" id="OGt-sg-X8o"/>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="like.png" id="OGt-sg-X8o"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fBf-6n-z1Y">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -203,7 +277,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJf-Nm-dvy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="-411"/>
+            <point key="canvasLocation" x="650" y="-409"/>
         </scene>
         <!--Login View Controller - Borker-->
         <scene sceneID="deK-i0-DJa">
@@ -259,13 +333,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCW-zd-GMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-52" y="269"/>
+            <point key="canvasLocation" x="-332" y="271"/>
         </scene>
         <!--Bork Navigation View Controller - Borks-->
         <scene sceneID="KpS-7C-uDE">
             <objects>
                 <navigationController id="S55-6F-pI5" customClass="BorkNavigationViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Borks" image="list.png" id="0vN-Cb-1jS"/>
+                    <tabBarItem key="tabBarItem" title="Borks" image="home.png" id="0vN-Cb-1jS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zDv-sg-SOd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -278,7 +352,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHK-s4-BBm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="930" y="269"/>
+            <point key="canvasLocation" x="650" y="271"/>
         </scene>
         <!--Bork Tab View Controller - Borker-->
         <scene sceneID="wJc-y3-1yO">
@@ -286,7 +360,6 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="zfK-0a-SpF" customClass="BorkTabViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Borker" id="rwe-Ab-R9V">
-                        <barButtonItem key="backBarButtonItem" title="Log Out" id="9UL-jT-RuK"/>
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="oIL-bh-Sh7">
                             <connections>
                                 <action selector="logoutUser:" destination="zfK-0a-SpF" id="ktV-fE-pIS"/>
@@ -311,14 +384,14 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fxj-jR-W60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="404" y="269"/>
+            <point key="canvasLocation" x="124" y="271"/>
         </scene>
     </scenes>
     <resources>
         <image name="borker.png" width="57" height="81"/>
-        <image name="check.png" width="23" height="20"/>
-        <image name="clock.png" width="22" height="22"/>
-        <image name="list.png" width="20" height="18"/>
+        <image name="home.png" width="25" height="25"/>
+        <image name="like.png" width="25" height="25"/>
+        <image name="profile.png" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

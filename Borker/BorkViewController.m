@@ -13,6 +13,7 @@
 #import "BorkUserNetwork.h"
 #import "BorkNetwork.h"
 #import "BorkCredentials.h"
+#import "BorkDetailViewController.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
 
@@ -49,14 +50,10 @@ static NSString * const cellIdentifier = @"BorkCell";
     
     //set table display properties
     self.navigationItem.hidesBackButton = YES;
-    self.tableView.allowsSelection=NO;
     
     //ask user for ability to send push notifications
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
-    //clear notifications
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [self populateUsers];
     [self populateBorks];
 }
@@ -135,7 +132,7 @@ static NSString * const cellIdentifier = @"BorkCell";
         [cell setModeForState2:MCSwipeTableViewCellModeExit];
     }
     [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
-
+    
     NSString *text = [bork objectForKey:@"content"];
     NSArray *words = [text componentsSeparatedByString:@" "];
     if ([self longestWord:words] > 23) {
@@ -165,6 +162,27 @@ static NSString * const cellIdentifier = @"BorkCell";
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat height = MAX(size.height, 38.0f);
     return height + (CELL_CONTENT_HEIGHT_TOP_MARGIN + CELL_CONTENT_HEIGHT_BOTTOM_MARGIN);
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"didClickBork" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"didClickBork"]) {
+        NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
+        BorkDetailViewController *detailController = [segue destinationViewController];
+        
+        NSDictionary *bork = [self.borks objectAtIndex:[selectedRowIndex row]];
+        
+        [detailController setBork:bork];
+        
+        NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
+        BorkUser *user = [self.users objectForKey:user_id];
+        detailController.avatar = [self.avatars objectForKey:user_id];
+        detailController.username = user.username;
+    }
 }
 
 - (void)refreshView:(UIRefreshControl *)refresh

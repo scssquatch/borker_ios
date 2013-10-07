@@ -13,6 +13,14 @@
 		0C204F1217EE0429006AB37C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C204F0C17EE0429006AB37C /* README.md */; };
 		0C204F1317EE0429006AB37C /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 0C204F0D17EE0429006AB37C /* release_notes.md */; };
 		0C204F1517EE054C006AB37C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C204F1417EE054C006AB37C /* libz.dylib */; };
+		0C29ABEB17FC70ED00227734 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABE917FC70ED00227734 /* profile.png */; };
+		0C29ABEC17FC70ED00227734 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABEA17FC70ED00227734 /* profile@2x.png */; };
+		0C29ABF317FC73EC00227734 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABF117FC73EC00227734 /* like.png */; };
+		0C29ABF417FC73EC00227734 /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABF217FC73EC00227734 /* like@2x.png */; };
+		0C29ABF717FC755A00227734 /* tab-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABF517FC755A00227734 /* tab-star.png */; };
+		0C29ABF817FC755A00227734 /* tab-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABF617FC755A00227734 /* tab-star@2x.png */; };
+		0C29ABFB17FC76C600227734 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABF917FC76C600227734 /* home.png */; };
+		0C29ABFC17FC76C600227734 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C29ABFA17FC76C600227734 /* home@2x.png */; };
 		0C2C710617FBA02E0090CFD6 /* BorkProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2C710517FBA02E0090CFD6 /* BorkProfileViewController.m */; };
 		0C475B9917FB20F100DB0D3E /* Bork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C475B9817FB20F100DB0D3E /* Bork.m */; };
 		0C61DACF17F4ACD40066630B /* MCSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C61DACE17F4ACD40066630B /* MCSwipeTableViewCell.m */; };
@@ -34,6 +42,7 @@
 		0CA2CA6417FB79F1005D0873 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA6317FB79F1005D0873 /* NotificationCell.m */; };
 		0CA46F1D17ED7204001E4E50 /* borker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA46F1C17ED7204001E4E50 /* borker@2x.png */; };
 		0CA46F1F17ED7219001E4E50 /* borker.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CA46F1E17ED7219001E4E50 /* borker.png */; };
+		0CC9FEB717FEFDA800C0EFD7 /* BorkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC9FEB617FEFDA800C0EFD7 /* BorkDetailViewController.m */; };
 		0CEEDB8417F9D1AB00526494 /* UndoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CEEDB8317F9D1AB00526494 /* UndoView.xib */; };
 		0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEEDB8617F9D3F200526494 /* UndoView.m */; };
 		B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B546D06D17E8EA7F0005477D /* BorkNetwork.m */; };
@@ -88,6 +97,14 @@
 		0C204F0F17EE0429006AB37C /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		0C204F1017EE0429006AB37C /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		0C204F1417EE054C006AB37C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0C29ABE917FC70ED00227734 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		0C29ABEA17FC70ED00227734 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
+		0C29ABF117FC73EC00227734 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		0C29ABF217FC73EC00227734 /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
+		0C29ABF517FC755A00227734 /* tab-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-star.png"; sourceTree = "<group>"; };
+		0C29ABF617FC755A00227734 /* tab-star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-star@2x.png"; sourceTree = "<group>"; };
+		0C29ABF917FC76C600227734 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		0C29ABFA17FC76C600227734 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		0C2C710417FBA02E0090CFD6 /* BorkProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkProfileViewController.h; sourceTree = "<group>"; };
 		0C2C710517FBA02E0090CFD6 /* BorkProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkProfileViewController.m; sourceTree = "<group>"; };
 		0C475B9717FB20F100DB0D3E /* Bork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bork.h; sourceTree = "<group>"; };
@@ -117,6 +134,8 @@
 		0CA2CA6317FB79F1005D0873 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
 		0CA46F1C17ED7204001E4E50 /* borker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "borker@2x.png"; sourceTree = "<group>"; };
 		0CA46F1E17ED7219001E4E50 /* borker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borker.png; sourceTree = "<group>"; };
+		0CC9FEB517FEFDA800C0EFD7 /* BorkDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkDetailViewController.h; sourceTree = "<group>"; };
+		0CC9FEB617FEFDA800C0EFD7 /* BorkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkDetailViewController.m; sourceTree = "<group>"; };
 		0CEEDB8317F9D1AB00526494 /* UndoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UndoView.xib; sourceTree = "<group>"; };
 		0CEEDB8517F9D3F200526494 /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
 		0CEEDB8617F9D3F200526494 /* UndoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoView.m; sourceTree = "<group>"; };
@@ -209,6 +228,14 @@
 		0C61DAE017F4B4F70066630B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0C29ABF917FC76C600227734 /* home.png */,
+				0C29ABFA17FC76C600227734 /* home@2x.png */,
+				0C29ABF517FC755A00227734 /* tab-star.png */,
+				0C29ABF617FC755A00227734 /* tab-star@2x.png */,
+				0C29ABF117FC73EC00227734 /* like.png */,
+				0C29ABF217FC73EC00227734 /* like@2x.png */,
+				0C29ABE917FC70ED00227734 /* profile.png */,
+				0C29ABEA17FC70ED00227734 /* profile@2x.png */,
 				0C1219B217FA0EEE00462E1B /* star-gray.png */,
 				0C1219B317FA0EEE00462E1B /* star-gray@2x.png */,
 				0C61DAE117F4B83B0066630B /* star.png */,
@@ -319,9 +346,9 @@
 			isa = PBXGroup;
 			children = (
 				0CA2CA6617FB9B42005D0873 /* Views */,
+				B5F418B717EA253B001D71B7 /* View Controllers */,
 				0CA2CA6517FB79F7005D0873 /* Cells */,
 				0CD2496617F1E23C0091EAB4 /* Models */,
-				B5F418B717EA253B001D71B7 /* View Controllers */,
 				B546D06F17E8EA840005477D /* Network */,
 				B5910AB917E75C6D00B1B24C /* Supporting Files */,
 			);
@@ -390,6 +417,8 @@
 				B5F418B517EA2536001D71B7 /* NewBorkViewController.m */,
 				B5F418B117EA1B12001D71B7 /* LoginViewController.h */,
 				B5F418B217EA1B12001D71B7 /* LoginViewController.m */,
+				0CC9FEB517FEFDA800C0EFD7 /* BorkDetailViewController.h */,
+				0CC9FEB617FEFDA800C0EFD7 /* BorkDetailViewController.m */,
 				B5910ACD17E75C6D00B1B24C /* BorkViewController.h */,
 				B5910ACE17E75C6D00B1B24C /* BorkViewController.m */,
 			);
@@ -479,13 +508,17 @@
 				0CA2CA6117FB795A005D0873 /* NotificationCellView.xib in Resources */,
 				0C61DAD817F4B4F20066630B /* check.png in Resources */,
 				0CA46F1D17ED7204001E4E50 /* borker@2x.png in Resources */,
+				0C29ABFC17FC76C600227734 /* home@2x.png in Resources */,
 				0C204F1217EE0429006AB37C /* README.md in Resources */,
 				B5910AC517E75C6D00B1B24C /* Default.png in Resources */,
 				0C61DADD17F4B4F20066630B /* cross@2x.png in Resources */,
 				0C1219B417FA0EEE00462E1B /* star-gray.png in Resources */,
+				0C29ABF717FC755A00227734 /* tab-star.png in Resources */,
 				0C61DADB17F4B4F20066630B /* clock@2x.png in Resources */,
+				0C29ABF317FC73EC00227734 /* like.png in Resources */,
 				0C204F1317EE0429006AB37C /* release_notes.md in Resources */,
 				0C61DADA17F4B4F20066630B /* clock.png in Resources */,
+				0C29ABEB17FC70ED00227734 /* profile.png in Resources */,
 				0C61DADC17F4B4F20066630B /* cross.png in Resources */,
 				B5910AC717E75C6D00B1B24C /* Default@2x.png in Resources */,
 				0C61DAE317F4B83B0066630B /* star.png in Resources */,
@@ -495,9 +528,13 @@
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
 				0C61DADF17F4B4F20066630B /* list@2x.png in Resources */,
 				B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */,
+				0C29ABF817FC755A00227734 /* tab-star@2x.png in Resources */,
 				B5A430C717EB776E00186956 /* gradient-background.png in Resources */,
+				0C29ABFB17FC76C600227734 /* home.png in Resources */,
 				0C61DAD917F4B4F20066630B /* check@2x.png in Resources */,
 				0C1219B517FA0EEE00462E1B /* star-gray@2x.png in Resources */,
+				0C29ABF417FC73EC00227734 /* like@2x.png in Resources */,
+				0C29ABEC17FC70ED00227734 /* profile@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +589,7 @@
 				B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */,
 				0CA2CA6417FB79F1005D0873 /* NotificationCell.m in Sources */,
 				B5A430C017EB745C00186956 /* Constants.m in Sources */,
+				0CC9FEB717FEFDA800C0EFD7 /* BorkDetailViewController.m in Sources */,
 				B5A430C317EB76E800186956 /* KeychainItemWrapper.m in Sources */,
 				0C475B9917FB20F100DB0D3E /* Bork.m in Sources */,
 			);
