@@ -40,10 +40,17 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     self.borks = [[NSArray alloc] init];
     self.credentials = [[BorkCredentials alloc] init];
     
+    CGContextRef contextRef = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(contextRef, 0, 0, 255, 0.9);
+    CGContextSetRGBStrokeColor(contextRef, 0, 255, 255, 1.0);
+    CGContextStrokeEllipseInRect(contextRef, CGRectMake(100, 100, 25, 25));
+    
     //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
+    [self.view sendSubviewToBack:refresh];
+    
     
     UIView* strip = [[UIView alloc]initWithFrame:CGRectMake(34, -300, 6, CGFLOAT_MAX)];
     strip.backgroundColor = [UIColor lightGrayColor];
@@ -111,19 +118,16 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     BorkUser *user = [self.users objectForKey:user_id];
     //FAVORITES
     NSString *secondIconName = nil;
-    UIColor *secondColor = nil;
-    NSString *leftIconName = @"star.png";
-    UIColor *leftColor = nil;
+    UIColor *secondColor = [UIColor clearColor];
+    NSString *leftIconName = @"star-gray.png";
+    UIColor *leftColor = [UIColor clearColor];
     if ([[self.credentials username] isEqualToString:user.username]) {
         secondIconName = @"cross.png";
-        secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
     }
     if ([self.favorites containsObject:(NSString *)[bork objectForKey:@"id"]]) {
         cell.favoritedView.transform = CGAffineTransformIdentity;
-        leftColor = [UIColor colorWithRed:183.0/255.0 green:48.0/255.0 blue:45.0/255.0 alpha:1.0];
     } else {
         cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-        leftColor = [UIColor colorWithRed:83.0/255.0 green:148.0/255.0 blue:245.0/255.0 alpha:1.0];
     }
     [cell setDelegate:self];
     [cell setFirstStateIconName:nil
@@ -138,6 +142,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         [cell setModeForState2:MCSwipeTableViewCellModeExit];
     }
     [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
+    cell.shouldAnimatesIcons = NO;
     
     NSString *text = [bork objectForKey:@"content"];
     NSArray *words = [text componentsSeparatedByString:@" "];

@@ -72,6 +72,8 @@
 		B5A430C417EB76E800186956 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430C117EB76E800186956 /* KeychainItemWrapper.m */; };
 		B5A430C717EB776E00186956 /* gradient-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C517EB776E00186956 /* gradient-background.png */; };
 		B5A430C817EB776E00186956 /* gradient-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C517EB776E00186956 /* gradient-background.png */; };
+		B5CF55C61808943C0087BAC6 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55C41808943C0087BAC6 /* Background.jpg */; };
+		B5CF55C71808943C0087BAC6 /* Background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55C51808943C0087BAC6 /* Background@2x.jpg */; };
 		B5F418B317EA1B12001D71B7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B217EA1B12001D71B7 /* LoginViewController.m */; };
 		B5F418B617EA2536001D71B7 /* NewBorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B517EA2536001D71B7 /* NewBorkViewController.m */; };
 		B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */; };
@@ -176,6 +178,8 @@
 		B5A430C117EB76E800186956 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		B5A430C217EB76E800186956 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		B5A430C517EB776E00186956 /* gradient-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-background.png"; sourceTree = "<group>"; };
+		B5CF55C41808943C0087BAC6 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
+		B5CF55C51808943C0087BAC6 /* Background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Background@2x.jpg"; sourceTree = "<group>"; };
 		B5F418B117EA1B12001D71B7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5F418B217EA1B12001D71B7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5F418B417EA2536001D71B7 /* NewBorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBorkViewController.h; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 		0C61DAE017F4B4F70066630B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B5CF55C41808943C0087BAC6 /* Background.jpg */,
+				B5CF55C51808943C0087BAC6 /* Background@2x.jpg */,
 				0C29ABF917FC76C600227734 /* home.png */,
 				0C29ABFA17FC76C600227734 /* home@2x.png */,
 				0C29ABF517FC755A00227734 /* tab-star.png */,
@@ -503,12 +509,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CEEDB8417F9D1AB00526494 /* UndoView.xib in Resources */,
+				B5CF55C61808943C0087BAC6 /* Background.jpg in Resources */,
 				0C61DAE417F4B83B0066630B /* star@2x.png in Resources */,
 				B5910ABD17E75C6D00B1B24C /* InfoPlist.strings in Resources */,
 				0CA2CA6117FB795A005D0873 /* NotificationCellView.xib in Resources */,
 				0C61DAD817F4B4F20066630B /* check.png in Resources */,
 				0CA46F1D17ED7204001E4E50 /* borker@2x.png in Resources */,
 				0C29ABFC17FC76C600227734 /* home@2x.png in Resources */,
+				B5CF55C71808943C0087BAC6 /* Background@2x.jpg in Resources */,
 				0C204F1217EE0429006AB37C /* README.md in Resources */,
 				B5910AC517E75C6D00B1B24C /* Default.png in Resources */,
 				0C61DADD17F4B4F20066630B /* cross@2x.png in Resources */,
@@ -706,11 +714,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/bakis/Projects/borker_ios,
+					/Users/neo/Projects/borker_ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
@@ -718,10 +726,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
+					"/Users/neo/projects/borker_ios/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B8762935-A371-44F0-BDB3-F8391498277F";
+				PROVISIONING_PROFILE = "04BBEB36-B416-4CA3-A12F-54EA3381A0E9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -731,11 +739,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Adam McCrea (Z57TPD4R7L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/bakis/Projects/borker_ios,
+					/Users/neo/Projects/borker_ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
@@ -743,10 +751,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/bakis/Projects/borker_ios/Borker/TestFlightSDK2.0.0,
+					"/Users/neo/projects/borker_ios/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B8762935-A371-44F0-BDB3-F8391498277F";
+				PROVISIONING_PROFILE = "04BBEB36-B416-4CA3-A12F-54EA3381A0E9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

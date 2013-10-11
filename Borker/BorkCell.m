@@ -1,4 +1,4 @@
-    //
+//
 //  BorkCell.m
 //  Borker
 //
@@ -11,6 +11,10 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+    self.bubbleView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.bubbleView.layer.shadowOpacity = 0.75;
+    self.bubbleView.layer.shadowRadius = 1.0;
+    self.bubbleView.clipsToBounds = NO;
     [self layoutSubviews];
     // Configure the view for the selected state
 }
