@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 @interface NewBorkViewController : UIViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
+@property (weak, nonatomic) IBOutlet UITextView *borkContentView;
 @end

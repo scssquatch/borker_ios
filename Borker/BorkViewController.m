@@ -16,6 +16,9 @@
 #import "BorkDetailViewController.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
+static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/default.jpg";
+
+
 
 @interface BorkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -41,6 +44,11 @@ static NSString * const cellIdentifier = @"BorkCell";
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
+    
+    UIView* strip = [[UIView alloc]initWithFrame:CGRectMake(34, -300, 6, CGFLOAT_MAX)];
+    strip.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:strip];
+    [self.view sendSubviewToBack:strip];
     
     self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
     
@@ -126,8 +134,6 @@ static NSString * const cellIdentifier = @"BorkCell";
                      thirdColor:leftColor
                  fourthIconName:leftIconName
                     fourthColor:leftColor];
-    [cell.contentView setBackgroundColor:[UIColor whiteColor]];
-    [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     if ([[self.credentials username] isEqualToString:user.username]) {
         [cell setModeForState2:MCSwipeTableViewCellModeExit];
     }
@@ -140,28 +146,32 @@ static NSString * const cellIdentifier = @"BorkCell";
     } else {
         [cell.content setLineBreakMode:NSLineBreakByWordWrapping];
     }
+    
     cell.content.text = text;
     cell.timestamp.text = [self timeAgo:[bork objectForKey:@"created_at"]];
     cell.username.text = user.username;
     cell.avatar.image = [self.avatars objectForKey:user_id];
+    if (![[[bork objectForKey:@"attachment"] objectForKey:@"url"] isEqualToString:defaultImageURL])
+        cell.hasAttachment.text = @"Attachment";
+    else
+        cell.hasAttachment.text = @"";
     return cell;
 }
-
 #define FONT_SIZE 14.0f
-#define LABEL_CONTENT_WIDTH 195.0f
+#define LABEL_CONTENT_WIDTH 191.0f
+#define CELL_CONTENT_HEIGHT_TOP_MARGIN 31.0f
+#define CELL_CONTENT_WIDTH_LEFT_MARGIN 12.0f
 #define CELL_CONTENT_WIDTH 320.0f
-#define CELL_CONTENT_HEIGHT_TOP_MARGIN 27.0f
-#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 10.0f
-#define CELL_CONTENT_WIDTH_RIGHT_MARGIN 47.0f
-#define CELL_CONTENT_WIDTH_LEFT_MARGIN 78.0f
+#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 12.0f
 - (CGFloat) tableView: (UITableView *) tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-    NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
-    NSString *text = [borkDictionary objectForKey:@"content"];
-    CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    CGFloat height = MAX(size.height, 38.0f);
-    return height + (CELL_CONTENT_HEIGHT_TOP_MARGIN + CELL_CONTENT_HEIGHT_BOTTOM_MARGIN);
+    NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
+    NSString *text = [bork objectForKey:@"content"];
+    
+    CGSize maximumLabelSize = CGSizeMake(LABEL_CONTENT_WIDTH, FLT_MAX);
+    CGRect expectedLabelRect = [text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithDescriptor:[UIFontDescriptor fontDescriptorWithName:@"AvenirNext-Regular" size:14.0f] size:14.0f]} context:nil];
+    CGFloat difference = expectedLabelRect.size.height - 16.7f;
+    return 72.0f + difference;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

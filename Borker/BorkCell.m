@@ -15,14 +15,18 @@
     // Configure the view for the selected state
 }
 #define FONT_SIZE 14.0f
-#define LABEL_CONTENT_WIDTH 195.0f
-#define CELL_CONTENT_HEIGHT_TOP_MARGIN 27.0f
-#define CELL_CONTENT_WIDTH_LEFT_MARGIN 78.0f
+#define LABEL_CONTENT_WIDTH 191.0f
+#define CELL_CONTENT_HEIGHT_TOP_MARGIN 31.0f
+#define CELL_CONTENT_WIDTH_LEFT_MARGIN 12.0f
 -(void)layoutSubviews
 {
     CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
     CGSize size = [self.content.text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    [self.content setFrame:CGRectMake(CELL_CONTENT_WIDTH_LEFT_MARGIN, CELL_CONTENT_HEIGHT_TOP_MARGIN, LABEL_CONTENT_WIDTH, MAX(size.height, 38.0f))];
+    [self.content setFrame:CGRectMake(CELL_CONTENT_WIDTH_LEFT_MARGIN, CELL_CONTENT_HEIGHT_TOP_MARGIN, LABEL_CONTENT_WIDTH, size.height)];
+    NSLog(@"content height = %f", self.content.frame.size.height);
+    NSLog(@"cell height = %f", self.contentView.frame.size.height);
+    CGFloat height = self.content.frame.size.height - 16.7;
+    [self.contentView setFrame:CGRectMake(0, 0, 320, height+62.0f)];
 }
 
 @end

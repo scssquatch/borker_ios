@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *timestamp;
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UIImageView *favoritedView;
+@property (weak, nonatomic) IBOutlet UILabel *hasAttachment;
 @end

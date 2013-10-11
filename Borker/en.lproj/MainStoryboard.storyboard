@@ -8,26 +8,17 @@
         <!--Bork View Controller-->
         <scene sceneID="jsi-AO-xtM">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9N-na-WRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FWg-xk-Sh7" customClass="BorkViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VC3-9k-Cv0"/>
-                        <viewControllerLayoutGuide type="bottom" id="4fC-1c-rYg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="366-1S-C6W">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="aG6-K8-NsB">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aG6-K8-NsB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="FWg-xk-Sh7" id="TPb-cr-bII"/>
-                                    <outlet property="delegate" destination="FWg-xk-Sh7" id="kvQ-Cr-WEq"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.88627457618713379" green="0.88627457618713379" blue="0.88627457618713379" alpha="1" colorSpace="deviceRGB"/>
-                    </view>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="FWg-xk-Sh7" id="TPb-cr-bII"/>
+                            <outlet property="delegate" destination="FWg-xk-Sh7" id="kvQ-Cr-WEq"/>
+                        </connections>
+                    </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="slr-1L-WdG">
@@ -36,10 +27,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="aG6-K8-NsB" id="Gbf-GE-m2H"/>
-                        <segue destination="myT-2b-wN0" kind="modal" identifier="didClickBork" id="E2B-Rm-JWq"/>
+                        <segue destination="myT-2b-wN0" kind="modal" identifier="didClickBork" modalTransitionStyle="coverVertical" id="E2B-Rm-JWq"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9N-na-WRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1135" y="271"/>
         </scene>
@@ -48,8 +38,8 @@
             <objects>
                 <viewController id="myT-2b-wN0" customClass="BorkDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0ZI-mT-FyW"/>
-                        <viewControllerLayoutGuide type="bottom" id="EIh-to-f2e"/>
+                        <viewControllerLayoutGuide type="top" id="rag-JR-Mhx"/>
+                        <viewControllerLayoutGuide type="bottom" id="7sQ-pw-a6D"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="e3I-RI-o6a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -68,33 +58,68 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XRq-pc-hYl">
-                                <rect key="frame" x="0.0" y="65" width="320" height="110"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRq-pc-hYl">
+                                <rect key="frame" x="0.0" y="65" width="320" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-6B-Rux">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FC1-6B-Rux">
                                         <rect key="frame" x="5" y="5" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="55" id="U93-Sw-ASS"/>
+                                            <constraint firstAttribute="height" constant="55" id="gka-0M-zRX"/>
+                                        </constraints>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSZ-Ku-qeW">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSZ-Ku-qeW">
                                         <rect key="frame" x="68" y="5" width="148" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="4Io-z2-14g"/>
+                                            <constraint firstAttribute="width" constant="148" id="ODN-DB-lN9"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="Why-sJ-IIG">
-                                        <rect key="frame" x="68" y="34" width="232" height="25"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="Why-sJ-IIG">
+                                        <rect key="frame" x="68" y="26" width="232" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="232" id="2JZ-ws-m4c"/>
+                                            <constraint firstAttribute="height" constant="25" id="uzy-Ed-FGE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.88924507472826086" green="0.88924507472826086" blue="0.88924507472826086" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.88501339644262156" green="0.88201188283502552" blue="0.88924507472826086" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="FC1-6B-Rux" firstAttribute="leading" secondItem="XRq-pc-hYl" secondAttribute="leading" constant="5" id="GU4-Wf-FZc"/>
+                                    <constraint firstItem="FC1-6B-Rux" firstAttribute="top" secondItem="XRq-pc-hYl" secondAttribute="top" constant="5" id="JUw-YG-qrd"/>
+                                    <constraint firstAttribute="width" constant="320" id="Rmj-in-W9h"/>
+                                    <constraint firstItem="jSZ-Ku-qeW" firstAttribute="top" secondItem="XRq-pc-hYl" secondAttribute="top" constant="5" id="S3I-6B-XO0"/>
+                                    <constraint firstItem="jSZ-Ku-qeW" firstAttribute="leading" secondItem="FC1-6B-Rux" secondAttribute="trailing" constant="8" id="Vwc-OQ-MA2"/>
+                                    <constraint firstItem="Why-sJ-IIG" firstAttribute="leading" secondItem="FC1-6B-Rux" secondAttribute="trailing" constant="8" id="an4-ds-kBt"/>
+                                    <constraint firstAttribute="height" constant="66" id="bNw-cQ-1RO"/>
+                                    <constraint firstItem="Why-sJ-IIG" firstAttribute="top" secondItem="jSZ-Ku-qeW" secondAttribute="bottom" id="cDl-Tu-xso"/>
+                                </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yyn-PC-LA2">
+                                <rect key="frame" x="60" y="144" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="NCx-DX-Lw5"/>
+                                    <constraint firstAttribute="height" constant="200" id="cSO-3F-F6g"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.97199981593206386" green="0.96870328879944889" blue="0.97664741847826086" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="yyn-PC-LA2" firstAttribute="leading" secondItem="e3I-RI-o6a" secondAttribute="leading" constant="60" id="CGJ-RP-j4P"/>
+                            <constraint firstItem="yyn-PC-LA2" firstAttribute="top" secondItem="XRq-pc-hYl" secondAttribute="bottom" constant="13" id="QAa-rV-Iqw"/>
+                            <constraint firstItem="XRq-pc-hYl" firstAttribute="leading" secondItem="e3I-RI-o6a" secondAttribute="leading" id="dNQ-Ui-lXc"/>
+                            <constraint firstItem="XRq-pc-hYl" firstAttribute="top" secondItem="e3I-RI-o6a" secondAttribute="top" constant="65" id="jnD-xc-vUj"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="j08-tU-wBI">
@@ -103,9 +128,12 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backgroundViewConstraint" destination="bNw-cQ-1RO" id="32w-5s-QlO"/>
+                        <outlet property="borkAttachment" destination="yyn-PC-LA2" id="6z8-w9-NK4"/>
                         <outlet property="borkAvatar" destination="FC1-6B-Rux" id="1rE-Yg-sSz"/>
                         <outlet property="borkContent" destination="Why-sJ-IIG" id="rsX-W6-0ye"/>
                         <outlet property="borkUsername" destination="jSZ-Ku-qeW" id="DLS-5D-r7X"/>
+                        <outlet property="contentHeightConstraint" destination="uzy-Ed-FGE" id="A8i-Ze-RI6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xA-Sv-Lvk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -117,8 +145,8 @@
             <objects>
                 <viewController id="jtJ-TM-vvz" customClass="NewBorkViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lKh-2z-jJY"/>
-                        <viewControllerLayoutGuide type="bottom" id="pL6-lC-n7V"/>
+                        <viewControllerLayoutGuide type="top" id="jJd-KK-5Pa"/>
+                        <viewControllerLayoutGuide type="bottom" id="exj-PU-ayM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KgT-Vj-HkD">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
@@ -154,7 +182,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="borkContentView" destination="vfZ-Wu-iyY" id="TiG-MA-XvE"/>
+                        <outlet property="borkContentView" destination="vfZ-Wu-iyY" id="ldR-av-vTX"/>
                         <outlet property="characterCountLabel" destination="kCt-Pu-NCR" id="3ix-Au-A2T"/>
                     </connections>
                 </viewController>
@@ -183,8 +211,8 @@
             <objects>
                 <viewController id="ZNc-tQ-nW9" customClass="BorkProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5F8-iK-bCj"/>
-                        <viewControllerLayoutGuide type="bottom" id="j3z-ax-PbK"/>
+                        <viewControllerLayoutGuide type="top" id="qVF-0I-lO3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pyi-bz-HZd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZWG-Cu-1Nt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
@@ -284,8 +312,8 @@
             <objects>
                 <viewController id="pgs-yT-5df" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KRw-WK-yq5"/>
-                        <viewControllerLayoutGuide type="bottom" id="SfC-yS-J6Q"/>
+                        <viewControllerLayoutGuide type="top" id="KJX-XX-F09"/>
+                        <viewControllerLayoutGuide type="bottom" id="xhx-W4-rPB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8sv-Ge-aLO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -339,6 +367,7 @@
         <scene sceneID="KpS-7C-uDE">
             <objects>
                 <navigationController id="S55-6F-pI5" customClass="BorkNavigationViewController" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Borks" image="home.png" id="0vN-Cb-1jS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zDv-sg-SOd">

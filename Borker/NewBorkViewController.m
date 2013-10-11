@@ -11,7 +11,6 @@
 #import "BorkCredentials.h"
 
 @interface NewBorkViewController ()
-@property (weak, nonatomic) IBOutlet UITextView *borkContentView;
 @property (strong, nonatomic) BorkNetwork *borkAPI;
 @property (strong, nonatomic) BorkCredentials *credentials;
 @end
