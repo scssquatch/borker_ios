@@ -74,6 +74,8 @@
 		B5A430C817EB776E00186956 /* gradient-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A430C517EB776E00186956 /* gradient-background.png */; };
 		B5CF55C61808943C0087BAC6 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55C41808943C0087BAC6 /* Background.jpg */; };
 		B5CF55C71808943C0087BAC6 /* Background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55C51808943C0087BAC6 /* Background@2x.jpg */; };
+		B5CF55CA180D86DB0087BAC6 /* BorkAvatarCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */; };
+		B5CF55CC180D86F20087BAC6 /* BorkAvatarCircleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */; };
 		B5F418B317EA1B12001D71B7 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B217EA1B12001D71B7 /* LoginViewController.m */; };
 		B5F418B617EA2536001D71B7 /* NewBorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B517EA2536001D71B7 /* NewBorkViewController.m */; };
 		B5F418BA17EA26CA001D71B7 /* BorkNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */; };
@@ -180,6 +182,9 @@
 		B5A430C517EB776E00186956 /* gradient-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradient-background.png"; sourceTree = "<group>"; };
 		B5CF55C41808943C0087BAC6 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		B5CF55C51808943C0087BAC6 /* Background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Background@2x.jpg"; sourceTree = "<group>"; };
+		B5CF55C8180D86DB0087BAC6 /* BorkAvatarCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkAvatarCircleView.h; sourceTree = "<group>"; };
+		B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkAvatarCircleView.m; sourceTree = "<group>"; };
+		B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkAvatarCircleView.xib; sourceTree = "<group>"; };
 		B5F418B117EA1B12001D71B7 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5F418B217EA1B12001D71B7 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5F418B417EA2536001D71B7 /* NewBorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBorkViewController.h; sourceTree = "<group>"; };
@@ -284,6 +289,9 @@
 				0CEEDB8317F9D1AB00526494 /* UndoView.xib */,
 				0CEEDB8517F9D3F200526494 /* UndoView.h */,
 				0CEEDB8617F9D3F200526494 /* UndoView.m */,
+				B5CF55C8180D86DB0087BAC6 /* BorkAvatarCircleView.h */,
+				B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */,
+				B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -539,6 +547,7 @@
 				0C29ABF817FC755A00227734 /* tab-star@2x.png in Resources */,
 				B5A430C717EB776E00186956 /* gradient-background.png in Resources */,
 				0C29ABFB17FC76C600227734 /* home.png in Resources */,
+				B5CF55CC180D86F20087BAC6 /* BorkAvatarCircleView.xib in Resources */,
 				0C61DAD917F4B4F20066630B /* check@2x.png in Resources */,
 				0C1219B517FA0EEE00462E1B /* star-gray@2x.png in Resources */,
 				0C29ABF417FC73EC00227734 /* like@2x.png in Resources */,
@@ -585,6 +594,7 @@
 				0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */,
 				B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */,
 				0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */,
+				B5CF55CA180D86DB0087BAC6 /* BorkAvatarCircleView.m in Sources */,
 				B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */,
 				0C2C710617FBA02E0090CFD6 /* BorkProfileViewController.m in Sources */,
 				0CA2CA5F17FB6AC1005D0873 /* BorkNotificationViewController.m in Sources */,

@@ -52,7 +52,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     [self.view sendSubviewToBack:refresh];
     
     
-    UIView* strip = [[UIView alloc]initWithFrame:CGRectMake(34, -300, 6, CGFLOAT_MAX)];
+    UIView* strip = [[UIView alloc]initWithFrame:CGRectMake(24, -300, 6, CGFLOAT_MAX)];
     strip.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:strip];
     [self.view sendSubviewToBack:strip];
@@ -144,6 +144,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
     cell.shouldAnimatesIcons = NO;
     
+    
     NSString *text = [bork objectForKey:@"content"];
     NSArray *words = [text componentsSeparatedByString:@" "];
     if ([self longestWord:words] > 23) {
@@ -175,7 +176,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     
     CGSize maximumLabelSize = CGSizeMake(LABEL_CONTENT_WIDTH, FLT_MAX);
     CGRect expectedLabelRect = [text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithDescriptor:[UIFontDescriptor fontDescriptorWithName:@"AvenirNext-Regular" size:14.0f] size:14.0f]} context:nil];
-    CGFloat difference = expectedLabelRect.size.height - 16.7f;
+    CGFloat difference = expectedLabelRect.size.height - 17.0f;
     return 72.0f + difference;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "BorkCell.h"
+#import "BorkAvatarCircleView.h"
 @implementation BorkCell
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -24,13 +25,17 @@
 #define CELL_CONTENT_WIDTH_LEFT_MARGIN 12.0f
 -(void)layoutSubviews
 {
-    CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
-    CGSize size = [self.content.text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    [self.content setFrame:CGRectMake(CELL_CONTENT_WIDTH_LEFT_MARGIN, CELL_CONTENT_HEIGHT_TOP_MARGIN, LABEL_CONTENT_WIDTH, size.height)];
+    BorkAvatarCircleView *circleView = [[BorkAvatarCircleView alloc] initWithFrame:CGRectMake(10, 5, 37, 37)];
+    [self addSubview: circleView];
+    
+    CGSize maximumLabelSize = CGSizeMake(LABEL_CONTENT_WIDTH, FLT_MAX);
+    CGRect expectedLabelRect = [self.content.text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithDescriptor:[UIFontDescriptor fontDescriptorWithName:@"AvenirNext-Regular" size:14.0f] size:14.0f]} context:nil];
+    CGFloat difference = expectedLabelRect.size.height - 17.0f;
+    
+    [self.content setFrame:CGRectMake(CELL_CONTENT_WIDTH_LEFT_MARGIN, CELL_CONTENT_HEIGHT_TOP_MARGIN, LABEL_CONTENT_WIDTH, expectedLabelRect.size.height)];
     NSLog(@"content height = %f", self.content.frame.size.height);
     NSLog(@"cell height = %f", self.contentView.frame.size.height);
-    CGFloat height = self.content.frame.size.height - 16.7;
-    [self.contentView setFrame:CGRectMake(0, 0, 320, height+62.0f)];
+    [self.contentView setFrame:CGRectMake(0, 0, 320, difference+62.0f)];
 }
 
 @end
