@@ -289,9 +289,9 @@
 				0CEEDB8317F9D1AB00526494 /* UndoView.xib */,
 				0CEEDB8517F9D3F200526494 /* UndoView.h */,
 				0CEEDB8617F9D3F200526494 /* UndoView.m */,
+				B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */,
 				B5CF55C8180D86DB0087BAC6 /* BorkAvatarCircleView.h */,
 				B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */,
-				B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -360,8 +360,8 @@
 			isa = PBXGroup;
 			children = (
 				0CA2CA6617FB9B42005D0873 /* Views */,
-				B5F418B717EA253B001D71B7 /* View Controllers */,
 				0CA2CA6517FB79F7005D0873 /* Cells */,
+				B5F418B717EA253B001D71B7 /* View Controllers */,
 				0CD2496617F1E23C0091EAB4 /* Models */,
 				B546D06F17E8EA840005477D /* Network */,
 				B5910AB917E75C6D00B1B24C /* Supporting Files */,

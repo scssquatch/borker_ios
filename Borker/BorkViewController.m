@@ -40,11 +40,6 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     self.borks = [[NSArray alloc] init];
     self.credentials = [[BorkCredentials alloc] init];
     
-    CGContextRef contextRef = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(contextRef, 0, 0, 255, 0.9);
-    CGContextSetRGBStrokeColor(contextRef, 0, 255, 255, 1.0);
-    CGContextStrokeEllipseInRect(contextRef, CGRectMake(100, 100, 25, 25));
-    
     //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
@@ -53,7 +48,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     
     
     UIView* strip = [[UIView alloc]initWithFrame:CGRectMake(24, -300, 6, CGFLOAT_MAX)];
-    strip.backgroundColor = [UIColor lightGrayColor];
+    strip.backgroundColor = [UIColor colorWithRed:0.89f green:0.90f blue:0.91f alpha:1.00f];
     [self.view addSubview:strip];
     [self.view sendSubviewToBack:strip];
     
@@ -142,7 +137,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         [cell setModeForState2:MCSwipeTableViewCellModeExit];
     }
     [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
-    cell.shouldAnimatesIcons = NO;
+//    cell.shouldAnimatesIcons = NO;
     
     
     NSString *text = [bork objectForKey:@"content"];
@@ -168,7 +163,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
 #define CELL_CONTENT_HEIGHT_TOP_MARGIN 31.0f
 #define CELL_CONTENT_WIDTH_LEFT_MARGIN 12.0f
 #define CELL_CONTENT_WIDTH 320.0f
-#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 12.0f
+#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 9.0f
 - (CGFloat) tableView: (UITableView *) tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
 {
     NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];

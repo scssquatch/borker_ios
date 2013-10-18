@@ -8,28 +8,37 @@
 
 #import "BorkAvatarCircleView.h"
 
+@interface BorkAvatarCircleView()
+@property (assign, nonatomic)CGFloat strokeWidth;
+@property (strong, nonatomic)UIColor *strokeColor;
+@end
+
 @implementation BorkAvatarCircleView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame withStrokeWidth:(CGFloat)width withColor:(UIColor *)color
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self drawCircle];
+        self.strokeWidth = width;
+        self.strokeColor = color;
+        self.backgroundColor = [UIColor clearColor];
+        self.opaque = NO;
     }
     return self;
 }
 
-- (void)drawCircle
+- (void)drawRect:(CGRect)rect
 {
-    CGContextRef context= UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-    CGContextSetAlpha(context, 0.5);
-    CGContextFillEllipseInRect(context, CGRectMake(0,0,self.frame.size.width,self.frame.size.height));
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+    CGContextSetAlpha(context, 1.0);
+    CGContextFillEllipseInRect(context, CGRectMake(rect.origin.x, rect.origin.y, rect.size.width+self.strokeWidth, rect.size.height+self.strokeWidth));
+    CGContextSetLineWidth(context, self.strokeWidth);
     
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    CGContextStrokeEllipseInRect(context, CGRectMake(0,0,self.frame.size.width,self.frame.size.height));
+    CGContextSetStrokeColorWithColor(context, self.strokeColor.CGColor);
+    CGContextStrokeEllipseInRect(context, rect);
 }
 /*
 // Only override drawRect: if you perform custom drawing.

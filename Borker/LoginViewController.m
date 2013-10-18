@@ -22,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.usernameField setValue:[UIColor colorWithRed:151.0/255.0 green:150.0/255.0 blue:180.0/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordField setValue:[UIColor colorWithRed:151.0/255.0 green:150.0/255.0 blue:180.0/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
     
@@ -38,9 +39,15 @@
     }
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
+
+//-(UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleLightContent;
+//}
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if ([identifier isEqualToString:@"login"]) {

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BorkAvatarCircleView : UIView
-
+- (id)initWithFrame:(CGRect)frame withStrokeWidth:(CGFloat)width withColor:(UIColor *)color;
 @end
