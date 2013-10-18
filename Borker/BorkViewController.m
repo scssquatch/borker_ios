@@ -172,7 +172,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     CGSize maximumLabelSize = CGSizeMake(LABEL_CONTENT_WIDTH, FLT_MAX);
     CGRect expectedLabelRect = [text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithDescriptor:[UIFontDescriptor fontDescriptorWithName:@"AvenirNext-Regular" size:14.0f] size:14.0f]} context:nil];
     CGFloat difference = expectedLabelRect.size.height - 17.0f;
-    return 72.0f + difference;
+    return 67.0f + difference;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
