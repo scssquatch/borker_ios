@@ -89,14 +89,24 @@
                         <color key="textColor" red="0.40000000000000002" green="0.41176470590000003" blue="0.58823529409999997" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarMask.png" translatesAutoresizingMaskIntoConstraints="NO" id="gnT-FI-S1v">
+                        <rect key="frame" x="10" y="5" width="35" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="5O9-nU-CxA"/>
+                            <constraint firstAttribute="width" constant="35" id="PdA-Eo-Hiu"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="0.0" colorSpace="deviceRGB"/>
                 <constraints>
                     <constraint firstItem="SfA-RX-ih7" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="54" id="6ca-lq-8O1"/>
+                    <constraint firstItem="gnT-FI-S1v" firstAttribute="top" secondItem="ceV-pF-RgK" secondAttribute="top" constant="5" id="CYU-14-Buj"/>
                     <constraint firstAttribute="bottom" secondItem="SfA-RX-ih7" secondAttribute="bottom" id="Nvp-BP-vBa"/>
                     <constraint firstItem="SfA-RX-ih7" firstAttribute="top" secondItem="ceV-pF-RgK" secondAttribute="top" constant="5" id="Zwt-fH-zNv"/>
                     <constraint firstItem="3" firstAttribute="top" secondItem="ceV-pF-RgK" secondAttribute="top" constant="7" id="mSc-pw-R5t"/>
                     <constraint firstItem="3" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="12" id="ogb-2O-WT8"/>
+                    <constraint firstItem="gnT-FI-S1v" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="10" id="y70-qy-NQx"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="0.0" colorSpace="deviceRGB"/>
@@ -113,6 +123,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="avatarMask.png" width="22" height="20"/>
         <image name="star-gray.png" width="22" height="20"/>
     </resources>
 </document>
