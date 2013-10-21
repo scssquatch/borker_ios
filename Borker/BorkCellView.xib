@@ -64,10 +64,11 @@
                         <color key="backgroundColor" red="0.87843143939971924" green="0.88235300779342651" blue="0.89803928136825562" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="13" id="44O-NU-9zq"/>
-                            <constraint firstAttribute="trailing" secondItem="40" secondAttribute="trailing" constant="12" id="50E-WW-Kmv"/>
+                            <constraint firstAttribute="trailing" secondItem="40" secondAttribute="trailing" constant="23" id="50E-WW-Kmv"/>
                             <constraint firstItem="27" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="31" id="QUI-d0-wKg"/>
+                            <constraint firstItem="A44-eo-yLh" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="UwD-RI-YxM"/>
                             <constraint firstItem="27" firstAttribute="leading" secondItem="SfA-RX-ih7" secondAttribute="leading" constant="12" id="Zx1-JE-o2b"/>
-                            <constraint firstAttribute="trailing" secondItem="A44-eo-yLh" secondAttribute="trailing" constant="5" id="dyf-bl-82n"/>
+                            <constraint firstAttribute="trailing" secondItem="A44-eo-yLh" secondAttribute="trailing" constant="5" id="dtF-d1-g9u"/>
                             <constraint firstItem="21" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="ovH-Ef-VyQ"/>
                             <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" constant="10" id="q8b-Wh-ocg"/>
                             <constraint firstItem="40" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="sHp-e0-enl"/>
@@ -139,6 +140,7 @@
     <resources>
         <image name="avatarMask.png" width="37" height="37"/>
         <image name="star-gray.png" width="22" height="20"/>
+        <image name="triangle.png" width="6" height="10"/>
         <image name="triangle.png" width="6" height="10"/>
     </resources>
 </document>
