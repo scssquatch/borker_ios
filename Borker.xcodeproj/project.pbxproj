@@ -25,6 +25,8 @@
 		0C61DADC17F4B4F20066630B /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C61DAD417F4B4F20066630B /* cross.png */; };
 		0C61DADD17F4B4F20066630B /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C61DAD517F4B4F20066630B /* cross@2x.png */; };
 		0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C61DAEA17F609250066630B /* BorkCredentials.m */; };
+		0C7CE6711811D4D000199994 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7CE66F1811D4D000199994 /* triangle.png */; };
+		0C7CE6721811D4D000199994 /* triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7CE6701811D4D000199994 /* triangle@2x.png */; };
 		0CA2CA5917FB65CE005D0873 /* BorkTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */; };
 		0CA2CA5C17FB6778005D0873 /* BorkNotificationNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5B17FB6778005D0873 /* BorkNotificationNetwork.m */; };
 		0CA2CA5F17FB6AC1005D0873 /* BorkNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5E17FB6AC1005D0873 /* BorkNotificationViewController.m */; };
@@ -107,6 +109,8 @@
 		0C61DAD517F4B4F20066630B /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		0C61DAE917F609250066630B /* BorkCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkCredentials.h; sourceTree = "<group>"; };
 		0C61DAEA17F609250066630B /* BorkCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCredentials.m; sourceTree = "<group>"; };
+		0C7CE66F1811D4D000199994 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = triangle.png; path = ../../../Pictures/triangle.png; sourceTree = "<group>"; };
+		0C7CE6701811D4D000199994 /* triangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "triangle@2x.png"; path = "../../../Pictures/triangle@2x.png"; sourceTree = "<group>"; };
 		0CA2CA5717FB65CE005D0873 /* BorkTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkTabViewController.h; sourceTree = "<group>"; };
 		0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkTabViewController.m; sourceTree = "<group>"; };
 		0CA2CA5A17FB6778005D0873 /* BorkNotificationNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNotificationNetwork.h; sourceTree = "<group>"; };
@@ -504,7 +508,9 @@
 				0C204F1317EE0429006AB37C /* release_notes.md in Resources */,
 				B5F058481811AFFC00BFFC74 /* avatarMask.png in Resources */,
 				0C29ABEB17FC70ED00227734 /* profile.png in Resources */,
+				0C7CE6711811D4D000199994 /* triangle.png in Resources */,
 				0C61DADC17F4B4F20066630B /* cross.png in Resources */,
+				0C7CE6721811D4D000199994 /* triangle@2x.png in Resources */,
 				B5910AC717E75C6D00B1B24C /* Default@2x.png in Resources */,
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
@@ -690,7 +696,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/neo/Projects/borker_ios,
+					/Users/bakis/Projects/borker_ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
@@ -698,10 +704,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/neo/projects/borker_ios/**",
+					"/Users/bakis/projects/borker_ios/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04BBEB36-B416-4CA3-A12F-54EA3381A0E9";
+				PROVISIONING_PROFILE = "2363057B-69E7-47BB-B88B-46B35F2313A0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -715,7 +721,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/neo/Projects/borker_ios,
+					/Users/bakis/Projects/borker_ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Borker/Borker-Prefix.pch";
@@ -723,10 +729,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/neo/projects/borker_ios/**",
+					"/Users/bakis/projects/borker_ios/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04BBEB36-B416-4CA3-A12F-54EA3381A0E9";
+				PROVISIONING_PROFILE = "2363057B-69E7-47BB-B88B-46B35F2313A0";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
