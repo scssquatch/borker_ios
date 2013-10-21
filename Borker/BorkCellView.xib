@@ -14,6 +14,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="triangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-I4-6nz">
+                        <rect key="frame" x="48" y="19" width="6" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SfA-RX-ih7">
                         <rect key="frame" x="54" y="5" width="255" height="66"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -59,15 +63,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.87843143939971924" green="0.88235300779342651" blue="0.89803928136825562" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="13" id="44O-NU-9zq"/>
                             <constraint firstAttribute="trailing" secondItem="40" secondAttribute="trailing" constant="12" id="50E-WW-Kmv"/>
-                            <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" constant="10" id="Ksu-ZD-w2A"/>
                             <constraint firstItem="27" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="31" id="QUI-d0-wKg"/>
                             <constraint firstAttribute="bottom" secondItem="A44-eo-yLh" secondAttribute="bottom" constant="3" id="UUv-AJ-Plx"/>
                             <constraint firstItem="27" firstAttribute="leading" secondItem="SfA-RX-ih7" secondAttribute="leading" constant="12" id="Zx1-JE-o2b"/>
                             <constraint firstAttribute="trailing" secondItem="A44-eo-yLh" secondAttribute="trailing" constant="3" id="hUv-aF-35n"/>
                             <constraint firstItem="21" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="ovH-Ef-VyQ"/>
+                            <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" constant="10" id="q8b-Wh-ocg"/>
                             <constraint firstItem="40" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="sHp-e0-enl"/>
                             <constraint firstItem="21" firstAttribute="leading" secondItem="SfA-RX-ih7" secondAttribute="leading" constant="12" id="t9V-wm-TfN"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="27" secondAttribute="bottom" constant="10" id="tlw-vY-4mA"/>
                             <constraint firstAttribute="width" constant="255" id="uwy-Tz-NDq"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -81,9 +87,12 @@
                             <constraint firstAttribute="width" constant="30" id="9Nn-vv-7Nc"/>
                             <constraint firstAttribute="height" constant="30" id="dN4-fc-V41"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igs-qf-gtE">
-                        <rect key="frame" x="28" y="-54" width="32" height="14"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igs-qf-gtE">
+                        <rect key="frame" x="11" y="44" width="32" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="10"/>
                         <color key="textColor" red="0.40000000000000002" green="0.41176470590000003" blue="0.58823529409999997" alpha="1" colorSpace="deviceRGB"/>
@@ -103,9 +112,11 @@
                     <constraint firstItem="SfA-RX-ih7" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="54" id="6ca-lq-8O1"/>
                     <constraint firstItem="gnT-FI-S1v" firstAttribute="top" secondItem="ceV-pF-RgK" secondAttribute="top" constant="5" id="CYU-14-Buj"/>
                     <constraint firstAttribute="bottom" secondItem="SfA-RX-ih7" secondAttribute="bottom" id="Nvp-BP-vBa"/>
+                    <constraint firstItem="igs-qf-gtE" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="11" id="WHf-rH-LYa"/>
                     <constraint firstItem="SfA-RX-ih7" firstAttribute="top" secondItem="ceV-pF-RgK" secondAttribute="top" constant="5" id="Zwt-fH-zNv"/>
                     <constraint firstItem="3" firstAttribute="top" secondItem="ceV-pF-RgK" secondAttribute="top" constant="7" id="mSc-pw-R5t"/>
                     <constraint firstItem="3" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="12" id="ogb-2O-WT8"/>
+                    <constraint firstItem="igs-qf-gtE" firstAttribute="top" secondItem="gnT-FI-S1v" secondAttribute="bottom" constant="4" id="xKX-e3-pU2"/>
                     <constraint firstItem="gnT-FI-S1v" firstAttribute="leading" secondItem="ceV-pF-RgK" secondAttribute="leading" constant="10" id="y70-qy-NQx"/>
                 </constraints>
             </tableViewCellContentView>
@@ -123,7 +134,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="avatarMask.png" width="22" height="20"/>
+        <image name="avatarMask.png" width="37" height="37"/>
         <image name="star-gray.png" width="22" height="20"/>
+        <image name="triangle.png" width="6" height="10"/>
     </resources>
 </document>

@@ -153,7 +153,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     cell.username.text = user.username;
     cell.avatar.image = [self.avatars objectForKey:user_id];
     if (![[[bork objectForKey:@"attachment"] objectForKey:@"url"] isEqualToString:defaultImageURL])
-        cell.hasAttachment.text = @"Attachment";
+        cell.hasAttachment.text = @"Attach";
     else
         cell.hasAttachment.text = @"";
     return cell;
@@ -264,7 +264,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    UndoView *undoView = [[UndoView alloc] initWithFrame:CGRectMake(screenWidth/2.0, screenHeight/2.0, 200, 40) withBork:bork];
+    UndoView *undoView = [[UndoView alloc] initWithFrame:CGRectMake(screenWidth/2.0, screenHeight-200, 200, 40) withBork:bork];
     undoView.delegate = self;
     [undoView setCenter:CGPointMake(screenWidth/2, screenHeight-150.0)];
     [self.view addSubview:undoView];
