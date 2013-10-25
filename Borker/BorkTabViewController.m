@@ -9,10 +9,6 @@
 #import "BorkTabViewController.h"
 #import "BorkUser.h"
 
-@interface BorkTabViewController ()
-
-@end
-
 @implementation BorkTabViewController
 
 - (IBAction)logoutUser:(id)sender {
@@ -35,8 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBar.hidden = NO;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"constructionNav.png"]];
 }
-
 
 @end

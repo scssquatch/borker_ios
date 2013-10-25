@@ -141,6 +141,5 @@
         <image name="avatarMask.png" width="37" height="37"/>
         <image name="star-gray.png" width="22" height="20"/>
         <image name="triangle.png" width="6" height="10"/>
-        <image name="triangle.png" width="6" height="10"/>
     </resources>
 </document>

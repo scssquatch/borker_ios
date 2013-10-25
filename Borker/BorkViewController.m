@@ -46,7 +46,6 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     [self.tableView addSubview:refresh];
     [self.view sendSubviewToBack:refresh];
     
-    
     UIView* strip = [[UIView alloc]initWithFrame:CGRectMake(24, -300, 6, CGFLOAT_MAX)];
     strip.backgroundColor = [UIColor colorWithRed:0.89f green:0.90f blue:0.91f alpha:1.00f];
     [self.view addSubview:strip];

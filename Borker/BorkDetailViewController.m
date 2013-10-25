@@ -18,7 +18,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
 @property (weak, nonatomic) IBOutlet UIImageView *borkAttachment;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundViewConstraint;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 @end
 
 @implementation BorkDetailViewController
@@ -49,7 +49,9 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     if (![attachmentURLString isEqualToString:defaultImageURL])
     {
         NSURL *attachmentURL = [NSURL URLWithString:attachmentURLString];
-        self.borkAttachment.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:attachmentURL]];
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:attachmentURL]];
+        self.imageHeightConstraint.constant = ((image.size.height/image.size.width)*200);
+        self.borkAttachment.image = image;
     }
 }
 - (IBAction)didClickBack:(id)sender {

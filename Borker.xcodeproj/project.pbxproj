@@ -31,6 +31,17 @@
 		0CA2CA6117FB795A005D0873 /* NotificationCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CA2CA6017FB795A005D0873 /* NotificationCellView.xib */; };
 		0CA2CA6417FB79F1005D0873 /* NotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA6317FB79F1005D0873 /* NotificationCell.m */; };
 		0CC9FEB717FEFDA800C0EFD7 /* BorkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC9FEB617FEFDA800C0EFD7 /* BorkDetailViewController.m */; };
+		0CD24EFC181AB55900091D29 /* BorkMainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD24EFB181AB55900091D29 /* BorkMainNavigationController.m */; };
+		0CD24EFF181ABBE900091D29 /* constructionNav.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CD24EFD181ABBE900091D29 /* constructionNav.png */; };
+		0CD24F00181ABBE900091D29 /* constructionNav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CD24EFE181ABBE900091D29 /* constructionNav@2x.png */; };
+		0CEA17D81815BF5300D323FE /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17D61815BF5300D323FE /* hamburger.png */; };
+		0CEA17D91815BF5300D323FE /* hamburger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17D71815BF5300D323FE /* hamburger@2x.png */; };
+		0CEA17E01815BF6E00D323FE /* construction.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17DA1815BF6E00D323FE /* construction.png */; };
+		0CEA17E11815BF6E00D323FE /* construction@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17DB1815BF6E00D323FE /* construction@2x.png */; };
+		0CEA17E21815BF6E00D323FE /* logIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17DC1815BF6E00D323FE /* logIn.png */; };
+		0CEA17E31815BF6E00D323FE /* logIn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17DD1815BF6E00D323FE /* logIn@2x.png */; };
+		0CEA17E41815BF6E00D323FE /* signUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17DE1815BF6E00D323FE /* signUp.png */; };
+		0CEA17E51815BF6E00D323FE /* signUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA17DF1815BF6E00D323FE /* signUp@2x.png */; };
 		0CEEDB8417F9D1AB00526494 /* UndoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CEEDB8317F9D1AB00526494 /* UndoView.xib */; };
 		0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEEDB8617F9D3F200526494 /* UndoView.m */; };
 		B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = B546D06D17E8EA7F0005477D /* BorkNetwork.m */; };
@@ -118,6 +129,18 @@
 		0CA2CA6317FB79F1005D0873 /* NotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCell.m; sourceTree = "<group>"; };
 		0CC9FEB517FEFDA800C0EFD7 /* BorkDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkDetailViewController.h; sourceTree = "<group>"; };
 		0CC9FEB617FEFDA800C0EFD7 /* BorkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkDetailViewController.m; sourceTree = "<group>"; };
+		0CD24EFA181AB55900091D29 /* BorkMainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkMainNavigationController.h; sourceTree = "<group>"; };
+		0CD24EFB181AB55900091D29 /* BorkMainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkMainNavigationController.m; sourceTree = "<group>"; };
+		0CD24EFD181ABBE900091D29 /* constructionNav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = constructionNav.png; sourceTree = "<group>"; };
+		0CD24EFE181ABBE900091D29 /* constructionNav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "constructionNav@2x.png"; sourceTree = "<group>"; };
+		0CEA17D61815BF5300D323FE /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
+		0CEA17D71815BF5300D323FE /* hamburger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger@2x.png"; sourceTree = "<group>"; };
+		0CEA17DA1815BF6E00D323FE /* construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = construction.png; sourceTree = "<group>"; };
+		0CEA17DB1815BF6E00D323FE /* construction@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "construction@2x.png"; sourceTree = "<group>"; };
+		0CEA17DC1815BF6E00D323FE /* logIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logIn.png; sourceTree = "<group>"; };
+		0CEA17DD1815BF6E00D323FE /* logIn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logIn@2x.png"; sourceTree = "<group>"; };
+		0CEA17DE1815BF6E00D323FE /* signUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUp.png; sourceTree = "<group>"; };
+		0CEA17DF1815BF6E00D323FE /* signUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signUp@2x.png"; sourceTree = "<group>"; };
 		0CEEDB8317F9D1AB00526494 /* UndoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UndoView.xib; sourceTree = "<group>"; };
 		0CEEDB8517F9D3F200526494 /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
 		0CEEDB8617F9D3F200526494 /* UndoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoView.m; sourceTree = "<group>"; };
@@ -218,6 +241,16 @@
 		0C61DAE017F4B4F70066630B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0CD24EFD181ABBE900091D29 /* constructionNav.png */,
+				0CD24EFE181ABBE900091D29 /* constructionNav@2x.png */,
+				0CEA17DA1815BF6E00D323FE /* construction.png */,
+				0CEA17DB1815BF6E00D323FE /* construction@2x.png */,
+				0CEA17DC1815BF6E00D323FE /* logIn.png */,
+				0CEA17DD1815BF6E00D323FE /* logIn@2x.png */,
+				0CEA17DE1815BF6E00D323FE /* signUp.png */,
+				0CEA17DF1815BF6E00D323FE /* signUp@2x.png */,
+				0CEA17D61815BF5300D323FE /* hamburger.png */,
+				0CEA17D71815BF5300D323FE /* hamburger@2x.png */,
 				B5F0584E1811B63700BFFC74 /* triangle.png */,
 				B5F0584F1811B63700BFFC74 /* triangle@2x.png */,
 				B5F058461811AFFC00BFFC74 /* avatarMask.png */,
@@ -399,6 +432,8 @@
 				0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */,
 				B5F418B817EA26CA001D71B7 /* BorkNavigationViewController.h */,
 				B5F418B917EA26CA001D71B7 /* BorkNavigationViewController.m */,
+				0CD24EFA181AB55900091D29 /* BorkMainNavigationController.h */,
+				0CD24EFB181AB55900091D29 /* BorkMainNavigationController.m */,
 				B5F418B417EA2536001D71B7 /* NewBorkViewController.h */,
 				B5F418B517EA2536001D71B7 /* NewBorkViewController.m */,
 				B5F418B117EA1B12001D71B7 /* LoginViewController.h */,
@@ -490,27 +525,37 @@
 			files = (
 				0CEEDB8417F9D1AB00526494 /* UndoView.xib in Resources */,
 				B5CF55C61808943C0087BAC6 /* Background.jpg in Resources */,
+				0CEA17E11815BF6E00D323FE /* construction@2x.png in Resources */,
 				B5910ABD17E75C6D00B1B24C /* InfoPlist.strings in Resources */,
 				B5F058491811AFFC00BFFC74 /* avatarMask@2x.png in Resources */,
 				0CA2CA6117FB795A005D0873 /* NotificationCellView.xib in Resources */,
+				0CEA17D81815BF5300D323FE /* hamburger.png in Resources */,
 				0C29ABFC17FC76C600227734 /* home@2x.png in Resources */,
 				B5CF55C71808943C0087BAC6 /* Background@2x.jpg in Resources */,
 				0C204F1217EE0429006AB37C /* README.md in Resources */,
 				B5910AC517E75C6D00B1B24C /* Default.png in Resources */,
+				0CEA17E01815BF6E00D323FE /* construction.png in Resources */,
 				B5F058511811B63700BFFC74 /* triangle@2x.png in Resources */,
 				0C61DADD17F4B4F20066630B /* cross@2x.png in Resources */,
 				0C1219B417FA0EEE00462E1B /* star-gray.png in Resources */,
 				0C29ABF317FC73EC00227734 /* like.png in Resources */,
 				0C204F1317EE0429006AB37C /* release_notes.md in Resources */,
 				B5F058481811AFFC00BFFC74 /* avatarMask.png in Resources */,
+				0CD24EFF181ABBE900091D29 /* constructionNav.png in Resources */,
+				0CEA17D91815BF5300D323FE /* hamburger@2x.png in Resources */,
 				0C29ABEB17FC70ED00227734 /* profile.png in Resources */,
 				0C61DADC17F4B4F20066630B /* cross.png in Resources */,
+				0CEA17E51815BF6E00D323FE /* signUp@2x.png in Resources */,
+				0CEA17E21815BF6E00D323FE /* logIn.png in Resources */,
 				B5910AC717E75C6D00B1B24C /* Default@2x.png in Resources */,
 				B5910AC917E75C6D00B1B24C /* Default-568h@2x.png in Resources */,
 				B5910ACC17E75C6D00B1B24C /* MainStoryboard.storyboard in Resources */,
+				0CEA17E31815BF6E00D323FE /* logIn@2x.png in Resources */,
+				0CD24F00181ABBE900091D29 /* constructionNav@2x.png in Resources */,
 				B572B85417E77CDF00AF9DC0 /* BorkCellView.xib in Resources */,
 				0C29ABFB17FC76C600227734 /* home.png in Resources */,
 				B5F058501811B63700BFFC74 /* triangle.png in Resources */,
+				0CEA17E41815BF6E00D323FE /* signUp.png in Resources */,
 				B5CF55CC180D86F20087BAC6 /* BorkAvatarCircleView.xib in Resources */,
 				0C1219B517FA0EEE00462E1B /* star-gray@2x.png in Resources */,
 				0C29ABF417FC73EC00227734 /* like@2x.png in Resources */,
@@ -557,6 +602,7 @@
 				B572B85717E788BB00AF9DC0 /* BorkUser.m in Sources */,
 				0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */,
 				B5CF55CA180D86DB0087BAC6 /* BorkAvatarCircleView.m in Sources */,
+				0CD24EFC181AB55900091D29 /* BorkMainNavigationController.m in Sources */,
 				B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */,
 				0C2C710617FBA02E0090CFD6 /* BorkProfileViewController.m in Sources */,
 				0CA2CA5F17FB6AC1005D0873 /* BorkNotificationViewController.m in Sources */,
