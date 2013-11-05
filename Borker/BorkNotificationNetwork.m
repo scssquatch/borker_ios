@@ -11,7 +11,7 @@
 @implementation BorkNotificationNetwork
 + (NSArray *)fetchNotifications:(NSString *)username withLimit:(NSUInteger)limit since:(NSString *)time
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/notifications?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"notifications?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@&limit=%i&since=%@", authToken, username, limit, time]];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
     NSError* error = nil;
@@ -19,7 +19,7 @@
 }
 + (void)fetchOlderNotifications:(NSString *)username withLimit:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *olderNotifications))callback
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/notifications?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"notifications?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@&limit=%i&older_than=%@", authToken, username, limit, time]];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
                                        queue:[NSOperationQueue mainQueue]

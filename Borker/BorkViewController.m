@@ -158,7 +158,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     return cell;
 }
 #define FONT_SIZE 14.0f
-#define LABEL_CONTENT_WIDTH 191.0f
+#define LABEL_CONTENT_WIDTH 230.0f
 #define CELL_CONTENT_HEIGHT_TOP_MARGIN 31.0f
 #define CELL_CONTENT_WIDTH_LEFT_MARGIN 12.0f
 #define CELL_CONTENT_WIDTH 320.0f

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -23,17 +23,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40">
-                                <rect key="frame" x="172" y="8" width="60" height="18"/>
+                                <rect key="frame" x="142" y="8" width="90" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="kwc-cN-LQK"/>
+                                    <constraint firstAttribute="width" constant="90" id="kwc-cN-LQK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="27">
-                                <rect key="frame" x="12" y="31" width="230" height="25"/>
+                                <rect key="frame" x="12" y="31" width="230" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="7Xc-kO-FSJ"/>
@@ -51,7 +51,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21">
-                                <rect key="frame" x="12" y="8" width="80" height="20"/>
+                                <rect key="frame" x="12" y="9" width="80" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="plV-G4-4wA"/>
@@ -65,15 +65,15 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="27" secondAttribute="trailing" constant="13" id="44O-NU-9zq"/>
                             <constraint firstAttribute="trailing" secondItem="40" secondAttribute="trailing" constant="23" id="50E-WW-Kmv"/>
+                            <constraint firstItem="27" firstAttribute="top" secondItem="21" secondAttribute="bottom" constant="2" id="Cs4-vQ-4UY"/>
                             <constraint firstItem="27" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="31" id="QUI-d0-wKg"/>
                             <constraint firstItem="A44-eo-yLh" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="UwD-RI-YxM"/>
                             <constraint firstItem="27" firstAttribute="leading" secondItem="SfA-RX-ih7" secondAttribute="leading" constant="12" id="Zx1-JE-o2b"/>
                             <constraint firstAttribute="trailing" secondItem="A44-eo-yLh" secondAttribute="trailing" constant="5" id="dtF-d1-g9u"/>
-                            <constraint firstItem="21" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="ovH-Ef-VyQ"/>
-                            <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" constant="10" id="q8b-Wh-ocg"/>
+                            <constraint firstItem="21" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="9" id="ovH-Ef-VyQ"/>
+                            <constraint firstAttribute="bottom" secondItem="27" secondAttribute="bottom" constant="9" id="q8b-Wh-ocg"/>
                             <constraint firstItem="40" firstAttribute="top" secondItem="SfA-RX-ih7" secondAttribute="top" constant="8" id="sHp-e0-enl"/>
                             <constraint firstItem="21" firstAttribute="leading" secondItem="SfA-RX-ih7" secondAttribute="leading" constant="12" id="t9V-wm-TfN"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="27" secondAttribute="bottom" constant="10" id="tlw-vY-4mA"/>
                             <constraint firstAttribute="width" constant="255" id="uwy-Tz-NDq"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>

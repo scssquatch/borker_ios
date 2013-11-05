@@ -36,7 +36,6 @@
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIColor whiteColor], NSForegroundColorAttributeName,
                                                            [UIFont fontWithName:@"AvenirNext-Bold" size:21.0], NSFontAttributeName, nil]];
-
 }
 
 - (void)didReceiveMemoryWarning

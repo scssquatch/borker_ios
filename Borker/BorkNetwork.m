@@ -11,7 +11,7 @@
 @implementation BorkNetwork
 + (NSArray *)fetchBorks:(NSUInteger)limit since:(NSString *)time
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&since=%@&limit=%i", authToken, time, limit]];
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:postString]];
     NSError* error = nil;
@@ -20,7 +20,7 @@
 
 + (void)fetchOlderBorks:(NSUInteger)limit before:(NSString *)time withCallback:(void (^)(NSArray *olderBorks))callback
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i", authToken, time, limit]];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
                                        queue:[NSOperationQueue mainQueue]
@@ -33,7 +33,7 @@
 
 + (BOOL)createBork:(NSString *)bork user:(NSString *)username
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"borks?"];
     NSString *strippedBork = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)bork, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8));
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"content=%@&username=%@&api_key=%@", strippedBork, username, authToken]];
     NSURL *url = [NSURL URLWithString:postString];
@@ -57,7 +57,7 @@
 
 + (BOOL)deleteBork:(NSString *)bork_id user:(NSString *)username
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/borks?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"bork_id=%@&username=%@&api_key=%@", bork_id, username, authToken]];
     NSURL *url = [NSURL URLWithString:postString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -77,10 +77,20 @@
     }
     return false;
 }
-
++ (void)getBorkFavorites:(NSString *)bork_id withCallback:(void (^)(NSArray *parsedJSON))callback
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"bork_favorites?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&bork_id=%@", authToken, bork_id]];
+       [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
+                                          queue:[NSOperationQueue mainQueue]
+                              completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                                  NSError* error = nil;
+                                  callback([NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error]);
+                              }];
+}
 + (void)toggleBorkFavorite:(NSString *)bork_id user:(NSString *)username favorited:(BOOL)favorited withCallback:(void (^)(NSArray *parsedJSON))callback
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/favorites?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"favorites?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&bork_id=%@&username=%@", authToken, bork_id, username]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
     if (favorited) {

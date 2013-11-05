@@ -11,7 +11,7 @@
 @implementation BorkUserNetwork
 + (NSArray *)fetchUsers
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/users?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"users?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@", authToken]];
     NSURL *url = [NSURL URLWithString:postString];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -20,33 +20,30 @@
     
     return users;
 }
-+ (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password
-{
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/authenticate?"];
-    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"username=%@&password=%@&api_key=%@", username, password, authToken]];
-    NSURL *url = [NSURL URLWithString:postString];
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
++ (void)authenticateUser:(NSString *)username withPassword:(NSString *)password withCallback:(void (^)(BOOL authenticated))callback
+{
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"authenticate?"];
+    postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@&password=%@", authToken, username, password]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
     [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"content-type"];
-    NSError *error = nil;
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSString *retVal = [[NSString alloc] init];
-    if (!error)
-    {
-        retVal = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        if ([retVal isEqualToString:@"true"]) {
-            return true;
-        }
-    }
-    return false;
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler: ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               NSError* error = nil;
+                               NSDictionary *auth_response = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                               BOOL authenticated = [auth_response objectForKey:@"error"] ? false : true;
+                               if (error) {
+                                   NSLog(@"%@", error);
+                               } else {
+                                   callback(authenticated);
+                               }
+                           }];
 }
 
 + (void)addToken:(NSString *)token withUsername:(NSString *)username
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/add_token?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"add_token?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@&token=%@", authToken, username, token]];
     NSURL *url = [NSURL URLWithString:postString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -60,7 +57,7 @@
 
 + (NSArray *)getFavorites:(NSString *)username
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/favorites?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"favorites?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@", authToken, username]];
     NSURL *url = [NSURL URLWithString:postString];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -71,7 +68,7 @@
 
 + (void)fetchUserBorks:(NSUInteger)limit since:(NSString *)time withUser:(NSString *)username withCallback:(void (^)(NSArray *olderBorks))callback
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/user_borks?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"user_borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&since=%@&limit=%i&username=%@", authToken, time, limit, username]];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
                                        queue:[NSOperationQueue mainQueue]
@@ -83,7 +80,7 @@
 
 + (void)fetchOlderUserBorks:(NSUInteger)limit before:(NSString *)time withUser:(NSString *)username withCallback:(void (^)(NSArray *olderBorks))callback
 {
-    NSString *postString = [appRootPath stringByAppendingPathComponent:@"api/user_borks?"];
+    NSString *postString = [appRootPath stringByAppendingPathComponent:@"user_borks?"];
     postString = [postString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&older_than=%@&limit=%i&username=%@", authToken, time, limit, username]];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:postString]]
                                        queue:[NSOperationQueue mainQueue]
@@ -95,7 +92,7 @@
 + (NSString *)getUserIDWithUsername:(NSString *)username
 {
     
-    NSString *getString = [appRootPath stringByAppendingPathComponent:@"api/user_id?"];
+    NSString *getString = [appRootPath stringByAppendingPathComponent:@"user_id?"];
     getString = [getString stringByAppendingString:[NSString stringWithFormat:@"api_key=%@&username=%@", authToken, username]];
     NSURL *url = [NSURL URLWithString:getString];
     NSData *data = [NSData dataWithContentsOfURL:url];

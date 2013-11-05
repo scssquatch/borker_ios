@@ -16,6 +16,7 @@
 @property (strong, nonatomic) BorkCredentials *credentials;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
 @end
 
 @implementation LoginViewController
@@ -72,9 +73,7 @@
     if (nextResponder) {
         [nextResponder becomeFirstResponder];
     } else {
-        if([self logIn]) {
-            [self performSegueWithIdentifier:@"login" sender:self];
-        }
+        [self logIn:self.loginButton];
     }
     return NO;
 }
@@ -83,25 +82,39 @@
 {
     textField.layer.borderWidth = 0.0f;
 }
-
--(BOOL)logIn
-{
+- (IBAction)logIn:(id)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
-    if ([BorkUserNetwork authenticateUser:username withPassword:password]) {
-        [self.credentials setUsername:username];
-        return YES;
-    } else {
-        self.errorMessageField.text = @"Invalid Username or Password";
-        return NO;
-    }
+    [self runSpinAnimationOnView:self.logo duration:1 rotations:1 repeat:15];
+    [BorkUserNetwork authenticateUser:username withPassword:password withCallback:^(BOOL authenticated) {
+        if (authenticated) {
+            [self.credentials setUsername:username];
+            [self performSegueWithIdentifier:@"login" sender:self];
+        } else {
+            self.errorMessageField.text = @"Invalid Username or Password";
+        }
+        [self.logo.layer removeAllAnimations];
+    }];
 }
 
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+- (void) runSpinAnimationOnView:(UIView*)view duration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat;
 {
-    if ([identifier isEqualToString:@"login"]) {
-        return [self logIn];
-    }
+    CABasicAnimation* rotationAnimation;
+    self.logo.layer.anchorPoint = CGPointMake(0.5f, 0.485f);
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 /* full rotation*/ * rotations * duration ];
+    rotationAnimation.duration = duration;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = repeat;
+    
+    [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+- (IBAction)didClickSignup:(id)sender {
+}
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
     return NO;
 }
+
 @end

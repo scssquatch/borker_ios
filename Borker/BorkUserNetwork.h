@@ -10,7 +10,7 @@
 
 @interface BorkUserNetwork : NSObject
 + (NSArray *)fetchUsers;
-+ (BOOL)authenticateUser:(NSString *)username withPassword:(NSString *)password;
++ (void)authenticateUser:(NSString *)username withPassword:(NSString *)password withCallback:(void (^)(BOOL authenticated))callback;
 + (void)addToken:(NSString *)token withUsername:(NSString *)username;
 + (NSArray *)getFavorites:(NSString *)username;
 + (void)fetchUserBorks:(NSUInteger)limit since:(NSString *)time withUser:(NSString *)username withCallback:(void (^)(NSArray *olderBorks))callback;

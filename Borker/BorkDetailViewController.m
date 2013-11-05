@@ -7,6 +7,7 @@
 //
 
 #import "BorkDetailViewController.h"
+#import "BorkNetwork.h"
 #import "BorkCell.h"
 
 static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/default.jpg";
@@ -31,6 +32,11 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     self.borkUsername.text = self.username;
     [self determineContentHeight];
 	// Do any additional setup after loading the view.
+    
+}
+
+- (void)fetchBorkFavorites
+{
     
 }
 - (void)determineContentHeight

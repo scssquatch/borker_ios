@@ -2,18 +2,19 @@
 //  BorkUser.h
 //  Borker
 //
-//  Created by Neo on 9/16/13.
+//  Created by Aaron Baker on 11/5/13.
 //  Copyright (c) 2013 Borker Innovation. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface BorkUser : NSObject
-+ (BorkUser *)findByID:(NSString *)userID;
-+ (void)logoutCurrentUser;
-- (void)requestUsers;
-@property (strong, nonatomic) NSString *id;
-@property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) NSURL *avatarURL;
-@property (strong, nonatomic) NSArray *userIDs;
+
+@interface BorkUser : NSManagedObject
+
+@property (nonatomic, retain) NSString * username;
+@property (nonatomic, retain) UIImage *avatar;
+@property (nonatomic, retain) NSNumber * user_id;
+@property (nonatomic, retain) UIImage *avatar_thumb;
+
 @end

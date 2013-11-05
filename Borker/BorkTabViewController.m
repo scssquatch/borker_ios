@@ -30,8 +30,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"constructionNav.png"]];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.4 green:0.412 blue:0.588 alpha:1]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], UITextAttributeTextColor, nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+    
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 @end
