@@ -27,8 +27,9 @@
 		0C61DADD17F4B4F20066630B /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C61DAD517F4B4F20066630B /* cross@2x.png */; };
 		0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C61DAEA17F609250066630B /* BorkCredentials.m */; };
 		0C769A8418294A9400D08249 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C769A8318294A9400D08249 /* CoreData.framework */; };
-		0C769A8718294AC500D08249 /* BorkItem.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A8518294AC500D08249 /* BorkItem.xcdatamodeld */; };
+		0C769A8718294AC500D08249 /* Borker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A8518294AC500D08249 /* Borker.xcdatamodeld */; };
 		0C769A9018294C7300D08249 /* BorkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A8F18294C7300D08249 /* BorkUser.m */; };
+		0C769A961829884A00D08249 /* BorkCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A951829884A00D08249 /* BorkCoreDataManager.m */; };
 		0CA2CA5917FB65CE005D0873 /* BorkTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */; };
 		0CA2CA5C17FB6778005D0873 /* BorkNotificationNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5B17FB6778005D0873 /* BorkNotificationNetwork.m */; };
 		0CA2CA5F17FB6AC1005D0873 /* BorkNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5E17FB6AC1005D0873 /* BorkNotificationViewController.m */; };
@@ -123,9 +124,11 @@
 		0C61DAE917F609250066630B /* BorkCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkCredentials.h; sourceTree = "<group>"; };
 		0C61DAEA17F609250066630B /* BorkCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCredentials.m; sourceTree = "<group>"; };
 		0C769A8318294A9400D08249 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		0C769A8618294AC500D08249 /* BorkItem.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BorkItem.xcdatamodel; sourceTree = "<group>"; };
+		0C769A8618294AC500D08249 /* Borker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Borker.xcdatamodel; sourceTree = "<group>"; };
 		0C769A8E18294C7300D08249 /* BorkUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUser.h; sourceTree = "<group>"; };
 		0C769A8F18294C7300D08249 /* BorkUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUser.m; sourceTree = "<group>"; };
+		0C769A941829884A00D08249 /* BorkCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkCoreDataManager.h; sourceTree = "<group>"; };
+		0C769A951829884A00D08249 /* BorkCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCoreDataManager.m; sourceTree = "<group>"; };
 		0CA2CA5717FB65CE005D0873 /* BorkTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkTabViewController.h; sourceTree = "<group>"; };
 		0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkTabViewController.m; sourceTree = "<group>"; };
 		0CA2CA5A17FB6778005D0873 /* BorkNotificationNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNotificationNetwork.h; sourceTree = "<group>"; };
@@ -316,9 +319,11 @@
 				0C61DAEA17F609250066630B /* BorkCredentials.m */,
 				0C475B9717FB20F100DB0D3E /* Bork.h */,
 				0C475B9817FB20F100DB0D3E /* Bork.m */,
-				0C769A8518294AC500D08249 /* BorkItem.xcdatamodeld */,
+				0C769A8518294AC500D08249 /* Borker.xcdatamodeld */,
 				0C769A8E18294C7300D08249 /* BorkUser.h */,
 				0C769A8F18294C7300D08249 /* BorkUser.m */,
+				0C769A941829884A00D08249 /* BorkCoreDataManager.h */,
+				0C769A951829884A00D08249 /* BorkCoreDataManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -607,9 +612,10 @@
 			files = (
 				B5910ABF17E75C6D00B1B24C /* main.m in Sources */,
 				B5910AC317E75C6D00B1B24C /* BorkAppDelegate.m in Sources */,
+				0C769A961829884A00D08249 /* BorkCoreDataManager.m in Sources */,
 				0CA2CA5917FB65CE005D0873 /* BorkTabViewController.m in Sources */,
 				B5910ACF17E75C6D00B1B24C /* BorkViewController.m in Sources */,
-				0C769A8718294AC500D08249 /* BorkItem.xcdatamodeld in Sources */,
+				0C769A8718294AC500D08249 /* Borker.xcdatamodeld in Sources */,
 				0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */,
 				0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */,
 				B5CF55CA180D86DB0087BAC6 /* BorkAvatarCircleView.m in Sources */,
@@ -859,13 +865,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0C769A8518294AC500D08249 /* BorkItem.xcdatamodeld */ = {
+		0C769A8518294AC500D08249 /* Borker.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				0C769A8618294AC500D08249 /* BorkItem.xcdatamodel */,
+				0C769A8618294AC500D08249 /* Borker.xcdatamodel */,
 			);
-			currentVersion = 0C769A8618294AC500D08249 /* BorkItem.xcdatamodel */;
-			path = BorkItem.xcdatamodeld;
+			currentVersion = 0C769A8618294AC500D08249 /* Borker.xcdatamodel */;
+			path = Borker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

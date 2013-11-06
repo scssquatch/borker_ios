@@ -13,8 +13,8 @@
 @interface BorkUser : NSManagedObject
 
 @property (nonatomic, retain) NSString * username;
-@property (nonatomic, retain) UIImage *avatar;
+@property (nonatomic, retain) NSString *avatarURL;
 @property (nonatomic, retain) NSNumber * user_id;
-@property (nonatomic, retain) UIImage *avatar_thumb;
+@property (nonatomic, retain) NSString *avatarThumbURL;
 
 @end

@@ -9,11 +9,12 @@
 
 #import "BorkViewController.h"
 #import "BorkCell.h"
-#import "BorkUser.h"
 #import "BorkUserNetwork.h"
 #import "BorkNetwork.h"
 #import "BorkCredentials.h"
 #import "BorkDetailViewController.h"
+#import "BorkUser.h"
+#import "BorkCoreDataManager.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
 static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/default.jpg";
@@ -22,23 +23,25 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
 
 @interface BorkViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) BorkUser *borkUser;
-@property (strong, nonatomic) NSMutableDictionary *users;
 @property (strong, nonatomic) NSMutableDictionary *avatars;
+@property (strong, nonatomic) NSMutableDictionary *avatarThumbs;
 @property (strong, nonatomic) NSArray *favorites;
 @property (strong, nonatomic) BorkCredentials *credentials;
 @property (strong, nonatomic) NSTimer *deleteTimer;
+@property (strong, nonatomic) BorkCoreDataManager *coreDataManager;
 @end
 
 @implementation BorkViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.borkUser = [[BorkUser alloc] init];
     self.avatars = [[NSMutableDictionary alloc] init];
-    self.users = [[NSMutableDictionary alloc] init];
+    self.avatarThumbs = [[NSMutableDictionary alloc] init];
     self.borks = [[NSArray alloc] init];
     self.credentials = [[BorkCredentials alloc] init];
+    self.coreDataManager = [[BorkCoreDataManager alloc] init];
+    self.managedObjectContext = [self.coreDataManager getManagedObjectContext];
     
     //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -69,13 +72,16 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
 
 - (void)populateUsers
 {
-    [self.borkUser requestUsers];
-    for (NSString *userID in self.borkUser.userIDs) {
-        NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
-        BorkUser *tempUser = [BorkUser findByID:userStringID];
-        NSData *imageData = [NSData dataWithContentsOfURL:tempUser.avatarURL];
-        [self.avatars setObject:[UIImage imageWithData:imageData] forKey:userStringID];
-        [self.users setObject:tempUser forKey:userStringID];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BorkUser" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    self.users = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (BorkUser *user in self.users) {
+        NSURL *avatarURL = [NSURL URLWithString:user.avatarURL];
+        [self.avatars setObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:avatarURL]] forKey:user.user_id];
+        NSURL *avatarThumbURL = [NSURL URLWithString:user.avatarURL];
+        [self.avatarThumbs setObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:avatarThumbURL]] forKey:user.user_id];
     }
 }
 
@@ -109,7 +115,8 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
     NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
-    BorkUser *user = [self.users objectForKey:user_id];
+    BorkUser *user = [self findUserByID:user_id];
+    
     //FAVORITES
     NSString *secondIconName = nil;
     UIColor *secondColor = [UIColor clearColor];
@@ -150,7 +157,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     cell.content.text = text;
     cell.timestamp.text = [self timeAgo:[bork objectForKey:@"created_at"]];
     cell.username.text = user.username;
-    cell.avatar.image = [self.avatars objectForKey:user_id];
+    cell.avatar.image = [self.avatarThumbs objectForKey:user.user_id];
     if (![[[bork objectForKey:@"attachment"] objectForKey:@"url"] isEqualToString:defaultImageURL])
         cell.hasAttachment.text = @"Attach";
     else
@@ -189,8 +196,8 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         [detailController setBork:bork];
         
         NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
-        BorkUser *user = [self.users objectForKey:user_id];
-        detailController.avatar = [self.avatars objectForKey:user_id];
+        BorkUser *user = [self findUserByID:user_id];
+        detailController.avatar = [self.avatars objectForKey:user.user_id];
         detailController.username = user.username;
     }
 }
@@ -321,5 +328,16 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         return [NSString stringWithFormat:@"%ih", (int)seconds/3600];
     else
         return (NSString *)[dateFormatter stringFromDate:borkTime];
+}
+
+- (BorkUser *)findUserByID:(NSString *)user_id
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BorkUser" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id = %@", user_id];
+    [request setPredicate:predicate];
+    NSError *error;
+    return [[self.managedObjectContext executeFetchRequest:request error:&error] firstObject];
 }
 @end

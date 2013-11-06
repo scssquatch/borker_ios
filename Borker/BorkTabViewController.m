@@ -8,6 +8,7 @@
 
 #import "BorkTabViewController.h"
 #import "BorkUser.h"
+#import "BorkCredentials.h"
 
 @implementation BorkTabViewController
 
@@ -23,7 +24,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [BorkUser logoutCurrentUser];
+        [self.class logoutCurrentUser];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
@@ -39,6 +40,12 @@
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], UITextAttributeTextColor, nil] forState:UIControlStateSelected];
     
     self.navigationController.navigationBar.hidden = NO;
+}
+
++ (void)logoutCurrentUser
+{
+    BorkCredentials *creds = [[BorkCredentials alloc] init];
+    [creds setUsername:@""];
 }
 
 @end

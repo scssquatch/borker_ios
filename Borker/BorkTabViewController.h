@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BorkTabViewController : UITabBarController
-
++ (void)logoutCurrentUser;
 @end

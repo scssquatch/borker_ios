@@ -34,14 +34,14 @@ static NSString * const cellIdentifier = @"BorkCell";
     [super viewDidLoad];
     self.credentials = [[BorkCredentials alloc] init];
     self.borks = [[NSArray alloc] init];
-    self.borkUser = [[BorkUser alloc] init];
-    [self.borkUser requestUsers];
+//    self.borkUser = [[BorkUser alloc] init];
+//    [self.borkUser requestUsers];
     NSString *userID = [BorkUserNetwork getUserIDWithUsername:[self.credentials username]];
     NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
-    self.borkUser = [BorkUser findByID:(NSString *)userStringID];
+//    self.borkUser = [BorkUser findByID:(NSString *)userStringID];
     
-    NSData *imageData = [NSData dataWithContentsOfURL:[self.borkUser avatarURL]];
-    self.avatar = [UIImage imageWithData:imageData];
+//    NSData *imageData = [NSData dataWithContentsOfURL:[self.borkUser avatarURL]];
+//    self.avatar = [UIImage imageWithData:imageData];
     self.profileImageView.image = self.avatar;
     self.profileUsernameLabel.text = [self.borkUser username];
     

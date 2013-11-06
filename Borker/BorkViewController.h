@@ -12,5 +12,8 @@
 
 @interface BorkViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, MCSwipeTableViewCellDelegate, UndoViewDelegate>
+
 @property (strong, nonatomic) NSArray *borks;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *users;
 @end

@@ -12,8 +12,8 @@
 @implementation BorkUser
 
 @dynamic username;
-@dynamic avatar;
+@dynamic avatarURL;
 @dynamic user_id;
-@dynamic avatar_thumb;
+@dynamic avatarThumbURL;
 
 @end

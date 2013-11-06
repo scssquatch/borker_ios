@@ -110,6 +110,7 @@
     [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 - (IBAction)didClickSignup:(id)sender {
+    //nothing so far.. don't really want random people signing up :)
 }
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender

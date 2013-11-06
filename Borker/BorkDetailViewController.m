@@ -63,17 +63,6 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
 - (IBAction)didClickBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-//- (IBAction)didClickReply:(id)sender {
-//    [self performSegueWithIdentifier:@"didClickReply" sender:self];
-//}
-//
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"didClickReply"]) {
-//        NewBorkViewController *newBorkController = [segue destinationViewController];
-//        newBorkController.borkContentView.text = [NSString stringWithFormat:@"@%@", self.username];
-//    }
-//}
 
 - (void)setBork:(NSDictionary *)bork
 {
