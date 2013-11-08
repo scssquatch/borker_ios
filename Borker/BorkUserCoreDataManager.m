@@ -6,11 +6,9 @@
 //  Copyright (c) 2013 Borker Innovation. All rights reserved.
 //
 
-#import "BorkCoreDataManager.h"
-#import "BorkUserNetwork.h"
-#import "BorkUser.h"
+#import "BorkUserCoreDataManager.h"
 
-@implementation BorkCoreDataManager
+@implementation BorkUserCoreDataManager
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -144,5 +142,16 @@
         [self.managedObjectContext deleteObject:user];
     }
     [self.managedObjectContext save:&error];
+}
+
+- (BorkUser *)findByID:(NSString *)user_id
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BorkUser" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id = %@", user_id];
+    [request setPredicate:predicate];
+    NSError *error;
+    return [[self.managedObjectContext executeFetchRequest:request error:&error] firstObject];
 }
 @end

@@ -13,13 +13,16 @@
 #import "BorkUserNetwork.h"
 #import "BorkUser.h"
 #import "BorkCell.h"
+#import "BorkUserCoreDataManager.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
+static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/default.jpg";
 
 @interface BorkProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *profileUsernameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) BorkUserCoreDataManager *dataManager;
 @property (strong, nonatomic) BorkCredentials *credentials;
 @property (strong, nonatomic) BorkUser *borkUser;
 @property (strong, nonatomic) NSArray *borks;
@@ -32,23 +35,15 @@ static NSString * const cellIdentifier = @"BorkCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.credentials = [[BorkCredentials alloc] init];
+    self.credentials = [BorkCredentials sharedInstance];
     self.borks = [[NSArray alloc] init];
-//    self.borkUser = [[BorkUser alloc] init];
-//    [self.borkUser requestUsers];
-    NSString *userID = [BorkUserNetwork getUserIDWithUsername:[self.credentials username]];
-    NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
-//    self.borkUser = [BorkUser findByID:(NSString *)userStringID];
-    
-//    NSData *imageData = [NSData dataWithContentsOfURL:[self.borkUser avatarURL]];
-//    self.avatar = [UIImage imageWithData:imageData];
-    self.profileImageView.image = self.avatar;
-    self.profileUsernameLabel.text = [self.borkUser username];
+    self.dataManager = [[BorkUserCoreDataManager alloc] init];
     
     //set up pull down to refresh
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
+    [self.tableView sendSubviewToBack:refresh];
     
     //register nibs for identifiers
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
@@ -58,7 +53,26 @@ static NSString * const cellIdentifier = @"BorkCell";
     self.navigationItem.hidesBackButton = YES;
     self.tableView.allowsSelection=NO;
     
+    [self.view bringSubviewToFront:self.tableView];
     [self populateBorks];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSString *userID = [BorkUserNetwork getUserIDWithUsername:[self.credentials username]];
+    NSString *userStringID = [NSString stringWithFormat:@"%@", userID];
+    if (self.borkUser != [self.dataManager findByID:userStringID]) {
+        self.borkUser = [self.dataManager findByID:userStringID];
+        NSURL *avatarURL = [NSURL URLWithString:self.borkUser.avatarURL];
+        NSData *imageData = [NSData dataWithContentsOfURL:avatarURL];
+        NSURL *avatarThumbURL = [NSURL URLWithString:self.borkUser.avatarThumbURL];
+        NSData *thumbImageData = [NSData dataWithContentsOfURL:avatarThumbURL];
+        
+        self.avatar = [UIImage imageWithData:thumbImageData];
+        self.profileImageView.image = [UIImage imageWithData:imageData];
+        self.profileUsernameLabel.text = [self.borkUser username];
+        [self.profileImageView.layer setMasksToBounds:YES];
+        [self.profileImageView.layer setCornerRadius:30.0f];
+    }
 }
 
 - (void)populateBorks
@@ -91,19 +105,17 @@ static NSString * const cellIdentifier = @"BorkCell";
     NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
     //FAVORITES
     NSString *secondIconName = @"cross.png";
-    UIColor *secondColor = [UIColor colorWithRed:232.0/255.0 green:61.0/255.0 blue:14.0/255.0 alpha:1.0];
     [cell setDelegate:self];
     [cell setFirstStateIconName:nil
                      firstColor:nil
             secondStateIconName:secondIconName
-                    secondColor:secondColor
+                    secondColor:nil
                   thirdIconName:nil
                      thirdColor:nil
                  fourthIconName:nil
                     fourthColor:nil];
     
     cell.favoritedView.transform = CGAffineTransformMakeScale(0.01, 0.01);
-    [cell.contentView setBackgroundColor:[UIColor whiteColor]];
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     [cell setModeForState2:MCSwipeTableViewCellModeExit];
     
@@ -118,24 +130,28 @@ static NSString * const cellIdentifier = @"BorkCell";
     cell.timestamp.text = [self timeAgo:[bork objectForKey:@"created_at"]];
     cell.username.text = self.borkUser.username;
     cell.avatar.image = self.avatar;
+    if (![[[bork objectForKey:@"attachment"] objectForKey:@"url"] isEqualToString:defaultImageURL])
+        cell.hasAttachment.text = @"Attach";
+    else
+        cell.hasAttachment.text = @"";
     return cell;
 }
 
 #define FONT_SIZE 14.0f
-#define LABEL_CONTENT_WIDTH 195.0f
+#define LABEL_CONTENT_WIDTH 230.0f
+#define CELL_CONTENT_HEIGHT_TOP_MARGIN 31.0f
+#define CELL_CONTENT_WIDTH_LEFT_MARGIN 12.0f
 #define CELL_CONTENT_WIDTH 320.0f
-#define CELL_CONTENT_HEIGHT_TOP_MARGIN 27.0f
-#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 10.0f
-#define CELL_CONTENT_WIDTH_RIGHT_MARGIN 47.0f
-#define CELL_CONTENT_WIDTH_LEFT_MARGIN 78.0f
+#define CELL_CONTENT_HEIGHT_BOTTOM_MARGIN 9.0f
 - (CGFloat) tableView: (UITableView *) tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath
 {
-    NSDictionary *borkDictionary = [self.borks objectAtIndex:[indexPath row]];
-    NSString *text = [borkDictionary objectForKey:@"content"];
-    CGSize constraint = CGSizeMake(LABEL_CONTENT_WIDTH, 20000.0f);
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    CGFloat height = MAX(size.height, 38.0f);
-    return height + (CELL_CONTENT_HEIGHT_TOP_MARGIN + CELL_CONTENT_HEIGHT_BOTTOM_MARGIN);
+    NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
+    NSString *text = [bork objectForKey:@"content"];
+    
+    CGSize maximumLabelSize = CGSizeMake(LABEL_CONTENT_WIDTH, FLT_MAX);
+    CGRect expectedLabelRect = [text boundingRectWithSize:maximumLabelSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithDescriptor:[UIFontDescriptor fontDescriptorWithName:@"AvenirNext-Regular" size:14.0f] size:14.0f]} context:nil];
+    CGFloat difference = expectedLabelRect.size.height - 17.0f;
+    return 67.0f + difference;
 }
 
 - (void)refreshView:(UIRefreshControl *)refresh

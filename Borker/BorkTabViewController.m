@@ -29,9 +29,12 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"constructionNav.png"]];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.4 green:0.412 blue:0.588 alpha:1]];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setSelectedImageTintColor:[UIColor whiteColor]];
@@ -44,8 +47,9 @@
 
 + (void)logoutCurrentUser
 {
-    BorkCredentials *creds = [[BorkCredentials alloc] init];
-    [creds setUsername:@""];
+    BorkCredentials *creds = [BorkCredentials sharedInstance];
+    [creds logOut];
+    
 }
 
 @end

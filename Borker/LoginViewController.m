@@ -43,7 +43,7 @@
     
     [self.view addGestureRecognizer:tap];
     
-    self.credentials = [[BorkCredentials alloc] init];
+    self.credentials = [BorkCredentials sharedInstance];
     if (![[self.credentials username] isEqualToString:@""]) {
         [self performSegueWithIdentifier:@"login" sender:self];
     }

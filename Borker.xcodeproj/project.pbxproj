@@ -29,7 +29,8 @@
 		0C769A8418294A9400D08249 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C769A8318294A9400D08249 /* CoreData.framework */; };
 		0C769A8718294AC500D08249 /* Borker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A8518294AC500D08249 /* Borker.xcdatamodeld */; };
 		0C769A9018294C7300D08249 /* BorkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A8F18294C7300D08249 /* BorkUser.m */; };
-		0C769A961829884A00D08249 /* BorkCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A951829884A00D08249 /* BorkCoreDataManager.m */; };
+		0C769A961829884A00D08249 /* BorkUserCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C769A951829884A00D08249 /* BorkUserCoreDataManager.m */; };
+		0C9159E8182D77740025F61E /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C9159E7182D77740025F61E /* KeychainItemWrapper.m */; };
 		0CA2CA5917FB65CE005D0873 /* BorkTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */; };
 		0CA2CA5C17FB6778005D0873 /* BorkNotificationNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5B17FB6778005D0873 /* BorkNotificationNetwork.m */; };
 		0CA2CA5F17FB6AC1005D0873 /* BorkNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CA2CA5E17FB6AC1005D0873 /* BorkNotificationViewController.m */; };
@@ -71,12 +72,8 @@
 		B5910AE117E75C6D00B1B24C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5910ADF17E75C6D00B1B24C /* InfoPlist.strings */; };
 		B5910AE417E75C6D00B1B24C /* BorkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B5910AE317E75C6D00B1B24C /* BorkerTests.m */; };
 		B5A430C017EB745C00186956 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430BF17EB745C00186956 /* Constants.m */; };
-		B5A430C317EB76E800186956 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430C117EB76E800186956 /* KeychainItemWrapper.m */; };
-		B5A430C417EB76E800186956 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A430C117EB76E800186956 /* KeychainItemWrapper.m */; };
 		B5CF55C61808943C0087BAC6 /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55C41808943C0087BAC6 /* Background.jpg */; };
 		B5CF55C71808943C0087BAC6 /* Background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55C51808943C0087BAC6 /* Background@2x.jpg */; };
-		B5CF55CA180D86DB0087BAC6 /* BorkAvatarCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */; };
-		B5CF55CC180D86F20087BAC6 /* BorkAvatarCircleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */; };
 		B5F058481811AFFC00BFFC74 /* avatarMask.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F058461811AFFC00BFFC74 /* avatarMask.png */; };
 		B5F058491811AFFC00BFFC74 /* avatarMask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F058471811AFFC00BFFC74 /* avatarMask@2x.png */; };
 		B5F058501811B63700BFFC74 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F0584E1811B63700BFFC74 /* triangle.png */; };
@@ -127,8 +124,10 @@
 		0C769A8618294AC500D08249 /* Borker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Borker.xcdatamodel; sourceTree = "<group>"; };
 		0C769A8E18294C7300D08249 /* BorkUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUser.h; sourceTree = "<group>"; };
 		0C769A8F18294C7300D08249 /* BorkUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUser.m; sourceTree = "<group>"; };
-		0C769A941829884A00D08249 /* BorkCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkCoreDataManager.h; sourceTree = "<group>"; };
-		0C769A951829884A00D08249 /* BorkCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkCoreDataManager.m; sourceTree = "<group>"; };
+		0C769A941829884A00D08249 /* BorkUserCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkUserCoreDataManager.h; sourceTree = "<group>"; };
+		0C769A951829884A00D08249 /* BorkUserCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkUserCoreDataManager.m; sourceTree = "<group>"; };
+		0C9159E6182D77740025F61E /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		0C9159E7182D77740025F61E /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		0CA2CA5717FB65CE005D0873 /* BorkTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkTabViewController.h; sourceTree = "<group>"; };
 		0CA2CA5817FB65CE005D0873 /* BorkTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkTabViewController.m; sourceTree = "<group>"; };
 		0CA2CA5A17FB6778005D0873 /* BorkNotificationNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkNotificationNetwork.h; sourceTree = "<group>"; };
@@ -187,13 +186,8 @@
 		B5910AE317E75C6D00B1B24C /* BorkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorkerTests.m; sourceTree = "<group>"; };
 		B5A430BE17EB745C00186956 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		B5A430BF17EB745C00186956 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		B5A430C117EB76E800186956 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		B5A430C217EB76E800186956 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		B5CF55C41808943C0087BAC6 /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		B5CF55C51808943C0087BAC6 /* Background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Background@2x.jpg"; sourceTree = "<group>"; };
-		B5CF55C8180D86DB0087BAC6 /* BorkAvatarCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorkAvatarCircleView.h; sourceTree = "<group>"; };
-		B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorkAvatarCircleView.m; sourceTree = "<group>"; };
-		B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BorkAvatarCircleView.xib; sourceTree = "<group>"; };
 		B5F058461811AFFC00BFFC74 /* avatarMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatarMask.png; sourceTree = "<group>"; };
 		B5F058471811AFFC00BFFC74 /* avatarMask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatarMask@2x.png"; sourceTree = "<group>"; };
 		B5F0584E1811B63700BFFC74 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
@@ -305,9 +299,6 @@
 				0CEEDB8317F9D1AB00526494 /* UndoView.xib */,
 				0CEEDB8517F9D3F200526494 /* UndoView.h */,
 				0CEEDB8617F9D3F200526494 /* UndoView.m */,
-				B5CF55CB180D86F20087BAC6 /* BorkAvatarCircleView.xib */,
-				B5CF55C8180D86DB0087BAC6 /* BorkAvatarCircleView.h */,
-				B5CF55C9180D86DB0087BAC6 /* BorkAvatarCircleView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -322,8 +313,8 @@
 				0C769A8518294AC500D08249 /* Borker.xcdatamodeld */,
 				0C769A8E18294C7300D08249 /* BorkUser.h */,
 				0C769A8F18294C7300D08249 /* BorkUser.m */,
-				0C769A941829884A00D08249 /* BorkCoreDataManager.h */,
-				0C769A951829884A00D08249 /* BorkCoreDataManager.m */,
+				0C769A941829884A00D08249 /* BorkUserCoreDataManager.h */,
+				0C769A951829884A00D08249 /* BorkUserCoreDataManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -428,10 +419,10 @@
 		B5A430BD17EB71A000186956 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				0C9159E6182D77740025F61E /* KeychainItemWrapper.h */,
+				0C9159E7182D77740025F61E /* KeychainItemWrapper.m */,
 				0C61DACD17F4ACD40066630B /* MCSwipeTableViewCell.h */,
 				0C61DACE17F4ACD40066630B /* MCSwipeTableViewCell.m */,
-				B5A430C117EB76E800186956 /* KeychainItemWrapper.m */,
-				B5A430C217EB76E800186956 /* KeychainItemWrapper.h */,
 			);
 			name = Vendor;
 			path = Borker;
@@ -572,7 +563,6 @@
 				0C29ABFB17FC76C600227734 /* home.png in Resources */,
 				B5F058501811B63700BFFC74 /* triangle.png in Resources */,
 				0CEA17E41815BF6E00D323FE /* signUp.png in Resources */,
-				B5CF55CC180D86F20087BAC6 /* BorkAvatarCircleView.xib in Resources */,
 				0C1219B517FA0EEE00462E1B /* star-gray@2x.png in Resources */,
 				0C29ABF417FC73EC00227734 /* like@2x.png in Resources */,
 				0C29ABEC17FC70ED00227734 /* profile@2x.png in Resources */,
@@ -612,18 +602,18 @@
 			files = (
 				B5910ABF17E75C6D00B1B24C /* main.m in Sources */,
 				B5910AC317E75C6D00B1B24C /* BorkAppDelegate.m in Sources */,
-				0C769A961829884A00D08249 /* BorkCoreDataManager.m in Sources */,
+				0C769A961829884A00D08249 /* BorkUserCoreDataManager.m in Sources */,
 				0CA2CA5917FB65CE005D0873 /* BorkTabViewController.m in Sources */,
 				B5910ACF17E75C6D00B1B24C /* BorkViewController.m in Sources */,
 				0C769A8718294AC500D08249 /* Borker.xcdatamodeld in Sources */,
 				0C61DAEB17F609250066630B /* BorkCredentials.m in Sources */,
 				0CEEDB8717F9D3F200526494 /* UndoView.m in Sources */,
-				B5CF55CA180D86DB0087BAC6 /* BorkAvatarCircleView.m in Sources */,
 				0CD24EFC181AB55900091D29 /* BorkMainNavigationController.m in Sources */,
 				B572B85A17E78B7A00AF9DC0 /* BorkCell.m in Sources */,
 				0C2C710617FBA02E0090CFD6 /* BorkProfileViewController.m in Sources */,
 				0CA2CA5F17FB6AC1005D0873 /* BorkNotificationViewController.m in Sources */,
 				B572B85D17E89BB100AF9DC0 /* BorkUserNetwork.m in Sources */,
+				0C9159E8182D77740025F61E /* KeychainItemWrapper.m in Sources */,
 				0CA2CA5C17FB6778005D0873 /* BorkNotificationNetwork.m in Sources */,
 				B546D06E17E8EA7F0005477D /* BorkNetwork.m in Sources */,
 				0C61DACF17F4ACD40066630B /* MCSwipeTableViewCell.m in Sources */,
@@ -634,7 +624,6 @@
 				0CA2CA6417FB79F1005D0873 /* NotificationCell.m in Sources */,
 				B5A430C017EB745C00186956 /* Constants.m in Sources */,
 				0CC9FEB717FEFDA800C0EFD7 /* BorkDetailViewController.m in Sources */,
-				B5A430C317EB76E800186956 /* KeychainItemWrapper.m in Sources */,
 				0C475B9917FB20F100DB0D3E /* Bork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,7 +633,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5910AE417E75C6D00B1B24C /* BorkerTests.m in Sources */,
-				B5A430C417EB76E800186956 /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

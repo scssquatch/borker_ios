@@ -8,6 +8,7 @@
 
 #import "BorkCredentials.h"
 #import "KeychainItemWrapper.h"
+
 @interface BorkCredentials ()
 @property (strong, nonatomic) KeychainItemWrapper *keychainWrapper;
 @end
@@ -24,8 +25,7 @@
 
 - (NSString *)username
 {
-    if (!_username)
-    {
+    if (!_username) {
         _username = [self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount];
     }
     return _username;
@@ -34,6 +34,24 @@
 - (void)setUsername:(NSString *)username
 {
     _username = nil;
-    [self.keychainWrapper setObject:username forKey:(__bridge id)kSecAttrAccount];
+    NSLog(@"set username to %@, 1: %@", username, [self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount]);
+    [self.keychainWrapper setObject:username forKey:(__bridge id)(kSecAttrAccount)];
+    NSLog(@"set username to %@, 2: %@", username, [self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount]);
+}
+
+- (void)logOut
+{
+    [self.keychainWrapper resetKeychainItem];
+    NSLog(@"reset keychain: %@",[self.keychainWrapper objectForKey:(__bridge id)kSecAttrAccount]);
+}
+
++ (id)sharedInstance
+{
+    static BorkCredentials *_creds;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _creds = [[BorkCredentials alloc] init];
+    });
+    return _creds;
 }
 @end

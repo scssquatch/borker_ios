@@ -13,24 +13,26 @@
 @interface NewBorkViewController ()
 @property (strong, nonatomic) BorkNetwork *borkAPI;
 @property (strong, nonatomic) BorkCredentials *credentials;
+@property (strong, nonatomic) NSString *username;
 @end
 
 @implementation NewBorkViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.credentials = [[BorkCredentials alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.credentials = [BorkCredentials sharedInstance];
     [self.borkContentView becomeFirstResponder];
+    self.username = [self.credentials username];
     [super viewWillAppear:animated];
 }
 
 - (IBAction)createNewBork:(UIBarButtonItem *)sender {
     NSString *bork = self.borkContentView.text;
-    if ([BorkNetwork createBork:bork user:[self.credentials username]]) {
+    if ([BorkNetwork createBork:bork user:self.username]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

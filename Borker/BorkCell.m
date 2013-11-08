@@ -7,7 +7,6 @@
 //
 
 #import "BorkCell.h"
-#import "BorkAvatarCircleView.h"
 @interface BorkCell()
 
 @end

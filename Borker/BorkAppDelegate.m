@@ -10,7 +10,7 @@
 #import "TestFlight.h"
 #import "KeychainItemWrapper.h"
 #import "BorkUserNetwork.h"
-#import "BorkCoreDataManager.h"
+#import "BorkUserCoreDataManager.h"
 
 @implementation BorkAppDelegate
 
@@ -18,7 +18,7 @@
 {
     // Override point for customization after application launch.
     [TestFlight takeOff:@"ccf33502-07b1-4f3a-a76d-01553dafc474"];
-    [[[BorkCoreDataManager alloc] init] populateUsers];
+    [[[BorkUserCoreDataManager alloc] init] populateUsers];
  
     return YES;
 }

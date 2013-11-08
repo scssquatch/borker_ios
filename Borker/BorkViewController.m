@@ -14,7 +14,7 @@
 #import "BorkCredentials.h"
 #import "BorkDetailViewController.h"
 #import "BorkUser.h"
-#import "BorkCoreDataManager.h"
+#import "BorkUserCoreDataManager.h"
 
 static NSString * const cellIdentifier = @"BorkCell";
 static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/default.jpg";
@@ -28,7 +28,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
 @property (strong, nonatomic) NSArray *favorites;
 @property (strong, nonatomic) BorkCredentials *credentials;
 @property (strong, nonatomic) NSTimer *deleteTimer;
-@property (strong, nonatomic) BorkCoreDataManager *coreDataManager;
+@property (strong, nonatomic) BorkUserCoreDataManager *coreDataManager;
 @end
 
 @implementation BorkViewController
@@ -40,7 +40,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     self.avatarThumbs = [[NSMutableDictionary alloc] init];
     self.borks = [[NSArray alloc] init];
     self.credentials = [[BorkCredentials alloc] init];
-    self.coreDataManager = [[BorkCoreDataManager alloc] init];
+    self.coreDataManager = [[BorkUserCoreDataManager alloc] init];
     self.managedObjectContext = [self.coreDataManager getManagedObjectContext];
     
     //set up pull down to refresh
@@ -54,7 +54,6 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     [self.view addSubview:strip];
     [self.view sendSubviewToBack:strip];
     
-    self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
     
     //register nibs for identifiers
     UINib *nib = [UINib nibWithNibName:@"BorkCellView" bundle:nil];
@@ -68,6 +67,11 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
      (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     [self populateUsers];
     [self populateBorks];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.favorites = [BorkUserNetwork getFavorites:[self.credentials username]];
 }
 
 - (void)populateUsers
@@ -115,7 +119,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
     BorkCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     NSDictionary *bork = [self.borks objectAtIndex:[indexPath row]];
     NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
-    BorkUser *user = [self findUserByID:user_id];
+    BorkUser *user = [self.coreDataManager findByID:user_id];
     
     //FAVORITES
     NSString *secondIconName = nil;
@@ -143,7 +147,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         [cell setModeForState2:MCSwipeTableViewCellModeExit];
     }
     [cell setModeForState3:MCSwipeTableViewCellModeSwitch];
-//    cell.shouldAnimatesIcons = NO;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     NSString *text = [bork objectForKey:@"content"];
@@ -196,7 +200,7 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         [detailController setBork:bork];
         
         NSString *user_id = [NSString stringWithFormat:@"%@", [bork objectForKey:@"user_id"]];
-        BorkUser *user = [self findUserByID:user_id];
+        BorkUser *user = [self.coreDataManager findByID:user_id];
         detailController.avatar = [self.avatars objectForKey:user.user_id];
         detailController.username = user.username;
     }
@@ -328,16 +332,5 @@ static NSString * const defaultImageURL = @"https://borker.herokuapp.com/assets/
         return [NSString stringWithFormat:@"%ih", (int)seconds/3600];
     else
         return (NSString *)[dateFormatter stringFromDate:borkTime];
-}
-
-- (BorkUser *)findUserByID:(NSString *)user_id
-{
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BorkUser" inManagedObjectContext:self.managedObjectContext];
-    [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id = %@", user_id];
-    [request setPredicate:predicate];
-    NSError *error;
-    return [[self.managedObjectContext executeFetchRequest:request error:&error] firstObject];
 }
 @end

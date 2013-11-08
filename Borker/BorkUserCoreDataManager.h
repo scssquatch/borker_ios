@@ -7,16 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BorkUserNetwork.h"
+#import "BorkUser.h"
 
-@interface BorkCoreDataManager : NSObject
+@interface BorkUserCoreDataManager : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
-
-- (NSManagedObjectContext *)getManagedObjectContext;
 - (void)populateUsers;
+- (NSURL *)applicationDocumentsDirectory;
+- (NSManagedObjectContext *)getManagedObjectContext;
+- (BorkUser *)findByID:(NSString *)user_id;
 @end

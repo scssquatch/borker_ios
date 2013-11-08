@@ -10,4 +10,6 @@
 
 @interface BorkCredentials : NSObject
 @property (strong, nonatomic) NSString *username;
+- (void)logOut;
++ (id)sharedInstance;
 @end
